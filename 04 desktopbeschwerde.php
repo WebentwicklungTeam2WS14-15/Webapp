@@ -39,6 +39,9 @@
 			<h3 class="text-center">
 				Bitte füllen Sie alle gekennzeichneten Felder aus!
 			</h3>
+			<?php
+			echo($_POST[vorname]);
+			?>
 			<h4 class="text-center">
 				*Pflichtfelder
 			</h4>
