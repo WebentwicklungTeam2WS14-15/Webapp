@@ -40,7 +40,7 @@
 				Bitte füllen Sie alle gekennzeichneten Felder aus!
 			</h3>
 			<?php
-			echo($_POST['vorname']);
+			echo($_POST[vorname]);
 			echo("test");
 			?>
 			<h4 class="text-center">
