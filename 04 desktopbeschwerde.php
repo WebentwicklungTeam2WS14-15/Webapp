@@ -70,6 +70,9 @@
 				<div class="form-group">
 					 <label for="exampleInputFile">Foto hochladen</label><input id="Foto" type="file">
 				</div>
+				<div class="form-group">
+				<input name="something" value="etwas" type="hidden">
+				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
 			<script type="text/javascript">
