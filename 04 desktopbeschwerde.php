@@ -58,7 +58,7 @@
 		[Karte]
 		</div>
 		<div class="col-md-6 column">
-			<form role="form" method="post" action="07 kontrolle.php">
+			<form role="form" method="post" id="form" action="07 kontrolle.php">
 				<div class="form-group">
 				<br>
 				<textarea id="text" name="textarea" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
@@ -71,7 +71,7 @@
 					 <label for="exampleInputFile">Foto hochladen</label><input id="Foto" type="file">
 				</div>
 				<div class="form-group">
-				<input name="something" value="etwas" type="hidden">
+				<input name="etwas" value="etwas" type="hidden">
 				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
