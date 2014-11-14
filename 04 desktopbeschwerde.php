@@ -73,12 +73,13 @@
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
 			<script type="text/javascript">
-				$("#form").submit( function(eventObj) 
-				{
-					$(this).append("<input name='someName' value='someValue' type='hidden'>");
-					$(this).append("<input name='vorname' value=$_POST[vorname] type='hidden'>");
+				$("#form").submit( function(eventObj) {
+					$('<input />').attr('type', 'hidden')
+						.attr('name', "something")
+						.attr('value', "something")
+						.appendTo('#form');
 					return true;
-				}
+				});
 			</script>
 		</div>
 	</div>

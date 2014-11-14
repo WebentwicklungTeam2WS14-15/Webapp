@@ -41,6 +41,7 @@
 			</h3>
 			<?php
 			echo($_POST[vorname]);
+			echo($_POST[something]);
 			echo($_POST[textarea]);
 			echo("test");
 			?>
