@@ -50,9 +50,7 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">		
-         <br>
-		 <textarea id="text" name="textarea" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
-		 </br> 	
+        	
 		</div>
 	</div>
 	<div class="row clearfix">
@@ -60,7 +58,12 @@
 		[Karte]
 		</div>
 		<div class="col-md-6 column">
-			<form role="form" action="07 kontrolle.html">
+			<form role="form" method="post" action="07 kontrolle.php">
+				<div class="form-group">
+				<br>
+				<textarea id="text" name="textarea" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
+				</br> 
+				</div>
 				<div class="form-group">
 					 <label for="exampleInputEmail1">Straße, Hausnummer</label><input class="form-control" id="Schadensort" type="name">
 				</div>
@@ -69,6 +72,14 @@
 				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
+			<script type="text/javascript">
+				$("#form").submit( function(eventObj) 
+				{
+					$(this).append("<input name='someName' value='someValue' type='hidden'>");
+					$(this).append("<input name='vorname' value=$_POST[vorname] type='hidden'>");
+					return true;
+				}
+			</script>
 		</div>
 	</div>
 	<div class="row clearfix">
