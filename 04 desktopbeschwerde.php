@@ -77,9 +77,9 @@
 			</form>
 			<script type="text/javascript">
 				$("#form").submit( function(eventObj) {
-					$('<input />').attr('type', 'hidden')
-						.attr('name', 'something')
-						.attr('value', 'something')
+					$('<input />').attr('type', "hidden")
+						.attr('name', "something")
+						.attr('value', "something")
 						.appendTo('#form');
 					return true;
 				});
