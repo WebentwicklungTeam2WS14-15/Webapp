@@ -68,14 +68,16 @@
 				
 				<script type="text/javascript">
 					document.write(
-						<div class="form-group">
-						<label>Name</label>
-						<label>liste[name]</label>
-						</div>
+						<form role="form" method="post">
+							<div class="form-group">
+							<label>Name</label>
+							<label>liste[name]</label>
+							</div>
+						</form>
 					);
 				</script>
 			</table>
-			<form role="form" method="get">
+			<form role="form" method="post">
 				<div class="form-group">
 					 <label>Name:</label>
 				</div>
