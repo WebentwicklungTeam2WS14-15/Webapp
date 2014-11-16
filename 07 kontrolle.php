@@ -34,7 +34,7 @@
 	<script type="text/javascript" src="storage.js"></script>
 	<script type="text/javascript">
 		var liste = storage.getAll();
-		//var vorgetname = storage.get("vorname");
+		var vorgetname = storage.get("vorname");
 	</script>
 </head>
 
@@ -66,7 +66,7 @@
 				</tr>
 				<script type="text/javascript">
 				//var vorgetname = storage.get("vorname");
-				//document.write(vorgetname);
+				document.write(vorgetname);
 				for (var eigenschaft in liste) {
 					document.write(
 					  "<tr><td>" + eigenschaft + "</td>" +
