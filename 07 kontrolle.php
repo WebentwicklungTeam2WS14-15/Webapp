@@ -49,8 +49,8 @@
 			echo($_POST[vorname]);
 			echo($_POST[something]);
 			echo($_POST[textarea]);
-			echo("test");
-			echo(vorname);
+			echo("---");
+			echo(vornme);
 			?>
 			<h4 class="text-center">
 				Bitte überprüfen Sie Ihre angegebenen Daten!
