@@ -33,6 +33,21 @@
 </head>
 
 <body>
+<script type="text/javascript" src="storage.js"></script>
+<script type="text/javascript">
+function sichern () {
+	storage.set("name", document.forms.form.elements.name.value);
+	storage.set("vorname", document.forms.form.elements.vorname.value);
+	storage.set("strasse", document.forms.form.elements.strasse.value);
+	storage.set("hausnr", document.forms.form.elements.hausnr.value);
+	storage.set("plz", document.forms.form.elements.plz.value);
+	storage.set("ort", document.forms.form.elements.ort.value);
+	storage.set("telefon", document.forms.form.elements.telefon.value);
+	storage.set("mobil", document.forms.form.elements.mobil.value);
+	storage.set("email", document.forms.form.elements.email.value);
+	location.href = "03 personalisiertedaten.html";
+}
+</script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -46,7 +61,7 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-6 column">
-			<form role="form" method="post" action="04 desktopbeschwerde.php">
+			<form role="form" method="post" action="04 desktopbeschwerde.php" onsubmit="sichern(); return false;">
 				<div class="form-group">
 					 <label>Name*</label>
 					 <input class="form-control" id="name" name="name" type="name" value="testname" required>
@@ -61,7 +76,7 @@
 				</div>
 				<div class="form-group">
 					 <label>Hausnummer*</label>
-					 <input class="form-control" id="hausnummer" type="name" name="hausnr" value="testnr" required>
+					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="testnr" required>
 				</div>
 				<div class="form-group">
 					 <label>Postleitzahl*</label>

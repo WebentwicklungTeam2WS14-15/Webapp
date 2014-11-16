@@ -30,6 +30,11 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<script type="text/javascript" src="storage.js"></script>
+	<script type="text/javascript">
+		var liste = storage.getAll();
+	</script>
 </head>
 
 <body>
@@ -52,6 +57,20 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
+			<table border="1" cellpadding="5" cellspacing="0">
+				<tr>
+					<th>Feldname</th>
+					<th>Eintrag</th>
+				</tr>
+				<script type="text/javascript">
+				for (var eigenschaft in liste) {
+					document.write(
+					  "<tr><td>" + eigenschaft + "</td>" +
+					  "<td><code>" + liste[eigenschaft] + "</code></td></tr>"
+					);
+				}
+				</script>
+			</table>
 			<form role="form" method="get">
 				<div class="form-group">
 					 <label>Name:</label>
