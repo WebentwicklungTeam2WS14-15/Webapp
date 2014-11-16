@@ -42,7 +42,7 @@ function sichern () {
 	storage.set("hausnr", document.forms.form.elements.hausnr.value);
 	storage.set("plz", document.forms.form.elements.plz.value);
 	storage.set("ort", document.forms.form.elements.ort.value);
-	location.href = "07 kontrolle.php";
+	location.href = "04 desktopbeschwerde";
 }
 </script>
 <div class="container">
@@ -58,7 +58,7 @@ function sichern () {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-6 column">
-			<form role="form" name="form" method="post" action="04 desktopbeschwerde.php" onsubmit="sichern(); return false;">
+			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 					 <label>Name*</label>
 					 <input class="form-control" id="name" name="name" type="name" value="testname" required>
