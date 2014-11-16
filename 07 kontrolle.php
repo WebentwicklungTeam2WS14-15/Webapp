@@ -70,8 +70,8 @@
 					document.write(
 						<form role="form" method="post">
 							<div class="form-group">
-							<label>Name</label>
-							<label>liste[name]</label>
+							<label> Name</label>
+							<label>liste['name']</label>
 							</div>
 						</form>
 					);
