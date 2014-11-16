@@ -41,7 +41,7 @@
 			</h3>
 			<?php
 			echo($_POST[vorname]);
-			echo("test");
+			echo("---");
 			?>
 			<h4 class="text-center">
 				*Pflichtfelder
