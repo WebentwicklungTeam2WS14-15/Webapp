@@ -64,7 +64,7 @@
 					<th>Feldname</th>
 					<th>Eintrag</th>
 				</tr>
-				<script type="text/javascript">
+				<script type="text/javascript" src="storage.js">
 				var vorgetname = storage.get("vorname");
 				document.write(vorgetname);
 				for (var eigenschaft in liste) {
