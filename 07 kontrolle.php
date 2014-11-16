@@ -65,8 +65,8 @@
 					<th>Eintrag</th>
 				</tr>
 				<script type="text/javascript">
+				var vorgetname = storage.get("vorname");
 				document.write(vorgetname);
-				document.write(liste);
 				for (var eigenschaft in liste) {
 					document.write(
 					  "<tr><td>" + eigenschaft + "</td>" +
