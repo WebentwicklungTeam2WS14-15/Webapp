@@ -66,6 +66,7 @@
 				</tr>
 				<script type="text/javascript">
 				document.write(vorgetname);
+				document.write(liste);
 				for (var eigenschaft in liste) {
 					document.write(
 					  "<tr><td>" + eigenschaft + "</td>" +
