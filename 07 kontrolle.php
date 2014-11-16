@@ -45,13 +45,6 @@
 			<h3 class="text-center">
 				Kontrollformular:
 			</h3>
-			<?php
-			echo($_POST[vorname]);
-			echo($_POST[something]);
-			echo($_POST[textarea]);
-			echo("---");
-			echo(vornme);
-			?>
 			<h4 class="text-center">
 				Bitte überprüfen Sie Ihre angegebenen Daten!
 			</h4>

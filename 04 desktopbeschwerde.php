@@ -33,16 +33,20 @@
 </head>
 
 <body>
+<script type="text/javascript" src="storage.js"></script>
+<script type="text/javascript">
+function sichern () {
+	storage.set("Ihre Nachricht", document.forms.form.elements.textarea.value);
+	storage.set("Schadensort", document.forms.form.elements.schadensort.value);
+	location.href = "07 kontrolle.php";
+}
+</script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">
 				Bitte füllen Sie alle gekennzeichneten Felder aus!
 			</h3>
-			<?php
-			echo($_POST[vorname]);
-			echo("---");
-			?>
 			<h4 class="text-center">
 				*Pflichtfelder
 			</h4>
@@ -58,32 +62,24 @@
 		[Karte]
 		</div>
 		<div class="col-md-6 column">
-			<form role="form" method="post" id="form" action="07 kontrolle.php">
+			<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 				<br>
 				<textarea id="text" name="textarea" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
 				</br> 
 				</div>
 				<div class="form-group">
-					 <label for="exampleInputEmail1">Straße, Hausnummer</label><input class="form-control" id="Schadensort" type="name">
+					 <label>Straße, Hausnummer</label>
+					 <input class="form-control" id="schadensort" name="schadensort" type="name">
 				</div>
 				<div class="form-group">
-					 <label for="exampleInputFile">Foto hochladen</label><input id="Foto" type="file">
+					 <label>Foto hochladen</label><input id="Foto" type="file">
 				</div>
 				<div class="form-group">
 				<input name="etwas" value="etwas" type="hidden">
 				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
-			<script type="text/javascript">
-				$("#form").submit( function(eventObj) {
-					$('<input />').attr('type', "hidden")
-						.attr('name', "something")
-						.attr('value', "something")
-						.appendTo('#form');
-					return true;
-				});
-			</script>
 		</div>
 	</div>
 	<div class="row clearfix">
