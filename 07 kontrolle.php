@@ -34,6 +34,7 @@
 	<script type="text/javascript" src="storage.js"></script>
 	<script type="text/javascript">
 		var liste = storage.getAll();
+		var vorname = storage.get("vorname");
 	</script>
 </head>
 
@@ -49,6 +50,7 @@
 			echo($_POST[something]);
 			echo($_POST[textarea]);
 			echo("test");
+			echo(vorname);
 			?>
 			<h4 class="text-center">
 				Bitte überprüfen Sie Ihre angegebenen Daten!
