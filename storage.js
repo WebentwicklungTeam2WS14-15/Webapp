@@ -41,6 +41,10 @@ var storage = new function () {
 
 	/* --------- Public Methods --------- */
 
+	/*this.getName = function (dataContainer[name]){
+		return name;
+	};*/
+	
 	this.set = function (name, value) {
 		dataContainer[name] = value;
 		write();

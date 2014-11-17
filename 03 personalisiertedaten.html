@@ -36,15 +36,21 @@
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
-	storage.set("name", document.forms.form.elements.name.value);
-	storage.set("vorname", document.forms.form.elements.vorname.value);
-	storage.set("strasse", document.forms.form.elements.strasse.value);
-	storage.set("hausnr", document.forms.form.elements.hausnr.value);
-	storage.set("plz", document.forms.form.elements.plz.value);
-	storage.set("ort", document.forms.form.elements.ort.value);
-	storage.set("telefon", document.forms.form.elements.telefon.value);
-	storage.set("mobil", document.forms.form.elements.mobil.value);
-	storage.set("email", document.forms.form.elements.email.value);
+	storage.set("Name", document.forms.form.elements.name.value);
+	storage.set("Vorname", document.forms.form.elements.vorname.value);
+	storage.set("Strasse", document.forms.form.elements.strasse.value);
+	storage.set("Hausnummer", document.forms.form.elements.hausnr.value);
+	storage.set("Postleitzahl", document.forms.form.elements.plz.value);
+	storage.set("Ort", document.forms.form.elements.ort.value);
+	if(document.forms.form.elements.telefon.value!=""){
+	storage.set("Telefon", document.forms.form.elements.telefon.value);
+	}
+	if(document.forms.form.elements.mobil.value!=""){
+	storage.set("Mobil", document.forms.form.elements.mobil.value);
+	}
+	if(document.forms.form.elements.email.value!=""){
+	storage.set("E-Mail", document.forms.form.elements.email.value);
+	}
 	location.href = "04 desktopbeschwerde.php";
 }
 </script>
@@ -64,39 +70,39 @@ function sichern () {
 			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 					 <label>Name*</label>
-					 <input class="form-control" id="name" name="name" type="name" value="testname" required>
+					 <input class="form-control" id="name" name="name" type="name" value="Mustermann" required>
 				</div>
 				<div class="form-group">
 					 <label>Vorname*</label>
-					 <input class="form-control" id="vorname" name="vorname" type="name" value="testvorname" required>
+					 <input class="form-control" id="vorname" name="vorname" type="name" value="Max" required>
 				</div>
 				<div class="form-group">
 					 <label>Straße*</label>
-					 <input class="form-control" id="strasse" type="name" name="strasse" value="teststrasse" required>
+					 <input class="form-control" id="strasse" type="name" name="strasse" value="Musterstraße" required>
 				</div>
 				<div class="form-group">
 					 <label>Hausnummer*</label>
-					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="testnr" required>
+					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="123" required>
 				</div>
 				<div class="form-group">
 					 <label>Postleitzahl*</label>
-					 <input class="form-control" id="plz" type="name" name="plz" value="testplz"required>
+					 <input class="form-control" id="plz" type="name" name="plz" value="12345"required>
 				</div>
 				<div class="form-group">
 					 <label>Ort*</label>
-					 <input class="form-control" id="ort" type="name" name="ort" value="testort" required>
+					 <input class="form-control" id="ort" type="name" name="ort" value="Musterstadt" required>
 				</div>
 				<div class="form-group">
 					 <label>Telefon</label>
-					 <input class="form-control" id="telefon" type="name" name="telefon">
+					 <input class="form-control" id="telefon" type="name" name="telefon" value="1234567">
 				</div>
 				<div class="form-group">
 					 <label>Mobil</label>
-					 <input class="form-control" id="mobil" type="name" name="mobil">
+					 <input class="form-control" id="mobil" type="name" name="mobil" value="+49 1234567">
 				</div>
 				<div class="form-group">
 					 <label >E-Mail</label>
-					 <input class="form-control" id="email" type="email" name="email">
+					 <input class="form-control" id="email" type="email" name="email" value="Max@Mustermail.com">
 				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>

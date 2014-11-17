@@ -33,6 +33,24 @@
 </head>
 
 <body>
+<script type="text/javascript" src="storage.js"></script>
+<script type="text/javascript">
+function briefkasten() {
+	storage.set("Art", "Briefkasten Bürgermeister");
+}
+function strasse() {
+	storage.set("Art", "Straßenschaden");
+}
+function spielplatz() {
+	storage.set("Art", "Spielplatzschaden");
+}
+function parken() {
+	storage.set("Art", "Parkautomatenschaden");
+}
+function schilder() {
+	storage.set("Art", "Schaden an Verkehrsschildern");
+}
+</script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -43,12 +61,12 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button">Briefkasten Bürgermeister <br/>(für allgemeine Beschwerden, <br/>ausgefallene Ideen, Lob und Kritik)</a> 
-			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button">Meldung von Straßenschäden</a> 
+			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="briefkasten();">Briefkasten Bürgermeister <br/>(für allgemeine Beschwerden, <br/>ausgefallene Ideen, Lob und Kritik)</a> 
+			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="strasse();">Meldung von Straßenschäden</a> 
 			 <a href="011 rweverlinkung.html" class="btn btn-block btn-default" type="button">Störungsmeldung Straßenbeleuchtung</a> 
-			 <a href="02 anonymodernicht.html" class="btn btn-default btn-block" type="button">Meldung von Schäden auf Spielplätzen</a> 
-			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button">Meldung von Schäden an Parkautomaten <br/> und Parkuhren</a> 
-			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button">Meldung von Schäden an Verkehrsschildern</a>
+			 <a href="02 anonymodernicht.html" class="btn btn-default btn-block" type="button" onclick="spielplatz();">Meldung von Schäden auf Spielplätzen</a> 
+			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="parken();">Meldung von Schäden an Parkautomaten <br/> und Parkuhren</a> 
+			 <a href="02 anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="schilder();">Meldung von Schäden an Verkehrsschildern</a>
 		</div>
 	</div>
 </div>

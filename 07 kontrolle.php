@@ -51,70 +51,23 @@
 		</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<table border="1" cellpadding="5" cellspacing="0">
-				<tr>
-					<th>Feldname</th>
-					<th>Eintrag</th>
-				</tr>
+		<div class="col-md-12 column">		
+			<form role="form" method="post" action="09 vielendank.html">
 				<script type="text/javascript">
-				for (var eigenschaft in liste) {
-					document.write(
-					  "<tr><td>" + eigenschaft + "</td>" +
-					  "<td><code>" + liste[eigenschaft] + "</code></td></tr>"
-					);
-				}
+					for (var eigenschaft in liste) {
+					/*if (storage.getName(eigenschaft) == "Art"){
+						document.write(
+							"Hier könnte Ihre Art stehen!"
+							);
+					} else{*/
+						document.write(
+						  "<div class='form-group'><label>"+
+						  eigenschaft+": "+"</label><input value='"+
+						  liste[eigenschaft]+"'></input></div>"
+						);
+					}
 				</script>
-				
-				<script type="text/javascript">
-					document.write(
-						<form role="form" method="post">
-							<div class="form-group">
-							<label> Name</label>
-							<label>liste['name']</label>
-							</div>
-						</form>
-					);
-				</script>
-			</table>
-			<form role="form" method="post">
-				<div class="form-group">
-					 <label>Name:</label>
-				</div>
-				<div class="form-group">
-					 <label>Vorname:</label>
-				</div>
-				<div class="form-group">
-					 <label>Straße:</label>
-				</div>
-				<div class="form-group">
-					 <label>Hausnummer:</label>
-				</div>
-				<div class="form-group">
-					 <label>Postleitzahl:</label>
-				</div>
-				<div class="form-group">
-					 <label>Ort:</label>
-				</div>
-				<div class="form-group">
-					 <label>Telefon:</label>
-					 <input class="form-control" id="Telefon" type="name">
-				</div>
-				<div class="form-group">
-					 <label>Mobil:</label>
-					 <input class="form-control" id="Mobil" type="name">
-				</div>
-				<div class="form-group">
-					 <label >E-Mail:</label>
-					 <input class="form-control" id="Email" type="email">
-				</div>
-				<div class="form-group">
-					 <label>Ihre Nachricht:</label>
-				</div>
-				<div class="form-group">
-					 <label>Beschwerdeort:</label>
-					 <label>[Karte]</label>
-				</div>
+				<input class="btn btn-success btn-lg" type="submit" style="float: right;" value="Weiter (Beschwerde jetzt melden)"></a>
 			</form>
 			<a href="#" class="btn btn-warning" type="button">Bearbeiten</a>
 		</div>
@@ -123,7 +76,7 @@
 		<div class="col-md-6 column">
 		</div>
 		<div class="col-md-6 column">
-			 <a href="09 vielendank.html" class="btn btn-success btn-lg" type="button" style="float: right;">Weiter (Beschwerde jetzt melden)</a>
+			 
 		</div>
 	</div>
 </div>
