@@ -36,10 +36,10 @@
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
-	storage.set("Ihre Nachricht", document.forms.form.elements.nachricht.value);
+	storage.set("nachricht", document.forms.form.elements.nachricht.value);
 	//storage.set("Foto", document.forms.form.elements.foto.value);
-	storage.set("Schadensort", document.forms.form.elements.schadensort.value);
-	location.href = "07 kontrolle.php";
+	storage.set("schadensort", document.forms.form.elements.schadensort.value);
+	location.href = "05kontrolle.html";
 }
 </script>
 <div class="container">
@@ -60,15 +60,56 @@ function sichern () {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-6 column">
-		[Karte]
-		</div>
-		<div class="col-md-6 column">
-			<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
+		<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 				<br>
+				<label>Ihre Nachricht*</label></br>
 				<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
 				</br> 
 				</div>
+				<p id="feedback"></p>
+		<p id="lati">Latitude: </p>
+		<p id="longi">Longitude: </p>
+
+        <script>
+            var x = document.getElementById("feedback");
+			var lati = document.getElementById("lati");
+			var longi = document.getElementById("longi");
+            
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition,showError);
+                } else { 
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+            
+            function showPosition(position) {	
+				lati.innerHTML = "Latitude: " + position.coords.latitude;
+				longi.innerHTML = "Longitude: " + position.coords.longitude;
+            }
+            
+            function showError(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        x.innerHTML = "User denied the request for Geolocation."
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        x.innerHTML = "Location information is unavailable."
+                        break;
+                    case error.TIMEOUT:
+                        x.innerHTML = "The request to get user location timed out."
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        x.innerHTML = "An unknown error occurred."
+                        break;
+                }
+            }
+        </script>
+		<a href="#" class="btn btn-info btn-lg" onclick="getLocation()" type="button">Aktuellen Standort verwenden (GPS)</a>
+		</br></br>
+		<label>Oder manuell eingeben:</label>
+		</br>
 				<div class="form-group">
 					 <label>Straße, Hausnummer</label>
 					 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Hauptstraße 1">
@@ -78,6 +119,9 @@ function sichern () {
 				</div>
 				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 			</form>
+		</div>
+		<div class="col-md-6 column">
+			[Karte]
 		</div>
 	</div>
 </div>

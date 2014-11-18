@@ -36,22 +36,20 @@
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
-	storage.set("Name", document.forms.form.elements.name.value);
-	storage.set("Vorname", document.forms.form.elements.vorname.value);
-	storage.set("Strasse", document.forms.form.elements.strasse.value);
-	storage.set("Hausnummer", document.forms.form.elements.hausnr.value);
-	storage.set("Postleitzahl", document.forms.form.elements.plz.value);
-	storage.set("Ort", document.forms.form.elements.ort.value);
-	if(document.forms.form.elements.telefon.value!=""){
-	storage.set("Telefon", document.forms.form.elements.telefon.value);
-	}
+	storage.set("name", document.forms.form.elements.name.value);
+	storage.set("vorname", document.forms.form.elements.vorname.value);
+	storage.set("strasse", document.forms.form.elements.strasse.value);
+	storage.set("hausnummer", document.forms.form.elements.hausnr.value);
+	storage.set("postleitzahl", document.forms.form.elements.plz.value);
+	storage.set("ort", document.forms.form.elements.ort.value);
+	storage.set("telefon", document.forms.form.elements.telefon.value);
 	if(document.forms.form.elements.mobil.value!=""){
-	storage.set("Mobil", document.forms.form.elements.mobil.value);
+	storage.set("mobil", document.forms.form.elements.mobil.value);
 	}
 	if(document.forms.form.elements.email.value!=""){
-	storage.set("E-Mail", document.forms.form.elements.email.value);
+	storage.set("email", document.forms.form.elements.email.value);
 	}
-	location.href = "browserweiche.html";
+	location.href = "04desktopbeschwerde.html";
 }
 </script>
 <div class="container">
@@ -114,7 +112,6 @@ function sichern () {
 		<div class="col-md-6 column">
 		</div>
 		<div class="col-md-6 column">
-			 <a href="browserweiche.html" class="btn btn-lg btn-success" type="button" style="float: right;">[Testen] Weiter ohne Pflichtfelder</a>
 		</div>
 	</div>
 </div>
