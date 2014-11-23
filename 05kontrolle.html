@@ -51,7 +51,7 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">		
-			<form role="form" method="post" action="07vielendank.html">
+			<form role="form" method="post" action="07vielendank.php">
 				<script type="text/javascript">
 					/*for (var eigenschaft in liste) {
 					if (storage.getName(eigenschaft) == "Art"){
@@ -68,62 +68,62 @@
 				</script>
 				
 				<label>Beschwerdeart</label>
-				<label id="art"></label>
+				<label id="art" name="art"></label>
 				<script type="text/javascript">
 				document.getElementById("art").innerHTML=storage.get("art");  //Wieso geht das nicht?
 				</script>
 				</br>
 				<label>Name</label>
-				<input id="nachname" type="text"></input>
+				<input id="nachname" name="nachname" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("nachname").setAttribute("value", storage.get("name"));
 				</script>
 				</br>
 				<label>Vorname</label>
-				<input id="vorname" type="text"></input>
+				<input id="vorname" name="vorname" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("vorname").setAttribute("value", storage.get("vorname"));
 				</script>
 				</br>
 				<label>Straße</label>
-				<input id="strasse" type="text"></input>
+				<input id="strasse" name="strasse" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("strasse").setAttribute("value", storage.get("strasse"));
 				</script>
 				</br>
 				<label>Hausnummer</label>
-				<input id="hausnummer" type="text"></input>
+				<input id="hausnummer" name="hausnummer" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("hausnummer").setAttribute("value", storage.get("hausnummer"));
 				</script>
 				</br>
 				<label>Postleitzahl</label>
-				<input id="postleitzahl" type="text"></input>
+				<input id="postleitzahl" name="postleitzahl" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("postleitzahl").setAttribute("value", storage.get("postleitzahl"));
 				</script>
 				</br>
 				<label>Ort</label>
-				<input id="ort" type="text"></input>
+				<input id="ort" name="ort" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("ort").setAttribute("value", storage.get("ort"));
 				</script>
 				</br>
 				<script type="text/javascript">
 				if (storage.get("telefon") == ""){}else{                   //Das geht auch noch nicht
-				document.write("<label>Telefon</label><input id='telefon' type='text'></input>");
+				document.write("<label>Telefon</label><input id='telefon' name='telefon' type='text'></input>");
 				document.getElementById("telefon").setAttribute("value", storage.get("telefon"));
 				document.write('</br>');
 				</script>
 
 				<label>Ihre Nachricht</label>
-				<input id="nachricht" type="textarea"></input>
+				<input id="nachricht" name="nachricht" type="textarea"></input>
 				<script type="text/javascript">
 				document.getElementById("nachricht").setAttribute("value", storage.get("nachricht"));
 				</script>
 				</br>
 				<label>Schadensort</label>
-				<input id="schadensort" type="text"></input>
+				<input id="schadensort" name="schadensort" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("schadensort").setAttribute("value", storage.get("schadensort"));
 				</script>
