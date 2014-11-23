@@ -32,9 +32,6 @@
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
 	<script type="text/javascript" src="storage.js"></script>
-	<script type="text/javascript">
-		var liste = storage.getAll();
-	</script>
 </head>
 
 <body>
@@ -52,25 +49,10 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">		
 			<form role="form" method="post" action="07vielendank.php">
-				<script type="text/javascript">
-					/*for (var eigenschaft in liste) {
-					if (storage.getName(eigenschaft) == "Art"){
-						document.write(
-							"Hier könnte Ihre Art stehen!"
-							);
-					} else{
-						document.write(
-						  "<div class='form-group'><label>"+
-						  eigenschaft+": "+"</label><input value='"+
-						  liste[eigenschaft]+"'></input></div>"
-						);
-					}*/
-				</script>
-				
-				<label>Beschwerdeart</label>
+				<label>Beschwerdeart:</label>
 				<label id="art" name="art"></label>
 				<script type="text/javascript">
-				document.getElementById("art").innerHTML=storage.get("art");  //Wieso geht das nicht?
+				document.getElementById("art").innerHTML=storage.get("art");
 				</script>
 				</br>
 				<label>Name</label>
@@ -117,15 +99,21 @@
 				</script>
 
 				<label>Ihre Nachricht</label>
-				<input id="nachricht" name="nachricht" type="textarea"></input>
+				<textarea id="nachricht" name="nachricht"></textarea>
 				<script type="text/javascript">
-				document.getElementById("nachricht").setAttribute("value", storage.get("nachricht"));
+				document.getElementById("nachricht").innerHTML = storage.get("nachricht");
 				</script>
 				</br>
 				<label>Schadensort</label>
 				<input id="schadensort" name="schadensort" type="text"></input>
 				<script type="text/javascript">
 				document.getElementById("schadensort").setAttribute("value", storage.get("schadensort"));
+				</script>
+				</br>
+				<label>Koordinaten:</label>
+				<label id="koordinaten" name="koordinaten" type="text"></label>
+				<script type="text/javascript">
+				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
 				</script>
 				</br>
 

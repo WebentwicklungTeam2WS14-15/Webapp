@@ -30,6 +30,9 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
 </head>
 
 <body>
@@ -39,6 +42,8 @@ function sichern () {
 	storage.set("nachricht", document.forms.form.elements.nachricht.value);
 	//storage.set("Foto", document.forms.form.elements.foto.value);
 	storage.set("schadensort", document.forms.form.elements.schadensort.value);
+	storage.set("latitude", document.getElementById("lati").innerHTML);
+	storage.set("longitude", document.getElementById("longi").innerHTML);
 	location.href = "05kontrolle.html";
 }
 </script>
@@ -68,51 +73,21 @@ function sichern () {
 				</br> 
 				</div>
 				<p id="feedback"></p>
-		<p id="lati">Latitude: </p>
-		<p id="longi">Longitude: </p>
+		<p id="lati" name="lati">Latitude: </p>
+		<p id="longi" name="longi">Longitude: </p>
 
         <script>
-            var x = document.getElementById("feedback");
-			var lati = document.getElementById("lati");
-			var longi = document.getElementById("longi");
             
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition,showError);
-                } else { 
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-            
-            function showPosition(position) {	
-				lati.innerHTML = "Latitude: " + position.coords.latitude;
-				longi.innerHTML = "Longitude: " + position.coords.longitude;
-            }
-            
-            function showError(error) {
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                        x.innerHTML = "User denied the request for Geolocation."
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        x.innerHTML = "Location information is unavailable."
-                        break;
-                    case error.TIMEOUT:
-                        x.innerHTML = "The request to get user location timed out."
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        x.innerHTML = "An unknown error occurred."
-                        break;
-                }
-            }
+			
         </script>
 		<a href="#" class="btn btn-info btn-lg" onclick="getLocation()" type="button">Aktuellen Standort verwenden (GPS)</a>
 		</br></br>
 		<label>Oder manuell eingeben:</label>
 		</br>
 				<div class="form-group">
-					 <label>Straße, Hausnummer</label>
-					 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Hauptstraße 1">
+					 <label>Adresse des Schadenortes</label>
+					 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Halterner Straße 5 46282–46286 Dorsten">
+					 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress();"></input>
 				</div>
 				<div class="form-group">
 					 <label>Foto hochladen</label><input name="foto" id="Foto" type="file">
@@ -121,7 +96,145 @@ function sichern () {
 			</form>
 		</div>
 		<div class="col-md-6 column">
-			[Karte]
+			<div id="mapholder" name="mapholder">
+				<script type="text/javascript">
+				latLong = new google.maps.LatLng(51.668889, 6.967222);
+				mapholder = document.getElementById('mapholder');
+				mapholder.style.height = '400px';
+				mapholder.style.width = '400px';
+				var infowindow = new google.maps.InfoWindow(
+				  { 
+					size: new google.maps.Size(150,50)
+				  });
+				var myOptions = {
+				center:latLong, zoom:12,
+				mapTypeId:google.maps.MapTypeId.ROADMAP,
+				mapTypeControl:false,
+				navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+				}
+				var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
+				var marker = null;
+				var x = document.getElementById("feedback");
+				var lati = document.getElementById("lati");
+				var longi = document.getElementById("longi");
+				
+				function getLocation() {
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(showPosition,showError);
+					} else { 
+						x.innerHTML = "Geolocation is not supported by this browser.";
+					}
+				}
+				
+				// A function to create the marker and set up the event window function 
+				function createMarker(latlng, name, html) {
+					var contentString = html;
+					var marker = new google.maps.Marker({
+						position: latlng,
+						map: map,
+						zIndex: Math.round(latlng.lat()*-100000)<<5
+						});
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(contentString); 
+						infowindow.open(map,marker);
+						});
+					google.maps.event.trigger(marker, 'click');    
+					return marker;
+				}
+				
+				google.maps.event.addListener(map, 'click', function() {
+				infowindow.close();
+				});
+				  google.maps.event.addListener(map, 'click', function(event) {
+					//call function to create marker
+						 if (marker) {
+							marker.setMap(null);
+							marker = null;
+						 }
+					 marker = createMarker(event.latLng, "name", "<b>Location</b><br>"+event.latLng);
+					 lati.innerHTML = "Latitude: " + event.latLng.lat();
+					 longi.innerHTML = "Longitude: " + event.latLng.lng();
+				  });
+				  
+				function initialize() {
+				  // create the map
+				  var myOptions = {
+					zoom: 8,
+					center: new google.maps.LatLng(43.907787,-79.359741),
+					mapTypeControl: true,
+					mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+					navigationControl: true,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				  }
+				  map = new google.maps.Map(document.getElementById("map_canvas"),
+												myOptions);
+				}
+				
+				function showPosition(position) {	
+					var lat = position.coords.latitude;
+					var lon = position.coords.longitude;
+					var latlon = lat+","+lon;
+					lati.innerHTML = "Latitude: " + lat;
+					longi.innerHTML = "Longitude: " + lon;
+					latLong = new google.maps.LatLng(lat, lon);
+					var myOptions = {
+					center:latLong, zoom:14,
+					mapTypeId:google.maps.MapTypeId.ROADMAP,
+					mapTypeControl:false,
+					navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+					}
+					//call function to create marker
+						 if (marker) {
+							marker.setMap(null);
+							marker = null;
+						 }
+					map.setCenter(latLong);
+					map.setZoom(14);
+					marker = new google.maps.Marker({position:latLong,map:map,title:"Schadensort"});
+				}	
+				
+				function showError(error) {
+					switch(error.code) {
+						case error.PERMISSION_DENIED:
+							x.innerHTML = "User denied the request for Geolocation."
+							break;
+						case error.POSITION_UNAVAILABLE:
+							x.innerHTML = "Location information is unavailable."
+							break;
+						case error.TIMEOUT:
+							x.innerHTML = "The request to get user location timed out."
+							break;
+						case error.UNKNOWN_ERROR:
+							x.innerHTML = "An unknown error occurred."
+							break;
+					}
+				}
+				
+				function coordsByAddress(){
+					var geocoder = new google.maps.Geocoder();
+					var address = document.getElementById('schadensort').value;
+					  geocoder.geocode( { 'address': address}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+						  map.setCenter(results[0].geometry.location);
+						  map.setZoom(14);
+						  lati.innerHTML = "Latitude: " + results[0].geometry.location.lat();
+						  longi.innerHTML = "Longitude: " + results[0].geometry.location.lng();
+						  if (marker) {
+							marker.setMap(null);
+							marker = null;
+						 }
+						  marker = new google.maps.Marker({
+							  map: map,
+							  position: results[0].geometry.location							  
+					});
+					} else {
+					  alert('Geocode was not successful for the following reason: ' + status);
+					}
+				  });
+				}
+				</script>
+			</div>
 		</div>
 	</div>
 </div>
