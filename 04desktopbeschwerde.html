@@ -97,8 +97,11 @@ function sichern () {
 		</div>
 		<div class="col-md-6 column">
 			<div id="mapholder" name="mapholder">
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 				<script type="text/javascript">
 				latLong = new google.maps.LatLng(51.668889, 6.967222);
+				var lat = 51.668889;
+				var lng = 6.967222;
 				mapholder = document.getElementById('mapholder');
 				mapholder.style.height = '400px';
 				mapholder.style.width = '400px';
@@ -152,7 +155,10 @@ function sichern () {
 							marker.setMap(null);
 							marker = null;
 						 }
-					 marker = createMarker(event.latLng, "name", "<b>Location</b><br>"+event.latLng);
+					 marker = createMarker(event.latLng, "name", "<b>Schadensort</b>");
+					 lat=event.latLng.lat();
+					 lng=event.latLng.lng();
+					 codeLatLng();
 					 lati.innerHTML = "Latitude: " + event.latLng.lat();
 					 longi.innerHTML = "Longitude: " + event.latLng.lng();
 				  });
@@ -172,8 +178,8 @@ function sichern () {
 				}
 				
 				function showPosition(position) {	
-					var lat = position.coords.latitude;
-					var lon = position.coords.longitude;
+					lat = position.coords.latitude;
+					lon = position.coords.longitude;
 					var latlon = lat+","+lon;
 					lati.innerHTML = "Latitude: " + lat;
 					longi.innerHTML = "Longitude: " + lon;
@@ -192,6 +198,7 @@ function sichern () {
 					map.setCenter(latLong);
 					map.setZoom(14);
 					marker = new google.maps.Marker({position:latLong,map:map,title:"Schadensort"});
+					codeLatLng();
 				}	
 				
 				function showError(error) {
@@ -232,6 +239,17 @@ function sichern () {
 					  alert('Geocode was not successful for the following reason: ' + status);
 					}
 				  });
+				}
+				
+				function codeLatLng() {
+					var geocoder = new google.maps.Geocoder();
+				    var latlng = new google.maps.LatLng(lat, lng);
+				    geocoder.geocode({'latLng': latlng}, function(results, status) {
+					  if (results[0]) {
+						var address = document.getElementById('schadensort');
+						address.value = results[0].formatted_address;
+					  } 
+					});
 				}
 				</script>
 			</div>
