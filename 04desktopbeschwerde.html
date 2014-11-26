@@ -30,221 +30,227 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=false">
-    </script>
+	<script type="text/javascript" src="tom.js"></script>
 </head>
 
-<body>
-<script type="text/javascript" src="storage.js"></script>
-<script type="text/javascript">
-function sichern () {
-	storage.set("nachricht", document.forms.form.elements.nachricht.value);
-	//storage.set("Foto", document.forms.form.elements.foto.value);
-	storage.set("schadensort", document.forms.form.elements.schadensort.value);
-	storage.set("latitude", document.getElementById("lati").innerHTML);
-	storage.set("longitude", document.getElementById("longi").innerHTML);
-	location.href = "05kontrolle.html";
-}
-</script>
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="text-center">
-				Bitte füllen Sie alle gekennzeichneten Felder aus!
-			</h3>
-			<h4 class="text-center">
-				*Pflichtfelder
-			</h4>
+<body onload="mapping()">
+	<script type="text/javascript" src="storage.js"></script>
+	<script type="text/javascript">
+	function sichern () {
+		storage.set("nachricht", document.forms.form.elements.nachricht.value);
+		//storage.set("Foto", document.forms.form.elements.foto.value);
+		storage.set("schadensort", document.forms.form.elements.schadensort.value);
+		storage.set("latitude", document.getElementById("lati").innerHTML);
+		storage.set("longitude", document.getElementById("longi").innerHTML);
+		location.href = "05kontrolle.html";
+	}
+	</script>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<h3 class="text-center">
+					Bitte füllen Sie alle gekennzeichneten Felder aus!
+				</h3>
+				<h4 class="text-center">
+					*Pflichtfelder
+				</h4>
+			</div>
 		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-12 column">		
-        	
+		<div class="row clearfix">
+			<div class="col-md-12 column">		
+				
+			</div>
 		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-6 column">
-		<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
-				<div class="form-group">
-				<br>
-				<label>Ihre Nachricht*</label></br>
-				<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
-				</br> 
-				</div>
-				<p id="feedback"></p>
-		<p id="lati" name="lati">Latitude: </p>
-		<p id="longi" name="longi">Longitude: </p>
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+			<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
+					<div class="form-group">
+					<br>
+					<label>Ihre Nachricht*</label></br>
+					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
+					</br> 
+					</div>
+					<p id="feedback"></p>
+			<p id="lati" name="lati">Latitude: </p>
+			<p id="longi" name="longi">Longitude: </p>
 
-        <script>
-            
-			
-        </script>
-		<a href="#" class="btn btn-info btn-lg" onclick="getLocation()" type="button">Aktuellen Standort verwenden (GPS)</a>
-		</br></br>
-		<label>Oder manuell eingeben:</label>
-		</br>
-				<div class="form-group">
-					 <label>Adresse des Schadenortes</label>
-					 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Halterner Straße 5 46282–46286 Dorsten">
-					 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress();"></input>
-				</div>
-				<div class="form-group">
-					 <label>Foto hochladen</label><input name="foto" id="Foto" type="file">
-				</div>
-				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
-			</form>
-		</div>
-		<div class="col-md-6 column">
-			<div id="mapholder" name="mapholder">
-			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-				<script type="text/javascript">
-				latLong = new google.maps.LatLng(51.668889, 6.967222);
-				var lat = 51.668889;
-				var lng = 6.967222;
-				mapholder = document.getElementById('mapholder');
-				mapholder.style.height = '400px';
-				mapholder.style.width = '400px';
-				var infowindow = new google.maps.InfoWindow(
-				  { 
-					size: new google.maps.Size(150,50)
-				  });
-				var myOptions = {
-				center:latLong, zoom:12,
-				mapTypeId:google.maps.MapTypeId.ROADMAP,
-				mapTypeControl:false,
-				navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-				}
-				var map = new google.maps.Map(document.getElementById("mapholder"), myOptions);
-				var marker = null;
-				var x = document.getElementById("feedback");
-				var lati = document.getElementById("lati");
-				var longi = document.getElementById("longi");
-				
-				function getLocation() {
-					if (navigator.geolocation) {
-						navigator.geolocation.getCurrentPosition(showPosition,showError);
-					} else { 
-						x.innerHTML = "Geolocation is not supported by this browser.";
-					}
-				}
-				
-				// A function to create the marker and set up the event window function 
-				function createMarker(latlng, name, html) {
-					var contentString = html;
-					var marker = new google.maps.Marker({
-						position: latlng,
-						map: map,
-						zIndex: Math.round(latlng.lat()*-100000)<<5
-						});
 
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.setContent(contentString); 
-						infowindow.open(map,marker);
-						});
-					google.maps.event.trigger(marker, 'click');    
-					return marker;
+			<a href="#" class="btn btn-info btn-lg" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
+			</br></br>
+			<label>Oder manuell eingeben:</label>
+			</br>
+					<div class="form-group">
+						 <label>Adresse des Schadenortes</label>
+						 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Halterner Straße 5 46282–46286 Dorsten">
+						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress()"></input>
+					</div>
+					<div class="form-group">
+						 <label>Foto hochladen</label><input name="foto" id="Foto" type="file">
+					</div>
+					<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
+				</form>
+			</div>
+			<div class="col-md-6 column">
+				<div id="mapholder" name="mapholder"></div>
+				<div id="basicMap" style="height:400px; width:400px"></div>
+				<script type="text/javascript"
+				  src="https://maps.googleapis.com/maps/api/js?sensor=false">
+				</script>
+				<script src="http://openlayers.org/api/OpenLayers.js"></script>
+				<script type="text/javascript">		
+					var lati = document.getElementById("lati");
+					var longi = document.getElementById("longi");
+					var markers = new OpenLayers.Layer.Markers( "Markers" );
+					//map = new OpenLayers.Map("basicMap", {controls:[new OpenLayers.Control.MousePosition()]});
+					function mapping(){
+						map = new OpenLayers.Map("basicMap");
+						map.addLayer(new OpenLayers.Layer.OSM());
+						var lonLat = new OpenLayers.LonLat(6.967222, 51.668889)
+									.transform(
+										new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+										map.getProjectionObject() //to Spherical Mercator Projection
+									);
+						map.setCenter(lonLat,13);
+						
+						var click = new OpenLayers.Control.Click();
+						map.addControl(click);
+						click.activate();				
+				    }
+				//Set up a click handler
+				OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+                defaultHandlerOptions: {
+                    'single': true,
+                    'double': false,
+                    'pixelTolerance': 8,
+                    'stopSingle': false,
+                    'stopDouble': false
+                }, initialize: function(options) {
+                    this.handlerOptions = OpenLayers.Util.extend(
+                        {}, this.defaultHandlerOptions
+                    );
+                    OpenLayers.Control.prototype.initialize.apply(
+                        this, arguments
+                    ); 
+                    this.handler = new OpenLayers.Handler.Click(
+                        this, {
+                            'click': this.trigger
+                        }, this.handlerOptions
+                    );
+                }, trigger: function(e) {
+                    //A click happened!
+                    var lonlat = map.getLonLatFromViewPortPx(e.xy)
+                    lonlat.transform(
+                      new OpenLayers.Projection("EPSG:900913"), 
+                      new OpenLayers.Projection("EPSG:4326")
+                    );
+                    lati.innerHTML="Latitude: " + lonlat.lat;
+					longi.innerHTML="Longitude: " + lonlat.lon;
+					addressByCoords(lonlat.lat, lonlat.lon);
+					lonLat = new OpenLayers.LonLat(lonlat.lon,lonlat.lat)
+							.transform(
+								new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+								map.getProjectionObject() //to Spherical Mercator Projection
+							);
+						if (markers) {
+							markers.destroy();
+							markers = new OpenLayers.Layer.Markers( "Markers" );
+						}
+						markers.addMarker(new OpenLayers.Marker(lonLat));
+						map.addLayer(markers);
+                }
+            });
+				
+				function init() {
+					var mapnik = new OpenLayers.Layer.OSM();
+					map.addLayer(mapnik);
+
+					navigator.geolocation.getCurrentPosition(function(position) {
+						lati.innerHTML="Latitude: " + position.coords.latitude;
+						longi.innerHTML="Longitude: " + position.coords.longitude;
+						addressByCoords(position.coords.latitude, position.coords.longitude);
+						lonLat = new OpenLayers.LonLat(position.coords.longitude,position.coords.latitude)
+							.transform(
+								new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+								map.getProjectionObject() //to Spherical Mercator Projection
+							);
+						if (markers) {
+							markers.destroy();
+							markers = new OpenLayers.Layer.Markers( "Markers" );
+						}					
+						markers.addMarker(new OpenLayers.Marker(lonLat));
+						map.setCenter(lonLat, 16);
+						map.addLayer(markers);
+					});
 				}
 				
-				google.maps.event.addListener(map, 'click', function() {
-				infowindow.close();
-				});
-				  google.maps.event.addListener(map, 'click', function(event) {
-					//call function to create marker
-						 if (marker) {
-							marker.setMap(null);
-							marker = null;
-						 }
-					 marker = createMarker(event.latLng, "name", "<b>Schadensort</b>");
-					 lat=event.latLng.lat();
-					 lng=event.latLng.lng();
-					 codeLatLng();
-					 lati.innerHTML = "Latitude: " + event.latLng.lat();
-					 longi.innerHTML = "Longitude: " + event.latLng.lng();
-				  });
-				  
-				function initialize() {
-				  // create the map
-				  var myOptions = {
-					zoom: 8,
-					center: new google.maps.LatLng(43.907787,-79.359741),
-					mapTypeControl: true,
-					mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-					navigationControl: true,
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				  }
-				  map = new google.maps.Map(document.getElementById("map_canvas"),
-												myOptions);
+				//Tried with OpenLayers Geocoder
+				/*function getCoordsByAddress() {
+					var queryString = document.getElementById("schadensort").value;
+					OpenLayers.Request.POST({
+						url: "http://www.openrouteservice.org/php/OpenLSLUS_Geocode.php",
+						scope: this,
+						failure: this.requestFailure,
+						success: this.requestSuccess,
+						headers: {"Content-Type": "application/x-www-form-urlencoded"},
+						data: "FreeFormAdress=" + encodeURIComponent(queryString) + "&MaxResponse=1"
+					});
 				}
-				
-				function showPosition(position) {	
-					lat = position.coords.latitude;
-					lon = position.coords.longitude;
-					var latlon = lat+","+lon;
-					lati.innerHTML = "Latitude: " + lat;
-					longi.innerHTML = "Longitude: " + lon;
-					latLong = new google.maps.LatLng(lat, lon);
-					var myOptions = {
-					center:latLong, zoom:14,
-					mapTypeId:google.maps.MapTypeId.ROADMAP,
-					mapTypeControl:false,
-					navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+				function requestSuccess(response) {
+					var format = new OpenLayers.Format.XLS();
+					alert("ok");
+					var output = format.read(response.responseXML);
+					if (output.responseLists[0]) {
+						var geometry = output.responseLists[0].features[0].geometry;
+						var foundPosition = new OpenLayers.LonLat(geometry.x, geometry.y).transform(
+								new OpenLayers.Projection("EPSG:4326"),
+								map.getProjectionObject()
+								);
+						map.setCenter(foundPosition, 16);
+					} else {
+						alert("Sorry, no address found");
 					}
-					//call function to create marker
-						 if (marker) {
-							marker.setMap(null);
-							marker = null;
-						 }
-					map.setCenter(latLong);
-					map.setZoom(14);
-					marker = new google.maps.Marker({position:latLong,map:map,title:"Schadensort"});
-					codeLatLng();
-				}	
-				
-				function showError(error) {
-					switch(error.code) {
-						case error.PERMISSION_DENIED:
-							x.innerHTML = "User denied the request for Geolocation."
-							break;
-						case error.POSITION_UNAVAILABLE:
-							x.innerHTML = "Location information is unavailable."
-							break;
-						case error.TIMEOUT:
-							x.innerHTML = "The request to get user location timed out."
-							break;
-						case error.UNKNOWN_ERROR:
-							x.innerHTML = "An unknown error occurred."
-							break;
-					}
 				}
+				function requestFailure(response) {
+					alert("An error occurred while communicating with the OpenLS service. Please try again.");
+				}*/
 				
 				function coordsByAddress(){
 					var geocoder = new google.maps.Geocoder();
 					var address = document.getElementById('schadensort').value;
 					  geocoder.geocode( { 'address': address}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
-						  map.setCenter(results[0].geometry.location);
-						  map.setZoom(14);
 						  lati.innerHTML = "Latitude: " + results[0].geometry.location.lat();
 						  longi.innerHTML = "Longitude: " + results[0].geometry.location.lng();
-						  if (marker) {
-							marker.setMap(null);
-							marker = null;
-						 }
-						  marker = new google.maps.Marker({
-							  map: map,
-							  position: results[0].geometry.location							  
-					});
+
+					lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(),results[0].geometry.location.lat())
+							.transform(
+								new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+								map.getProjectionObject() //to Spherical Mercator Projection
+							);
+							map.setCenter(lonLat,16);
+						if (markers) {
+							markers.destroy();
+							markers = new OpenLayers.Layer.Markers( "Markers" );
+						}
+						markers.addMarker(new OpenLayers.Marker(lonLat));
+						map.addLayer(markers);
 					} else {
 					  alert('Geocode was not successful for the following reason: ' + status);
 					}
 				  });
 				}
 				
-				//Address by current coords
-				function codeLatLng() {
+				//Tried with OpenLayers Reverse Geocoder
+				/*function search() {
+					var s = document.createElement('script');       
+					s.src = 'http://nominatim.openstreetmap.org/reverse?json_callback=cb&format=json&lat=51.56320001&lon=6.66140002&zoom=27&addressdetails=1';
+					document.getElementsByTagName('head')[0].appendChild(s);
+					alert(s);
+				};*/
+				
+				function addressByCoords(eins, zwei) {
 					var geocoder = new google.maps.Geocoder();
-				    var latlng = new google.maps.LatLng(lat, lng);
+				    var latlng = new google.maps.LatLng(eins, zwei);
 				    geocoder.geocode({'latLng': latlng}, function(results, status) {
 					  if (results[0]) {
 						var address = document.getElementById('schadensort');
@@ -252,10 +258,10 @@ function sichern () {
 					  } 
 					});
 				}
+				
 				</script>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

@@ -43,12 +43,8 @@ function sichern () {
 	storage.set("postleitzahl", document.forms.form.elements.plz.value);
 	storage.set("ort", document.forms.form.elements.ort.value);
 	storage.set("telefon", document.forms.form.elements.telefon.value);
-	if(document.forms.form.elements.mobil.value!=""){
 	storage.set("mobil", document.forms.form.elements.mobil.value);
-	}
-	if(document.forms.form.elements.email.value!=""){
 	storage.set("email", document.forms.form.elements.email.value);
-	}
 	location.href = "04desktopbeschwerde.html";
 }
 </script>
