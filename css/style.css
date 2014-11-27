@@ -1,0 +1,106 @@
+#logo{
+	margin:0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10%;
+	width: auto;
+	height: 100px; 
+}
+
+#link{
+	color: #0B0B61;
+	font-weight:bold;
+	font-family: Verdana;
+}
+
+body{
+	background-color: #F2F2F2;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: Verdana;
+}
+
+#border{
+	border-style: solid;
+	border-width: medium;
+	border-color: #F3F781;
+	//border-radius:2em;
+	width: 55%;
+	min-width: 700px;
+}
+
+#h2{
+text-align:left;
+}
+
+#formular{
+	margin-left: 10%;
+	width: 80%;
+}
+
+.btn.btn-block.btn-default{
+	width: 90%;
+	min-width: 650px;
+}
+
+a.btn.btn-block.btn-default button {
+	color: #FFFFFF;
+	background-color: #24245A;
+	border-radius:10px;
+	border-color:#FFFFFF;
+}
+
+a.btn.btn-block.btn-default:active {
+	color: #FFFFFF;
+	background-color: #2C74B8;
+}
+
+a.btn.btn-block.btn-default:hover {
+	color: #FFFFFF;
+	background-color: #A4A4A4;
+}
+
+.btn-yellow { 
+	color: #000000; 
+	background-color: #FFCC33; 
+	border-color: #FFCC33; 
+	border-radius:10px;
+}
+
+.btn-yellow:active{
+	color: #000000; 
+	background-color:#FFCC33;
+	border-color: #FFCC33; 
+}
+
+.btn-yellow:hover{
+	color: #000000; 
+	background-color:#FFFF66;
+	border-color: #FFFF66; 
+}
+
+.btn-blue  {
+	color: #FFFFFF; 
+	background-color:#0B0B61;
+	border-color:#0B0B61;
+	border-radius:10px;
+}
+
+.btn-blue:active{
+	color: #FFFFFF; 
+	background-color:#0B0B61;
+	border-color:#0B0B61;
+}
+
+.btn-blue:hover{
+	color: #FFFFFF; 
+	background-color:#2E64FE;
+	border-color:#2E64FE;
+}
+
+.form-group{
+width:40em;
+font-size:12px;
+margin-bottom:0.8em;
+margin-left:50%;
+}
