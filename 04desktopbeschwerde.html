@@ -70,7 +70,7 @@
 					<div class="form-group">
 					<br>
 					<label>Ihre Nachricht*</label></br>
-					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="50" rows="4" required></textarea>
+					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="35" rows="4" required></textarea>
 					</br> 
 					</div>
 					<p id="feedback"></p>
@@ -85,7 +85,7 @@
 					<div class="form-group">
 						 <label>Adresse des Schadenortes</label>
 						 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Halterner Straße 5 46282–46286 Dorsten">
-						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress()"></input>
+						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress(); aktivieren()"></input>
 					</div>
 					<div class="form-group">
 						 <label>Foto hochladen</label>
@@ -135,11 +135,16 @@
 							reader.readAsDataURL(file);
 							}</script>
 					</div>
-					<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
+					<input type="submit" id="weiter" class="btn btn-success disabled" name="submit" value="Weiter"></input>
+					<script type="text/javascript">
+						function aktivieren(){
+							document.getElementById("weiter").setAttribute("class", "btn btn-success");
+						}
+					</script>
 				</form>
 			</div>
 			<div class="col-md-6 column">
-				<div id="mapholder" name="mapholder"></div>
+				</br>
 				<div id="basicMap" style="height:400px; width:400px"></div>
 				<script type="text/javascript"
 				  src="https://maps.googleapis.com/maps/api/js?sensor=false">
@@ -228,7 +233,8 @@
 						markers.addMarker(new OpenLayers.Marker(lonLat));
 						map.setCenter(lonLat, 16);
 						map.addLayer(markers);
-					});
+						aktivieren();
+					});				
 				}
 				
 				//Tried with OpenLayers Geocoder
