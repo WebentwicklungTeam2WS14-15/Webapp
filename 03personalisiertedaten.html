@@ -30,13 +30,16 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
 </head>
 
 <body>
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
-	storage.set("nachname", document.forms.form.elements.name.value);
+	storage.set("nachname", document.forms.form.elements.nachname.value);
 	storage.set("vorname", document.forms.form.elements.vorname.value);
 	storage.set("strasse", document.forms.form.elements.strasse.value);
 	storage.set("hausnummer", document.forms.form.elements.hausnr.value);
@@ -48,7 +51,7 @@ function sichern () {
 	location.href = "04desktopbeschwerde.html";
 }
 </script>
-<div class="container">
+<div class="container" id="border">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">
@@ -64,7 +67,7 @@ function sichern () {
 			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 					 <label>Name*</label>
-					 <input class="form-control" id="name" name="name" type="name" value="Mustermann" required>
+					 <input class="form-control" id="nachname" name="nachname" type="name" value="Mustermann" required>
 				</div>
 				<div class="form-group">
 					 <label>Vorname*</label>
@@ -98,7 +101,7 @@ function sichern () {
 					 <label >E-Mail</label>
 					 <input class="form-control" id="email" type="email" name="email" value="Max@Mustermail.com">
 				</div>
-				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
+				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input> 
 			</form>
 		</div>
 		<div class="col-md-6 column">
@@ -110,6 +113,7 @@ function sichern () {
 		<div class="col-md-6 column">
 		</div>
 	</div>
+	</br>
 </div>
 </body>
 </html>

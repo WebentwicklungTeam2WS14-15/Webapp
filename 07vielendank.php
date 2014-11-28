@@ -81,10 +81,13 @@ addIssue($projectName,$category,$reporterName,$summary,$description);
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	
+	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
 </head>
 
 <body>
-<div class="container">
+<div class="container" id="border">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">
@@ -102,6 +105,7 @@ addIssue($projectName,$category,$reporterName,$summary,$description);
 			 <a href="01beschwerdeart.html" class="btn btn-success btn-lg" type="button" style="float: right;">Zurück zur Startseite</a>
 		</div>
 	</div>
+	</br>
 </div>
 </body>
 </html>

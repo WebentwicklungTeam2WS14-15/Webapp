@@ -32,10 +32,28 @@
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
 	<script type="text/javascript" src="storage.js"></script>
+	
+	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
 </head>
 
 <body>
-<div class="container">
+<script type="text/javascript" src="storage.js"></script>
+<script type="text/javascript">
+function sichern () {
+	if (storage.get("nachname") == "12default90"){}else{ storage.set("nachname", document.forms.form.elements.nachname.value);}
+	if (storage.get("vorname") == "12default90"){}else{ storage.set("vorname", document.forms.form.elements.vorname.value);}
+	if (storage.get("strasse") == "12default90"){}else{ storage.set("strasse", document.forms.form.elements.strasse.value);}
+	if (storage.get("hausnummer") == "12default90"){}else{ storage.set("hausnummer", document.forms.form.elements.hausnummer.value);}
+	if (storage.get("postleitzahl") == "12default90"){}else{ storage.set("postleitzahl", document.forms.form.elements.postleitzahl.value);}
+	if (storage.get("ort") == "12default90"){}else{ storage.set("ort", document.forms.form.elements.ort.value);}
+	if (storage.get("telefon") == "12default90"){}else{ if (document.forms.form.elements.telefon.value == ""){storage.set("telefon", "12default90");}else{storage.set("telefon", document.forms.form.elements.telefon.value);}
+	if (storage.get("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){storage.set("mobil", "12default90");}else{storage.set("mobil", document.forms.form.elements.mobil.value);}
+	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}
+	storage.set("nachricht", document.getElementById("nachricht").innerHTML;
+}
+</script>
+<div class="container" id="border">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">
@@ -49,7 +67,7 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">		
 			<form role="form" method="post" action="07vielendank.php">
-				<label>Beschwerdeart:</label>
+				<label></br>Beschwerdeart:</label>
 				<label id="art" name="art"></label>
 				<script type="text/javascript">
 				document.getElementById("art").innerHTML=storage.get("art");
@@ -109,10 +127,10 @@
 				document.getElementById("nachricht").innerHTML = storage.get("nachricht");
 				</script>
 				</br>
-				<label>Schadensort</label>
-				<input id="schadensort" name="schadensort" type="text"></input>
+				<label>Schadensort:</label>
+				<label id="schadensort" name="schadensort"></label>
 				<script type="text/javascript">
-				document.getElementById("schadensort").setAttribute("value", storage.get("schadensort"));
+				document.getElementById("schadensort").innerHTML=storage.get("schadensort");
 				</script>
 				</br>
 				<label>Koordinaten:</label>
@@ -122,7 +140,7 @@
 				</script>
 				</br>
 
-				<input class="btn btn-success btn-lg" type="submit" style="float: right;" value="Weiter (Beschwerde jetzt melden)"></a>
+				<input class="btn btn-success btn-lg" type="submit" style="float: right;" onclick="sichern()" value="Weiter (Beschwerde jetzt melden)"></a>
 			</form>
 			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>
@@ -134,6 +152,7 @@
 			 
 		</div>
 	</div>
+	</br>
 </div>
 </body>
 </html>
