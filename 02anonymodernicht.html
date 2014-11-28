@@ -33,6 +33,21 @@
 </head>
 
 <body>
+<script type="text/javascript" src="storage.js"></script>
+<script type="text/javascript">
+function sichern () {
+	storage.set("nachname", "12default90");
+	storage.set("vorname", "12default90");
+	storage.set("strasse", "12default90");
+	storage.set("hausnummer", "12default90");
+	storage.set("postleitzahl", "12default90");
+	storage.set("ort", "12default90");
+	storage.set("telefon", "12default90");
+	storage.set("mobil", "12default90");
+	storage.set("email", "12default90");
+	location.href = "04desktopbeschwerde.html";
+}
+</script>
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -43,7 +58,7 @@
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			 <a href="04desktopbeschwerde.html" class="btn btn-lg btn-default btn-block" type="button">Anonyme Beschwerde melden</a>
+			 <a onclick="sichern()" class="btn btn-lg btn-default btn-block" type="button">Anonyme Beschwerde melden</a>
 		</div>
 	</div>
 	<div class="row clearfix">

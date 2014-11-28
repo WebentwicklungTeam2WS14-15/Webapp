@@ -55,50 +55,55 @@
 				document.getElementById("art").innerHTML=storage.get("art");
 				</script>
 				</br>
-				<label>Name</label>
-				<input id="nachname" name="nachname" type="text"></input>
+				
 				<script type="text/javascript">
-				document.getElementById("nachname").setAttribute("value", storage.get("name"));
-				</script>
-				</br>
-				<label>Vorname</label>
-				<input id="vorname" name="vorname" type="text"></input>
-				<script type="text/javascript">
+				if (storage.get("nachname") == "12default90"){}else{                  
+				document.write("<label>Name*:</label><input id='nachname' name='nachname' type='text' required></input>");
+				document.getElementById("nachname").setAttribute("value", storage.get("nachname"));
+				document.write('</br>');}
+				
+				if (storage.get("vorname") == "12default90"){}else{                  
+				document.write("<label>Vorname*:</label><input id='vorname' name='vorname' type='text' required></input>");
 				document.getElementById("vorname").setAttribute("value", storage.get("vorname"));
-				</script>
-				</br>
-				<label>Straße</label>
-				<input id="strasse" name="strasse" type="text"></input>
-				<script type="text/javascript">
+				document.write('</br>');}
+				
+				if (storage.get("strasse") == "12default90"){}else{                  
+				document.write("<label>Straße*:</label><input id='strasse' name='strasse' type='text' required></input>");
 				document.getElementById("strasse").setAttribute("value", storage.get("strasse"));
-				</script>
-				</br>
-				<label>Hausnummer</label>
-				<input id="hausnummer" name="hausnummer" type="text"></input>
-				<script type="text/javascript">
+				document.write('</br>');}
+				
+				if (storage.get("hausnummer") == "12default90"){}else{                  
+				document.write("<label>Hausnummer*:</label><input id='hausnummer' name='hausnummer' type='text' required></input>");
 				document.getElementById("hausnummer").setAttribute("value", storage.get("hausnummer"));
-				</script>
-				</br>
-				<label>Postleitzahl</label>
-				<input id="postleitzahl" name="postleitzahl" type="text"></input>
-				<script type="text/javascript">
+				document.write('</br>');}
+				
+				if (storage.get("postleitzahl") == "12default90"){}else{                  
+				document.write("<label>Postleitzahl*:</label><input id='postleitzahl' name='postleitzahl' type='text' required></input>");
 				document.getElementById("postleitzahl").setAttribute("value", storage.get("postleitzahl"));
-				</script>
-				</br>
-				<label>Ort</label>
-				<input id="ort" name="ort" type="text"></input>
-				<script type="text/javascript">
+				document.write('</br>');}
+				
+				if (storage.get("ort") == "12default90"){}else{                  
+				document.write("<label>Ort*:</label><input id='ort' name='ort' type='text' required></input>");
 				document.getElementById("ort").setAttribute("value", storage.get("ort"));
-				</script>
-				</br>
-				<script type="text/javascript">
-				if (storage.get("telefon") == ""){}else{                   //Das geht auch noch nicht
-				document.write("<label>Telefon</label><input id='telefon' name='telefon' type='text'></input>");
+				document.write('</br>');}
+				
+				if (storage.get("telefon") == "12default90"){}else{                  
+				document.write("<label>Telefon:</label><input id='telefon' name='telefon' type='text'></input>");
 				document.getElementById("telefon").setAttribute("value", storage.get("telefon"));
-				document.write('</br>');
+				document.write('</br>');}
+
+				if (storage.get("mobil") == "12default90"){}else{                   
+				document.write("<label>Mobil:</label><input id='mobil' name='mobil' type='text'></input>");
+				document.getElementById("mobil").setAttribute("value", storage.get("mobil"));
+				document.write('</br>');}
+				
+				if (storage.get("email") == "12default90"){}else{                   
+				document.write("<label>E-Mail:</label><input id='email' name='email' type='email'></input>");
+				document.getElementById("email").setAttribute("value", storage.get("email"));
+				document.write('</br>');}
 				</script>
 
-				<label>Ihre Nachricht</label>
+				<label>Ihre Nachricht*:</label>
 				<textarea id="nachricht" name="nachricht"></textarea>
 				<script type="text/javascript">
 				document.getElementById("nachricht").innerHTML = storage.get("nachricht");
@@ -119,7 +124,7 @@
 
 				<input class="btn btn-success btn-lg" type="submit" style="float: right;" value="Weiter (Beschwerde jetzt melden)"></a>
 			</form>
-			<a href="#" class="btn btn-warning" type="button">Bearbeiten</a>
+			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>
 	</div>
 	<div class="row clearfix">
