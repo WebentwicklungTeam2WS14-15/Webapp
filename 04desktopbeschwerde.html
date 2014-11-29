@@ -92,51 +92,27 @@
 					</div>
 					<div class="form-group">
 						 <label>Foto hochladen</label>
-							<br><img src="" id="image"></br>
-							<input id="input" type="file" onchange="handleFiles()">
-							<script>
-							function handleFiles()
-							{
-							var filesToUpload = document.getElementById('input').files;
-							var file = filesToUpload[0];
-							// Create an image
-							var img = document.createElement("img");
-							// Create a file reader
-							var reader = new FileReader();
-							// Set the image once loaded into file reader
-							reader.onload = function(e)
-							{
-							img.src = e.target.result;
-							var canvas = document.createElement("canvas");
-							//var canvas = $("<canvas>", {"id":"testing"})[0];
-							var ctx = canvas.getContext("2d");
-							ctx.drawImage(img, 0, 0);
-							var MAX_WIDTH = 400;
-							var MAX_HEIGHT = 300;
-							var width = img.width;
-							var height = img.height;
-							if (width > height) {
-							if (width > MAX_WIDTH) {
-							height *= MAX_WIDTH / width;
-							width = MAX_WIDTH;
-							}
-							} else {
-							if (height > MAX_HEIGHT) {
-							width *= MAX_HEIGHT / height;
-							height = MAX_HEIGHT;
-							}
-							}
-							canvas.width = width;
-							canvas.height = height;
-							var ctx = canvas.getContext("2d");
-							ctx.drawImage(img, 0, 0, width, height);
-							var dataurl = canvas.toDataURL("image/png");
-							document.getElementById('image').src = dataurl;
-							//alert(dataurl);
-							}
-							// Load files into file reader
-							reader.readAsDataURL(file);
-							}</script>
+							<input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();">
+							<div id="imgTest"></div>
+							<script type='text/javascript'>
+								function encodeImageFileAsURL(){
+								var filesSelected = document.getElementById("inputFileToLoad").files;
+								if (filesSelected.length > 0)
+								{
+								var fileToLoad = filesSelected[0];
+								var fileReader = new FileReader();
+								fileReader.onload = function(fileLoadedEvent) {
+								var srcData = fileLoadedEvent.target.result; // <--- data: base64
+								var newImage = document.createElement('img');
+								newImage.src = srcData;
+								document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+								//alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+								console.log("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+								}
+								fileReader.readAsDataURL(fileToLoad);
+								}
+								}
+							</script>
 					</div>
 					<input type="submit" id="weiter" class="btn btn-grey" disabled name="submit" value="Bitte geben Sie einen Schadensort an"></input>
 					<script type="text/javascript">
