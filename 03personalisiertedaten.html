@@ -51,6 +51,15 @@ function sichern () {
 	storage.set("email", document.forms.form.elements.email.value);
 	location.href = "04desktopbeschwerde.html";
 }
+
+function fuellen () {
+	document.getElementById("nachname").setAttribute("value", "Mustermann");
+	document.getElementById("vorname").setAttribute("value", "Max");
+	document.getElementById("strasse").setAttribute("value", "Musterstraße");
+	document.getElementById("hausnr").setAttribute("value", "123");
+	document.getElementById("plz").setAttribute("value", "12345");
+	document.getElementById("ort").setAttribute("value", "Musterstadt");
+}
 </script>
 <div class="container" id="border">
 	<div class="row clearfix">
@@ -65,6 +74,7 @@ function sichern () {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-6 column">
+			<input type="button" value="[Zum Testen] Formular ausfüllen" onclick="fuellen()"></input>
 			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
 				<div class="form-group">
 					 <label>Name*</label>
