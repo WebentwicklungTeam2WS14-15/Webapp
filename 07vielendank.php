@@ -4,27 +4,56 @@
 // Mantis API URL
 define('MANTISCONNECT_URL', 'http://www.patrickdehnel.de/mantis/api/soap/mantisconnect.php');
 
+//Declare data
+$projectName;
+$category;
+$summary;
+$geo;
+$schadensort;
+$adresse;
+$reporterName;
+$telefon;
+$mobil;
+$mail;
+
 //Login information
 define('USERNAME', 'web_reporter');
 define('PASSWORD', 'keeese');
 
-//Project specific values
-$projectName = "Schadensmeldung";
-$category = "Sonstiges";
-$reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
-$summary = $_POST['nachricht'];
-$description = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
-//TODO Add Telefon cases
+//TODO add input filtering
+//TODO Gültigkeitsbereich in PHP? sonst konstanten?
+function processUserData() {
+  $GLOBALS['projectName'] = "Schadensmeldung";
+  $GLOBALS['category'] = $_POST['art'];
+  if($_POST['art'] == "Briefkasten Bürgermeister") {
+    $GLOBALS['category'] = "Sonstiges";
+  } else if($_POST['art'] == "Schaden auf einem Spielplatz") {
+    $GLOBALS['category'] = "Spielplatz";
+  } else if($_POST['art'] == "Schaden an einem Parkautomaten") {
+    $GLOBALS['category'] = "Parkautomat";
+  } else if($_POST['art'] == "Schaden an Verkehrsschildern") {
+    $GLOBALS['category'] = "Verkehrsschild";
+  }
+  $GLOBALS['reporterName'] = $_POST['vorname'] . " " . $_POST['nachname'];
+  $GLOBALS['summary'] = $_POST['nachricht'];
+  $GLOBALS['schadensort'] = $_POST['schadensort'];
+  $GLOBALS['geo'] = $_POST['latitude'] . "," . $_POST['longitude'];
+  $GLOBALS['adresse'] = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
+  $GLOBALS['telefon'] = $_POST['telefon'];
+  $GLOBALS['mobil'] = $_POST['mobil'];
+  $GLOBALS['mail'] = $_POST['email'];
+}
 
-function addIssue($projectName,$category,$reporterName,$summary,$description) {
-
+function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     $function_name = "mc_issue_add";
-    $args['issueData']['project']['name'] = $projectName;
-    $args['issueData']['category'] = $category;
-    $args['issueData']['reporter']['name'] = $reporterName;
-    $args['issueData']['summary'] = $summary;
-    $args['issueData']['description'] = $description;
+    $args['issueData']['project']['name'] = $GLOBALS['projectName'];
+    $args['issueData']['category'] = $GLOBALS['category'];
+    $args['issueData']['summary'] = $GLOBALS['summary'];
+    $args['issueData']['custom_fields']=array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']);
+    $args['issueData']['custom_fields']=array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']);
 
+    //TODO remove debug
+    var_dump($args);
 
     //Add login information
     $args = array_merge(
@@ -38,8 +67,44 @@ function addIssue($projectName,$category,$reporterName,$summary,$description) {
     //connect and do the SOAP call
     try {
         $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
-
         $result = $client->__soapCall($function_name, $args);
+    } catch (SoapFault $e) {
+        $result = array(
+            'error' => $e->faultstring
+        );
+    }
+
+}
+
+function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$reporterName,$telefon,$mobil,$mail) {
+    $function_name = "mc_issue_add";
+    $args['issueData']['summary'] = $GLOBALS['summary'];
+    $args['issueData']['description'] = "submitted by web_reporter";
+    $args['issueData']['project'] =  array('id' => '1');
+    $args['issueData']['category'] = $GLOBALS['category'];   
+    //$args['issueData']['custom_fields']=array(
+    //                                     array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$GLOBALS['adresse']),
+    //                                     array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']),
+    //                                     array('field' => array('id'=>'4','name'=>'Name'),'value'=>$GLOBALS['reporterName']),
+    //                                     array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$GLOBALS['mobil']),
+    //                                     array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$GLOBALS['mail']),
+    //                                     array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$GLOBALS['telefon']),
+    //                                     array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']));
+    //TODO remove debug
+    var_dump($args);
+    // //Add login information
+    // $args = array_merge(
+    //     array(
+    //         'username' => USERNAME,
+    //         'password' => PASSWORD
+    //     ),
+    //     $args
+    //);
+
+    //connect and do the SOAP call
+    try {
+        $client = new SoapClient(MANTISCONNECT_URL . "?wsdl");
+        $result = $client->mc_issue_add(USERNAME,PASSWORD,$args);
     } catch (SoapFault $e) {
         $result = array(
             'error' => $e->faultstring
@@ -48,7 +113,14 @@ function addIssue($projectName,$category,$reporterName,$summary,$description) {
 }
 
 
-addIssue($projectName,$category,$reporterName,$summary,$description);
+//do the work!
+//TODO distinguish between types
+  processUserData();
+  addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$reporterName,$telefon,$mobil,$mail);
+// } else if($_POST['Beschwerdetyp'] == "personalisiert") {
+//   processUserData();
+//   addIssueAnon($projectname,$category,$summary,$geo,$schadensort);
+// }
 
 ?>
 <head>

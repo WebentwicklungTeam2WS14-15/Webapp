@@ -50,7 +50,7 @@
 		<div class="col-md-12 column">		
 			<form role="form" method="post" action="07vielendank.php">
 				<label>Beschwerdeart:</label>
-				<label id="art" name="art"></label>
+				<label id="art"></label>
 				<script type="text/javascript">
 				document.getElementById("art").innerHTML=storage.get("art");
 				</script>
@@ -116,7 +116,30 @@
 				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
 				</script>
 				</br>
-
+				<input id="arthide" name="art" hidden>
+				<script type="text/javascript">
+				document.getElementById("arthide").setAttribute("value",storage.get("art"));
+				</script></input>
+				<input id="latitudehide" name="latitude" hidden>
+				<script type="text/javascript">
+				document.getElementById("latitudehide").setAttribute("value",storage.get("latitude"))
+				</script></input>
+				<input id="longitudehide" name ="longitude" hidden>
+				<script type="text/javascript">
+				document.getElementById("longitudehide").setAttribute("value",storage.get("longitude"))
+				</script></input>
+				<input id="telefonhide" name="telefon" hidden>
+				<script type="text/javascript">
+				document.getElementById("telefonhide").setAttribute("value",storage.get("telefon"))
+				</script></input>
+				<input id="mobilhide" name="mobil" hidden>
+				<script type="text/javascript">
+				document.getElementById("mobilhide").setAttribute("value",storage.get("mobil"))
+				</script></input>
+				<input id="emailhide" name="email" hidden>
+				<script type="text/javascript">
+				document.getElementById("emailhide").setAttribute("value",storage.get("email"))
+				</script></input>
 				<input class="btn btn-success btn-lg" type="submit" style="float: right;" value="Weiter (Beschwerde jetzt melden)"></a>
 			</form>
 			<a href="#" class="btn btn-warning" type="button">Bearbeiten</a>
