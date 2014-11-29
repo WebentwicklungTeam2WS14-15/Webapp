@@ -69,9 +69,11 @@ function sichern () {
 		<div class="col-md-12 column">		
 			<form role="form" method="post" action="07vielendank.php">
 				<label></br>Beschwerdeart:</label>
-				<label id="art" name="art"></label>
+				<label id="art"></label>
+				<input id="arthidden" name="art" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("art").innerHTML=storage.get("art");
+				document.getElementById("arthidden").setAttribute("value",storage.get("art"));
 				</script>
 				</br>
 				
@@ -129,15 +131,19 @@ function sichern () {
 				</script>
 				</br>
 				<label>Schadensort:</label>
-				<label id="schadensort" name="schadensort"></label>
+				<label id="schadensort"></label>
+				<input id="schadensorthidden" name="schadensort" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("schadensort").innerHTML=storage.get("schadensort");
+				document.getElementById("schadensorthidden").setAttribute("value",storage.get("schadensort"));
 				</script>
 				</br>
 				<label>Koordinaten:</label>
-				<label id="koordinaten" name="koordinaten" type="text"></label>
+				<label id="koordinaten" type="text"></label>
+				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
+				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("koordinaten"));
 				</script>
 				</br>
 
