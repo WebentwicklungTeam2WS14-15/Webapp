@@ -13,7 +13,7 @@ $projectName = "Schadensmeldung";
 $category = "Sonstiges";
 $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
 $summary = $_POST['nachricht'];
-$description = "Adresse: " . $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'] . "Telefon: " . $_POST['telefon'] . "Mobil: " . $_POST['mobil'] . "E-Mail: " . $_POST['email'];
+$description = "Adresse: " . $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'] . " Telefon: " . $_POST['telefon'] . " Mobil: " . $_POST['mobil'] . " E-Mail: " . $_POST['email'] . " Art: " . $_POST['art'] . " Schadensort: " . $_POST['schadensort'] . " Koordinaten: " . $_POST['koordinaten'];
 
 function addIssue($projectName,$category,$reporterName,$summary,$description) {
 
