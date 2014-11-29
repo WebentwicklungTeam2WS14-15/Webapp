@@ -54,6 +54,7 @@ addIssue($projectName,$category,$reporterName,$summary,$description);
 <head>
   <meta charset="utf-8">
   <title>Beschwerdemeldung</title>
+  <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -99,10 +100,8 @@ addIssue($projectName,$category,$reporterName,$summary,$description);
 		</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-6 column">
-		</div>
-		<div class="col-md-6 column">
-			 <a href="01beschwerdeart.html" class="btn btn-success btn-lg" type="button" style="float: right;">Zurück zur Startseite</a>
+		<div class="col-md-12 column text-center">
+			 <a href="01beschwerdeart.html" class="btn btn-success btn-blue" type="button">Zurück zur Startseite</a>
 		</div>
 	</div>
 	</br>

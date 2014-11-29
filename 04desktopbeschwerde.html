@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Beschwerdemeldung</title>
+  <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -78,13 +79,15 @@
 			<p id="longi" name="longi">Longitude: </p>
 
 
-			<a href="#" class="btn btn-info btn-lg" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
+			<a href="#" class="btn btn-yellow" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
 			</br></br>
 			<label>Oder manuell eingeben:</label>
 			</br>
 					<div class="form-group">
 						 <label>Adresse des Schadenortes</label>
+						 <p>
 						 <input class="form-control" id="schadensort" name="schadensort" type="name" value="Halterner Straße 5 46282–46286 Dorsten">
+						 </p>
 						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress(); aktivieren()"></input>
 					</div>
 					<div class="form-group">
@@ -135,17 +138,20 @@
 							reader.readAsDataURL(file);
 							}</script>
 					</div>
-					<input type="submit" id="weiter" class="btn btn-success disabled" name="submit" value="Weiter"></input>
+					<input type="submit" id="weiter" class="btn btn-grey" disabled name="submit" value="Bitte geben Sie einen Schadensort an"></input>
 					<script type="text/javascript">
 						function aktivieren(){
-							document.getElementById("weiter").setAttribute("class", "btn btn-success");
+							var weiter = document.getElementById("weiter");
+							weiter.setAttribute("class", "btn btn-blue");
+							weiter.setAttribute("value", "Weiter");
+							weiter.removeAttribute("disabled");
 						}
 					</script>
 				</form>
 			</div>
-			<div class="col-md-6 column">
+			<div class="col-md-6 column mapdiv">
 				</br>
-				<div id="basicMap" style="height:400px; width:400px"></div>
+				<p><div id="basicMap" class="mapcontainer"></div></p>
 				<script type="text/javascript"
 				  src="https://maps.googleapis.com/maps/api/js?sensor=false">
 				</script>

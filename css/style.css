@@ -1,55 +1,60 @@
+
+
 #logo{
-	margin:0 auto;
-	margin-top: 10px;
+	margin:0;
+	/*margin-top: 10px;
 	margin-bottom: 10px;
-	margin-left: 10%;
-	width: auto;
-	height: 100px; 
+	margin-left: 10%;*/
+	width: 80px;
+	
 }
 
 #link{
 	color: #0B0B61;
 	font-weight:bold;
 	font-family: Verdana;
+	
 }
 
 body{
 	background-color: #F2F2F2;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	
 	font-family: Verdana;
 	overflow-x: hidden;
 }
 
 #border{
 	border-style: solid;
-	border-width: medium;
+	border-width: 5px;
 	border-color: #F3F781;
-	//border-radius:2em;
-	width: 55%;
-	min-width: 700px;
+	/*border-radius:2em;*/
+
+	border-width:100%;
+	
 }
 
 #h2{
 text-align:left;
 }
 
+
 #formular{
 	margin-left: 10%;
 	width: 80%;
 }
 
-.btn.btn-block.btn-default{
-	width: 90%;
-	min-width: 650px;
-}
+
 
 a.btn.btn-block.btn-default button {
 	color: #FFFFFF;
 	background-color: #24245A;
 	border-radius:10px;
 	border-color:#FFFFFF;
+	text-align:center;
+	
 }
+
+
 
 a.btn.btn-block.btn-default:active {
 	color: #FFFFFF;
@@ -100,8 +105,46 @@ a.btn.btn-block.btn-default:hover {
 }
 
 .form-group{
-width:40em;
-font-size:12px;
-margin-bottom:0.8em;
-//margin-left:50%;
+	font-size:12px;
+}
+
+.mapcontainer{
+	position:absolute;  
+	left:50px;
+	top:5px;
+	right:0px;
+	bottom:5px;
+}
+
+.mapdiv{
+	width: 400px;
+	height: 400px;
+}
+
+.startinfo{
+	width: 55%;
+}
+
+@media all 
+and (min-device-width : 5px)
+and (max-device-width : 1000px)  
+{
+.mapcontainer{
+	position:absolute; 
+	left:5px;
+	top:5px;
+	right:5px;
+	bottom:5px;
+}
+
+.mapdiv{
+	height:200px;  
+	width:250px; 
+	margin-left: 10px;
+}
+
+.startinfo{
+	width: 100%;
+}
+
 }
