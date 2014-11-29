@@ -143,7 +143,7 @@ function sichern () {
 				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
-				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("koordinaten"));
+				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
 				</script>
 				</br>
 
