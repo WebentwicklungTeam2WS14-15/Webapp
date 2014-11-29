@@ -21,7 +21,6 @@ define('USERNAME', 'web_reporter');
 define('PASSWORD', 'keeese');
 
 //TODO add input filtering
-//TODO Gültigkeitsbereich in PHP? sonst konstanten?
 function processUserData() {
   $GLOBALS['projectName'] = "Schadensmeldung";
   $GLOBALS['category'] = "Sonstiges";
@@ -36,8 +35,10 @@ function processUserData() {
   }
   $GLOBALS['reporterName'] = $_POST['vorname'] . " " . $_POST['nachname'];
   $GLOBALS['summary'] = $_POST['nachricht'];
+  //TODO remove debug
+  echo $_POST['schadensort'];
   $GLOBALS['schadensort'] = $_POST['schadensort'];
-  $GLOBALS['geo'] = $_POST['latitude'] . "," . $_POST['longitude'];
+  $GLOBALS['geo'] = $_POST['latitude'] . " , " . $_POST['longitude'];
   $GLOBALS['adresse'] = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
   $GLOBALS['telefon'] = $_POST['telefon'];
   $GLOBALS['mobil'] = $_POST['mobil'];
@@ -46,11 +47,11 @@ function processUserData() {
 
 function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     $function_name = "mc_issue_add";
-    $args['issueData']['project']['name'] = $GLOBALS['projectName'];
-    $args['issueData']['category'] = $GLOBALS['category'];
-    $args['issueData']['summary'] = $GLOBALS['summary'];
-    $args['issueData']['custom_fields']=array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']);
-    $args['issueData']['custom_fields']=array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']);
+    $args['issueData']['project']['name'] = $projectName;
+    $args['issueData']['category'] = $category;
+    $args['issueData']['summary'] = $sumary;
+    $args['issueData']['custom_fields']=array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$geo);
+    $args['issueData']['custom_fields']=array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$schadensort);
 
     //TODO remove debug
     var_dump($args);
@@ -78,18 +79,17 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
 
 function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$reporterName,$telefon,$mobil,$mail) {
     $function_name = "mc_issue_add";
-    $args['issueData']['summary'] = $GLOBALS['summary'];
-    $args['issueData']['description'] = "submitted by web_reporter";
+    $args['issueData']['summary'] = $summary;
     $args['issueData']['project'] =  array('id' => '1');
-    $args['issueData']['category'] = $GLOBALS['category'];   
+    $args['issueData']['category'] = $category;   
     $args['issueData']['custom_fields']=array(
-                                         array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$GLOBALS['adresse']),
-                                         array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']),
-                                         array('field' => array('id'=>'4','name'=>'Name'),'value'=>$GLOBALS['reporterName']),
-                                         array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$GLOBALS['mobil']),
-                                         array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$GLOBALS['mail']),
-                                         array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$GLOBALS['telefon']),
-                                         array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']));
+                                         array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$adresse),
+                                         array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$geo),
+                                         array('field' => array('id'=>'4','name'=>'Name'),'value'=>$reporterName),
+                                         array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$mobil),
+                                         array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$mail),
+                                         array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$telefon),
+                                         array('field' => array('name'=>'Schadensort'),'value'=>$schadensort));
     //TODO remove debug
     var_dump($args);
     // //Add login information
