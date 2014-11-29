@@ -92,7 +92,7 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$re
                                          array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$mail),
                                          array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$telefon));
     //TODO remove debug
-    //var_dump($args);
+    var_dump($args);
     // //Add login information
     $args = array_merge(
         array(
