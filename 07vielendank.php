@@ -24,7 +24,7 @@ define('PASSWORD', 'keeese');
 //TODO Gültigkeitsbereich in PHP? sonst konstanten?
 function processUserData() {
   $GLOBALS['projectName'] = "Schadensmeldung";
-  $GLOBALS['category'] = $_POST['art'];
+  $GLOBALS['category'] = "Sonstiges";
   if($_POST['art'] == "Briefkasten Bürgermeister") {
     $GLOBALS['category'] = "Sonstiges";
   } else if($_POST['art'] == "Schaden auf einem Spielplatz") {
