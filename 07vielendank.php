@@ -93,18 +93,18 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$re
     //TODO remove debug
     var_dump($args);
     // //Add login information
-    // $args = array_merge(
-    //     array(
-    //         'username' => USERNAME,
-    //         'password' => PASSWORD
-    //     ),
-    //     $args
-    //);
+    $args = array_merge(
+        array(
+            'username' => USERNAME,
+            'password' => PASSWORD
+        ),
+        $args
+    );
 
     //connect and do the SOAP call
     try {
-        $client = new SoapClient(MANTISCONNECT_URL . "?wsdl");
-        $result = $client->mc_issue_add(USERNAME,PASSWORD,$args);
+        $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
+        $result = $client->__soapCall($function_name, $args);
     } catch (SoapFault $e) {
         $result = array(
             'error' => $e->faultstring
