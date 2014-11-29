@@ -10,11 +10,10 @@ define('PASSWORD', 'keeese');
 
 //Project specific values
 $projectName = "Schadensmeldung";
-$category = "General";
+$category = "Sonstiges";
 $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
 $summary = $_POST['nachricht'];
-$description = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
-//TODO Add Telefon cases
+$description = "Adresse: " . $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'] . "Telefon: " . $_POST['telefon'] . "Mobil: " . $_POST['mobil'] . "E-Mail: " . $_POST['email'];
 
 function addIssue($projectName,$category,$reporterName,$summary,$description) {
 
@@ -46,7 +45,6 @@ function addIssue($projectName,$category,$reporterName,$summary,$description) {
         );
     }
 }
-
 
 addIssue($projectName,$category,$reporterName,$summary,$description);
 
