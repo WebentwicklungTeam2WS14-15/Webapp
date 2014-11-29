@@ -80,8 +80,8 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
 function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$reporterName,$telefon,$mobil,$mail) {
     $function_name = "mc_issue_add";
     $args['issueData']['summary'] = $summary;
-    $args['issueData']['description'] = ""; 
-    $args['issueData']['project'] =  array('id' => '1');
+    $args['issueData']['description'] = " "; 
+    $args['issueData']['project']['name'] = "Schadensmeldung";
     $args['issueData']['category'] = $category;   
     $args['issueData']['custom_fields']=array(
                                          array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$adresse),
