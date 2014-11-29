@@ -82,14 +82,14 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$re
     $args['issueData']['description'] = "submitted by web_reporter";
     $args['issueData']['project'] =  array('id' => '1');
     $args['issueData']['category'] = $GLOBALS['category'];   
-    //$args['issueData']['custom_fields']=array(
-    //                                     array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$GLOBALS['adresse']),
-    //                                     array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']),
-    //                                     array('field' => array('id'=>'4','name'=>'Name'),'value'=>$GLOBALS['reporterName']),
-    //                                     array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$GLOBALS['mobil']),
-    //                                     array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$GLOBALS['mail']),
-    //                                     array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$GLOBALS['telefon']),
-    //                                     array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']));
+    $args['issueData']['custom_fields']=array(
+                                         array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$GLOBALS['adresse']),
+                                         array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$GLOBALS['geo']),
+                                         array('field' => array('id'=>'4','name'=>'Name'),'value'=>$GLOBALS['reporterName']),
+                                         array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$GLOBALS['mobil']),
+                                         array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$GLOBALS['mail']),
+                                         array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$GLOBALS['telefon']),
+                                         array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$GLOBALS['schadensort']));
     //TODO remove debug
     var_dump($args);
     // //Add login information
