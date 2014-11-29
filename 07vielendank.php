@@ -36,7 +36,7 @@ function processUserData() {
   $GLOBALS['reporterName'] = $_POST['vorname'] . " " . $_POST['nachname'];
   $GLOBALS['summary'] = $_POST['nachricht'];
   //TODO remove debug
-  echo $_POST['schadensort'];
+  //echo $_POST['schadensort'];
   $GLOBALS['schadensort'] = $_POST['schadensort'];
   $GLOBALS['geo'] = $_POST['latitude'] . " , " . $_POST['longitude'];
   $GLOBALS['adresse'] = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
@@ -85,13 +85,13 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort,$adresse,$re
     $args['issueData']['custom_fields']=array(
                                          array('field' => array('id'=>'6','name'=>'Adresse'),'value'=>$adresse),
                                          array('field' => array('id'=>'2','name'=>'Geo'),'value'=>$geo),
+                                         array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$schadensort),
                                          array('field' => array('id'=>'4','name'=>'Name'),'value'=>$reporterName),
                                          array('field' => array('id'=>'8','name'=>'Mobil'),'value'=>$mobil),
                                          array('field' => array('id'=>'9','name'=>'Mail'),'value'=>$mail),
-                                         array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$telefon),
-                                         array('field' => array('id'=>'3','name'=>'Schadensort'),'value'=>$schadensort));
+                                         array('field' => array('id'=>'7','name'=>'Telefon'),'value'=>$telefon));
     //TODO remove debug
-    var_dump($args);
+    //var_dump($args);
     // //Add login information
     $args = array_merge(
         array(
