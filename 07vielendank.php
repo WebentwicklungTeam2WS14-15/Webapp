@@ -10,7 +10,7 @@ define('PASSWORD', 'keeese');
 
 //Project specific values
 $projectName = "Schadensmeldung";
-$category = "General";
+$category = "Sonstiges";
 $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
 $summary = $_POST['nachricht'];
 $description = $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'];
