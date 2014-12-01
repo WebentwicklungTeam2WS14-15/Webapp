@@ -107,6 +107,7 @@
 											newImage.src = srcData;
 											document.getElementById("imgTest").innerHTML = newImage.outerHTML;
 											//alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
+											storage.set("attachment1", document.getElementById("imgTest").innerHTML);
 										}
 										fileReader.readAsDataURL(fileToLoad);
 									}

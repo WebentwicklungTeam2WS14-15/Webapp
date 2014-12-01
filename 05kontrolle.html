@@ -146,6 +146,12 @@ function sichern () {
 				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
 				</script>
 				</br>
+				<input id="attachment1" name="attachment1" hidden></input>
+				<script type="text/javascript">
+				document.getElementById("attachment1").setAttribute("value", storage.get("attachment1");
+				</script>
+				<input name="attachmentCount" value="1" hidden>
+				</br>
 
 				<input class="btn btn-success btn-lg" type="submit" style="float: right;" onclick="sichern()" value="Weiter (Beschwerde jetzt melden)"></a>
 			</form>
