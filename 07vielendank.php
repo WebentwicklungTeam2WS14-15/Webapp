@@ -17,21 +17,30 @@ $schadensort = $_POST['schadensort'];
 
 //Distinguish between anonymous and personalized complaints
 if(strcmp($_POST['anonym'],"t") == 0)  {
-     addIssueAnon($projectName,$category,$summary,$geo,$schadensort);
+     $issueID = addIssueAnon($projectName,$category,$summary,$geo,$schadensort);
+          //check for attachments, add all found attachments
+     if($_POST['attachmentCount'] > 0) {
+        for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
+          $currentAttachment = $_POST['attachment' . $i];
+          addAttachment($issueID,$currentAttachment,$i);
+        }
+     }
 }
 if(strcmp($_POST['anonym'],"f") == 0) {
      $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
-     $description = "a";
-     addIssue($projectName,$category,$reporterName,$summary);
+     $issueID = addIssue($projectName,$category,$reporterName,$summary);
+     //check for attachments, add all found attachments
+     if($_POST['attachmentCount'] > 0) {
+        for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
+          $currentAttachment = $_POST['attachment' . $i];
+          addAttachment($issueID,$currentAttachment,$i);
+        }
+     }
 }
 
 function getMantisCategory($formCategory) {
   //default category
   $category = "Sonstiges";
-  //checking string positions instead of directly comparing strings because PHP seems to like it this way
-  if(strpos($formCategory, "Briefkasten Bürgermeister")) {
-    $category = "Sonstiges";
-  }
   if(strpos($formCategory, "Spielplatz") == 18) {
     $category = "Spielplatz";
   }
@@ -76,8 +85,8 @@ function addIssue($projectName,$category,$reporterName,$summary) {
     //connect and do the SOAP call
     try {
         $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
-
         $result = $client->__soapCall($function_name, $args);
+        return $result;
     } catch (SoapFault $e) {
         $result = array(
             'error' => $e->faultstring
@@ -107,12 +116,40 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     try {
         $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
         $result = $client->__soapCall($function_name, $args);
+        return $result;
     } catch (SoapFault $e) {
         $result = array(
             'error' => $e->faultstring
         );
     }
 
+}
+
+function addAttachment($issueID,$filecontent,$count) {
+    $function_name = "mc_issue_attachment_add";
+    $args['issue_id'] = $issueID;
+    $args['name'] = $issueID . "-ANHANG-" . $count;
+    $args['file_type'] = "image/png";
+    $args['content'] = $filecontent;
+
+   //Add login information
+    $args = array_merge(
+        array(
+            'username' => USERNAME,
+            'password' => PASSWORD
+        ),
+        $args
+    );
+
+    //connect and do the SOAP call
+    try {
+        $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
+        $result = $client->__soapCall($function_name, $args);
+    } catch (SoapFault $e) {
+        $result = array(
+            'error' => $e->faultstring
+        );
+    }
 }
 
 ?>
