@@ -34,8 +34,8 @@
 	
 	<script type="text/javascript" src="storage.js"></script>
 	
-	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
+	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
 </head>
 
 <body>
@@ -54,98 +54,96 @@ function sichern () {
 	storage.set("nachricht", document.getElementById("nachricht").innerHTML;
 }
 </script>
-<div class="container" id="border">
+<div class="container jumbotron">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="text-center">
+		<div class="col-md-4 column">	</div>
+		<div class="col-md-5 column">
+			<h3>
 				Kontrollformular:
 			</h3>
-			<h4 class="text-center">
+			<h4>
 				Bitte überprüfen Sie Ihre angegebenen Daten!
 			</h4>
 		</div>
+		<div class="col-md-3 column">	</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-12 column">		
-			<form role="form" method="post" action="07vielendank.php">
-				<label></br>Beschwerdeart:</label>
-				<label id="art"></label>
+		<div class="col-md-4 column">	</div>
+		<div class="col-md-5 column">	
+			<form role="form" method="post" action="07vielendank.php"><br></br>
+				<table width="100%"><tbody><tr><td><label>Art des Anliegens:</label></td><td>
+				<label id="art"></label></td></tr>
 				<input id="arthidden" name="art" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("art").innerHTML=storage.get("art");
 				document.getElementById("arthidden").setAttribute("value",storage.get("art"));
-				</script>
-				</br>
-				
+				</script>				
 				<script type="text/javascript">
 				if (storage.get("nachname") == "12default90"){}else{                  
-				document.write("<label>Name*:</label><input id='nachname' name='nachname' type='text' required></input>");
+				document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' required></input></td></tr>");
 				document.getElementById("nachname").setAttribute("value", storage.get("nachname"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("vorname") == "12default90"){}else{                  
-				document.write("<label>Vorname*:</label><input id='vorname' name='vorname' type='text' required></input>");
+				document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' required></input></td></tr>");
 				document.getElementById("vorname").setAttribute("value", storage.get("vorname"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("strasse") == "12default90"){}else{                  
-				document.write("<label>Straße*:</label><input id='strasse' name='strasse' type='text' required></input>");
+				document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' required></input></td></tr>");
 				document.getElementById("strasse").setAttribute("value", storage.get("strasse"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("hausnummer") == "12default90"){}else{                  
-				document.write("<label>Hausnummer*:</label><input id='hausnummer' name='hausnummer' type='text' required></input>");
+				document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' required></input></td></tr>");
 				document.getElementById("hausnummer").setAttribute("value", storage.get("hausnummer"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("postleitzahl") == "12default90"){}else{                  
-				document.write("<label>Postleitzahl*:</label><input id='postleitzahl' name='postleitzahl' type='text' required></input>");
+				document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' required></input></td></tr>");
 				document.getElementById("postleitzahl").setAttribute("value", storage.get("postleitzahl"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("ort") == "12default90"){}else{                  
-				document.write("<label>Ort*:</label><input id='ort' name='ort' type='text' required></input>");
+				document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' required></input></td></tr>");
 				document.getElementById("ort").setAttribute("value", storage.get("ort"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("telefon") == "12default90"){}else{                  
-				document.write("<label>Telefon:</label><input id='telefon' name='telefon' type='text'></input>");
+				document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text'></input></td></tr>");
 				document.getElementById("telefon").setAttribute("value", storage.get("telefon"));
-				document.write('</br>');}
+				}
 
 				if (storage.get("mobil") == "12default90"){}else{                   
-				document.write("<label>Mobil:</label><input id='mobil' name='mobil' type='text'></input>");
+				document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text'></input></td></tr>");
 				document.getElementById("mobil").setAttribute("value", storage.get("mobil"));
-				document.write('</br>');}
+				}
 				
 				if (storage.get("email") == "12default90"){}else{                   
-				document.write("<label>E-Mail:</label><input id='email' name='email' type='email'></input>");
+				document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email'></input></td></tr>");
 				document.getElementById("email").setAttribute("value", storage.get("email"));
-				document.write('</br>');}
+				}
 				</script>
 
-				<label>Ihre Nachricht*:</label>
-				<textarea id="nachricht" name="nachricht"></textarea>
+				<tr><td><label>Ihre Nachricht:*</label></td>
+				<td><textarea id="nachricht" name="nachricht"></textarea>
 				<script type="text/javascript">
 				document.getElementById("nachricht").innerHTML = storage.get("nachricht");
-				</script>
-				</br>
-				<label>Schadensort:</label>
-				<label id="schadensort"></label>
+				</script></td></tr>
+				<tr><td><label>Schadensort:</label></td>
+				<td><label id="schadensort"></label>
 				<input id="schadensorthidden" name="schadensort" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("schadensort").innerHTML=storage.get("schadensort");
 				document.getElementById("schadensorthidden").setAttribute("value",storage.get("schadensort"));
-				</script>
-				</br>
-				<label>Koordinaten:</label>
-				<label id="koordinaten" type="text"></label>
+				</script></td></tr>
+				<tr><td><label>Koordinaten:</label></td>
+				<td><label id="koordinaten" type="text"></label>
 				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
 				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
-				</script>
-				</br>
+				</script></td></tr>
 				<input id="attachment1" name="attachment1" hidden></input>
 				<input id="anonym" name="anonym" hidden></input>
 				<script type="text/javascript">
@@ -154,19 +152,19 @@ function sichern () {
 				</script>
 				<input name="attachmentCount" value="1" hidden>
 
-				<input class="btn btn-success btn-lg" type="submit" style="float: right;" onclick="sichern()" value="Weiter (Beschwerde jetzt melden)"></a>
+				<tr><td></td><td><br></br><input class="btn btn-blue pos" type="submit" style="float: right;" onclick="sichern()" value="Weiter (Anregung jetzt absenden)"></a></td></tr></tbody></table>
 			</form>
 			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-6 column">
-		</div>
-		<div class="col-md-6 column">
-			 
-		</div>
+		<div class="col-md-3 column">	</div>
 	</div>
 	</br>
 </div>
+<h5 align="center"><a href="http://www.dorsten.de/" id="link">
+		<b style="color: #8b8b8b">www.dorsten.de</b></a>
+		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		<b style="color: #8b8b8b">Impressum</b>
+		</a>
+		</h5>
 </body>
 </html>

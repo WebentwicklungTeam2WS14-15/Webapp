@@ -18,19 +18,8 @@
 
 body{
 	background-color: #F2F2F2;
-	
 	font-family: Verdana;
 	overflow-x: hidden;
-}
-
-#border{
-	border-style: solid;
-	border-width: 5px;
-	border-color: #F3F781;
-	/*border-radius:2em;*/
-
-	border-width:100%;
-	
 }
 
 #h2{
@@ -44,17 +33,13 @@ text-align:left;
 }
 
 
-
 a.btn.btn-block.btn-default button {
 	color: #FFFFFF;
 	background-color: #24245A;
 	border-radius:10px;
 	border-color:#FFFFFF;
 	text-align:center;
-	
 }
-
-
 
 a.btn.btn-block.btn-default:active {
 	color: #FFFFFF;
@@ -125,6 +110,22 @@ a.btn.btn-block.btn-default:hover {
 	width: 55%;
 }
 
+.jumbotron{
+	box-shadow: 10px 10px 15px #cccccc;
+}
+
+.lalo{
+	font-size:12px !important;
+}
+
+.goleft{
+	text-align: center;
+}
+
+.pos{
+	text-align: right;
+}
+
 @media all 
 and (min-device-width : 5px)
 and (max-device-width : 1000px)  
@@ -145,6 +146,26 @@ and (max-device-width : 1000px)
 
 .startinfo{
 	width: 100%;
+}
+
+.jumbotron{
+	box-shadow: 0px 0px 0px #888888;
+}
+
+h3{
+	font-size: 18px;
+}
+
+h4{
+	font-size: 14px;
+}
+
+.goleft{
+	text-align: left !important;
+}
+
+.pos{
+	text-align: center;
 }
 
 }

@@ -81,28 +81,35 @@ addIssue($projectName,$category,$reporterName,$summary,$description);
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
-	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
+	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
 </head>
 
 <body>
-<div class="container" id="border">
+<div class="container jumbotron">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<h3 class="text-center">
-				Vielen Dank, wir haben Ihre Beschwerde entgegengenommen!
+				Vielen Dank, wir haben Ihre Anregung entgegengenommen!
 			</h3>
 			<h4 class="text-center">
-				Falls Sie eine personalisierte Beschwerde gemeldet haben, werden Sie in Kürze eine persönliche Rückmeldung von uns erhalten.
-			</h4>
+				Falls Sie eine personalisierte Anregung gemeldet haben, werden Sie in Kürze eine persönliche Rückmeldung von uns erhalten.
+			</h4><p></p>
 		</div>
 	</div>
-	<div class="row clearfix">
+		<div class="row clearfix">
 		<div class="col-md-12 column text-center">
-			 <a href="01beschwerdeart.html" class="btn btn-success btn-blue" type="button">Zurück zur Startseite</a>
+			 <a href="01beschwerdeart.html" class="btn btn-blue" type="button">Zurück zur Startseite</a>
 		</div>
 	</div>
 	</br>
+</div>
+<h5 align="center"><a href="http://www.dorsten.de/" id="link">
+		<b style="color: #8b8b8b">www.dorsten.de</b></a>
+		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		<b style="color: #8b8b8b">Impressum</b>
+		</a>
+		</h5>
 </div>
 </body>
 </html>

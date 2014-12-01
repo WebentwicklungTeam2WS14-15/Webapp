@@ -32,8 +32,8 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
-	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
+	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
 </head>
 
 <body>
@@ -62,18 +62,19 @@ function fuellen () {
 	document.getElementById("ort").setAttribute("value", "Musterstadt");
 }
 </script>
-<div class="container" id="border">
+<div class="container jumbotron">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-			<h3 class="text-center">
+			<h3 class="goleft">
 				Bitte füllen Sie alle gekennzeichneten Felder aus!
 			</h3>
-			<h4 class="text-center">
+			<h4 class="goleft">
 				*Pflichtfelder
-			</h4>
+			</h4><br></br>
 		</div>
 	</div>
 	<div class="row clearfix">
+		<div class="col-md-3 column"></div>
 		<div class="col-md-6 column">
 			<input type="button" value="[Zum Testen] Formular ausfüllen" onclick="fuellen()"></input>
 			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
@@ -113,19 +114,18 @@ function fuellen () {
 					 <label >E-Mail</label>
 					 <input class="form-control" id="email" type="email" name="email" value="">
 				</div>
-				<input type="submit" class="btn btn-lg btn-blue" name="submit" value="Weiter"></input> 
-			</form>
+				<input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter"></input> 
+			</form><br></br>
 		</div>
 		<div class="col-md-6 column">
 		</div>
 	</div>
-	<div class="row clearfix">
-		<div class="col-md-6 column">
-		</div>
-		<div class="col-md-6 column">
-		</div>
-	</div>
-	</br>
 </div>
+<h5 align="center"><a href="http://www.dorsten.de/" id="link">
+		<b style="color: #8b8b8b">www.dorsten.de</b></a>
+		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		<b style="color: #8b8b8b">Impressum</b>
+		</a>
+		</h5>
 </body>
 </html>

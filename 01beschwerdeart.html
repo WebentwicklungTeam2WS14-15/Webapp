@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Beschwerdemeldung</title>
   <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -32,8 +32,9 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
-	 <h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
+	 <h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
+	 <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
@@ -55,17 +56,21 @@ function schilder() {
 	storage.set("art", "Schaden an Verkehrsschildern");
 }
 </script>
-<div class="container" id="border">
+<center>
+<div class="container jumbotron" >
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="text-center">
-				Um welche Art von Beschwerde handelt es sich?
+		<div class="col-md-3 column"></div>
+		<div class="col-md-6 column">
+			<h3>
+				Willkommen! Um welche Art von Anregung handelt es sich?
 			</h3>
 		</div>
+		<div class="col-md-3 column"></div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-12 column">
-			 <a href="02anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="briefkasten();">Briefkasten Bürgermeister <br/>(für allgemeine Beschwerden, <br/>ausgefallene Ideen, Lob und Kritik)</a> 
+		<div class="col-md-4 column"></div>
+		<div class="col-md-4 column"><br></br>
+			 <a href="02anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="briefkasten();">Briefkasten Bürgermeister <br/>(für allgemeine Anregungen, <br/>ausgefallene Ideen, Lob und Kritik)</a> 
 			 <a href="02anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="strasse();">Meldung von Straßenschäden</a> 
 			 <a href="09rweverlinkung.html" class="btn btn-block btn-default" type="button">Störungsmeldung Straßenbeleuchtung</a> 
 			 <a href="02anonymodernicht.html" class="btn btn-default btn-block" type="button" onclick="spielplatz();">Meldung von Schäden auf Spielplätzen</a> 
@@ -73,7 +78,15 @@ function schilder() {
 			 <a href="02anonymodernicht.html" class="btn btn-block btn-default" type="button" onclick="schilder();">Meldung von Schäden an Verkehrsschildern</a>
 			 </br>
 		</div>
+		<div class="col-md-4 column"></div>
 	</div>
 </div>
+</center>
+<h5 align="center"><a href="http://www.dorsten.de/" id="link">
+		<b style="color: #8b8b8b">www.dorsten.de</b></a>
+		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		<b style="color: #8b8b8b">Impressum</b>
+		</a>
+		</h5>
 </body>
 </html>

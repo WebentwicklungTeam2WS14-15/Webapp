@@ -33,8 +33,8 @@
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<script type="text/javascript" src="tom.js"></script>
 	
-	<h1><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h1>
+	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
+	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
 </head>
 
 <body onload="mapping()">
@@ -49,20 +49,15 @@
 		location.href = "05kontrolle.html";
 	}
 	</script>
-	<div class="container" id="border">
+	<div class="container jumbotron">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center">
+				<h3>
 					Bitte füllen Sie alle gekennzeichneten Felder aus!
 				</h3>
-				<h4 class="text-center">
+				<h4>
 					*Pflichtfelder
 				</h4>
-			</div>
-		</div>
-		<div class="row clearfix">
-			<div class="col-md-12 column">		
-				
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -75,8 +70,8 @@
 					</br> 
 					</div>
 					<p id="feedback"></p>
-			<p id="lati" name="lati">Latitude: </p>
-			<p id="longi" name="longi">Longitude: </p>
+			<p id="lati" class="lalo" name="lati">Latitude: </p>
+			<p id="longi" class="lalo" name="longi">Longitude: </p>
 
 
 			<a href="#" class="btn btn-yellow" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
@@ -85,13 +80,11 @@
 			</br>
 					<div class="form-group">
 						 <label>Adresse des Schadenortes</label>
-						 <p>
-						 <input class="form-control" id="schadensort" name="schadensort" type="name" value="">
-						 </p>
+						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" value=""></p>
 						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress(); aktivieren()"></input>
 					</div>
 					<div class="form-group">
-						 <label>Foto hochladen</label>
+						<br><label>Foto hochladen</label></br>
 							<input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();">
 							<input id="rmpicture" type="button" value="Foto löschen" style="float: right" onclick="removePicture()" hidden></input>
 							<div id="imgTest"></div>
@@ -121,7 +114,7 @@
 								}
 							</script>
 					</div>
-					<input type="submit" id="weiter" class="btn btn-grey" disabled name="submit" value="Bitte geben Sie einen Schadensort an"></input>
+					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p>
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
@@ -308,5 +301,11 @@
 		</div>
 		</br>
 	</div>
+	<h5 align="center"><a href="http://www.dorsten.de/" id="link">
+		<b style="color: #8b8b8b">www.dorsten.de</b></a>
+		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		<b style="color: #8b8b8b">Impressum</b>
+		</a>
+		</h5>
 </body>
 </html>
