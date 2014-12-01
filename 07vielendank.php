@@ -10,19 +10,58 @@ define('PASSWORD', 'keeese');
 
 //Project specific values
 $projectName = "Schadensmeldung";
-$category = "Sonstiges";
-$reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
+$category = getMantisCategory($_POST['art']);
 $summary = $_POST['nachricht'];
-$description = "Adresse: " . $_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort'] . " Telefon: " . $_POST['telefon'] . " Mobil: " . $_POST['mobil'] . " E-Mail: " . $_POST['email'] . " Art: " . $_POST['art'] . " Schadensort: " . $_POST['schadensort'] . " Koordinaten: " . $_POST['koordinaten'];
+$geo = $_POST['koordinaten'];
+$schadensort = $_POST['schadensort'];
 
-function addIssue($projectName,$category,$reporterName,$summary,$description) {
+//Distinguish between anonymous and personalized complaints
+if(strcmp($_POST['anonym'],"t") == 0)  {
+     addIssueAnon($projectName,$category,$summary,$geo,$schadensort);
+}
+if(strcmp($_POST['anonym'],"f") == 0) {
+     $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
+     $description = "a";
+     addIssue($projectName,$category,$reporterName,$summary);
+}
+
+function getMantisCategory($formCategory) {
+  //default category
+  $category = "Sonstiges";
+  //checking string positions instead of directly comparing strings because PHP seems to like it this way
+  if(strpos($formCategory, "Briefkasten Bürgermeister")) {
+    $category = "Sonstiges";
+  }
+  if(strpos($formCategory, "Spielplatz") == 18) {
+    $category = "Spielplatz";
+  }
+  if(strpos($formCategory,"Parkautomaten") == 17) {
+     $category = "Parkautomat";
+  }
+  if(strpos($formCategory, "Verkehrsschildern") == 11) {
+    $category = "Verkehrsschild";
+  }
+  if($formCategory === "Straßenschaden") {
+    $category = "Straßenschaden";
+  }
+  return $category;
+}
+
+function addIssue($projectName,$category,$reporterName,$summary) {
 
     $function_name = "mc_issue_add";
     $args['issueData']['project']['name'] = $projectName;
     $args['issueData']['category'] = $category;
-    $args['issueData']['reporter']['name'] = $reporterName;
     $args['issueData']['summary'] = $summary;
-    $args['issueData']['description'] = $description;
+    $args['issueData']['description'] = $summary;
+    $args['issueData']['custom_fields']=array(
+                                         array('field' => array('id'=>'6'),'value'=>$_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort']),
+                                         array('field' => array('id'=>'2'),'value'=>$_POST['koordinaten']),
+                                         array('field' => array('id'=>'4'),'value'=>$reporterName),
+                                         array('field' => array('id'=>'8'),'value'=>$_POST['mobil']),
+                                         array('field' => array('id'=>'9'),'value'=>$_POST['email']),
+                                         array('field' => array('id'=>'7'),'value'=>$_POST['telefon']),
+                                         array('field' => array('id'=>'3'),'value'=>$_POST['schadensort']));
 
 
     //Add login information
@@ -46,7 +85,35 @@ function addIssue($projectName,$category,$reporterName,$summary,$description) {
     }
 }
 
-addIssue($projectName,$category,$reporterName,$summary,$description);
+function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
+    $function_name = "mc_issue_add";
+    $args['issueData']['project']['name'] = $projectname;
+    $args['issueData']['category'] = $category;
+    $args['issueData']['summary'] = $summary;
+    $args['issueData']['description'] = $summary;
+    $args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$_POST['koordinaten']),
+                                              array('field' => array('id'=>'3'),'value'=>$schadensort));
+
+    //Add login information
+    $args = array_merge(
+        array(
+            'username' => USERNAME,
+            'password' => PASSWORD
+        ),
+        $args
+    );
+
+    //connect and do the SOAP call
+    try {
+        $client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
+        $result = $client->__soapCall($function_name, $args);
+    } catch (SoapFault $e) {
+        $result = array(
+            'error' => $e->faultstring
+        );
+    }
+
+}
 
 ?>
 <head>
