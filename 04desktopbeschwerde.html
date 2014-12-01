@@ -14,6 +14,8 @@
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link href="css/dropzone.css" rel="stylesheet">
+
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -27,6 +29,7 @@
   <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
   <link rel="shortcut icon" href="img/favicon.png">
   
+	<script type="text/javascript" src="dropzone.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
@@ -92,38 +95,17 @@ function sichern () {
 				
 				<div class="form-group">
 					 <label>Foto hochladen</label>
-					 <img src="" id="image">
-					<input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();" />
-<div id="imgTest"></div>
-
-<script type='text/javascript'>
-function encodeImageFileAsURL(){
-
-    var filesSelected = document.getElementById("inputFileToLoad").files;
-    if (filesSelected.length > 0)
-    {
-        var fileToLoad = filesSelected[0];
-
-        var fileReader = new FileReader();
-
-        fileReader.onload = function(fileLoadedEvent) {
-		
-            var srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-            var newImage = document.createElement('img');
-            newImage.src = srcData;
-
-            document.getElementById("imgTest").innerHTML = newImage.outerHTML;
-            //alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
-            console.log("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
-        }
-        fileReader.readAsDataURL(fileToLoad);
-    }
-}
-</script>
+					 
 				</div>
-				<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
+				
 			</form>
+			<form id="my-awesome-dropzone" action="/upload" class="dropzone">  
+        <div class="dropzone-previews"></div>
+        <div class="fallback"> <!-- this is the fallback if JS isn't working -->
+        <input name="file" type="file" >
+        </div>
+		</form>
+		<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
 		</div>
 		<div class="col-md-6 column">
 			<div id="mapholder" name="mapholder">
