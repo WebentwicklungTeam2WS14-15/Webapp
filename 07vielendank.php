@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+-<!DOCTYPE html>
 <html lang="en">
 <?php
 // Mantis API URL
@@ -11,24 +11,13 @@ define('PASSWORD', 'keeese');
 //Project specific values
 $projectName = "Schadensmeldung";
 $category = getMantisCategory($_POST['art']);
-$summary = $_POST['nachricht'];
-$geo = $_POST['koordinaten'];
-$schadensort = $_POST['schadensort'];
+$summary = htmlspecialchars($_POST['nachricht']);
+$geo = htmlspecialchars($_POST['koordinaten']);
+$schadensort = htmlspecialchars($_POST['schadensort']);
 
 //Distinguish between anonymous and personalized complaints
 if(strcmp($_POST['anonym'],"t") == 0)  {
      $issueID = addIssueAnon($projectName,$category,$summary,$geo,$schadensort);
-          //check for attachments, add all found attachments
-     if($_POST['attachmentCount'] > 0) {
-        for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
-          $currentAttachment = $_POST['attachment' . $i];
-          addAttachment($issueID,$currentAttachment,$i);
-        }
-     }
-}
-if(strcmp($_POST['anonym'],"f") == 0) {
-     $reporterName = $_POST['vorname'] . " " . $_POST['nachname'];
-     $issueID = addIssue($projectName,$category,$reporterName,$summary);
      //check for attachments, add all found attachments
      if($_POST['attachmentCount'] > 0) {
         for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
@@ -37,6 +26,20 @@ if(strcmp($_POST['anonym'],"f") == 0) {
         }
      }
 }
+if(strcmp($_POST['anonym'],"f") == 0) {
+     $issueID = addIssue($projectName,$category,$summary,$geo,$schadensort);
+     //check for attachments, add all found attachments
+     if($_POST['attachmentCount'] > 0) {
+        for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
+          $currentAttachment = $_POST['attachment' . $i];
+          addAttachment($issueID,$currentAttachment,$i);
+        }
+     }
+}
+
+//TODO error handling?
+//TODO test nicer way of doing this
+//preg_match(pattern, subject)??
 
 function getMantisCategory($formCategory) {
   //default category
@@ -56,21 +59,27 @@ function getMantisCategory($formCategory) {
   return $category;
 }
 
-function addIssue($projectName,$category,$reporterName,$summary) {
+function addIssue($projectName,$category,$summary,$geo,$schadensort) {
 
     $function_name = "mc_issue_add";
     $args['issueData']['project']['name'] = $projectName;
     $args['issueData']['category'] = $category;
     $args['issueData']['summary'] = $summary;
     $args['issueData']['description'] = $summary;
+    //escape personal data strings
+    $reporterName = htmlspecialchars($_POST['vorname']) . " " . htmlspecialchars($_POST['nachname']);
+    $adress = htmlspecialchars($_POST['strasse']) . " " . htmlspecialchars($_POST['hausnummer']) . " " . htmlspecialchars($_POST['postleitzahl']) . " " . htmlspecialchars($_POST['ort']);
+    $mobile = htmlspecialchars($_POST['mobil']);
+    $email = htmlspecialchars($_POST['email']);
+    $telefon = htmlspecialchars($_POST['telefon']);
     $args['issueData']['custom_fields']=array(
-                                         array('field' => array('id'=>'6'),'value'=>$_POST['strasse'] . " " . $_POST['hausnummer'] . " " . $_POST['postleitzahl'] . " " . $_POST['ort']),
-                                         array('field' => array('id'=>'2'),'value'=>$_POST['koordinaten']),
+                                         array('field' => array('id'=>'6'),'value'=>$adress),
+                                         array('field' => array('id'=>'2'),'value'=>$geo),
                                          array('field' => array('id'=>'4'),'value'=>$reporterName),
-                                         array('field' => array('id'=>'8'),'value'=>$_POST['mobil']),
-                                         array('field' => array('id'=>'9'),'value'=>$_POST['email']),
-                                         array('field' => array('id'=>'7'),'value'=>$_POST['telefon']),
-                                         array('field' => array('id'=>'3'),'value'=>$_POST['schadensort']));
+                                         array('field' => array('id'=>'8'),'value'=>$mobile),
+                                         array('field' => array('id'=>'9'),'value'=>$email),
+                                         array('field' => array('id'=>'7'),'value'=>$telefon),
+                                         array('field' => array('id'=>'3'),'value'=>$schadensort));
 
 
     //Add login information
@@ -100,7 +109,7 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     $args['issueData']['category'] = $category;
     $args['issueData']['summary'] = $summary;
     $args['issueData']['description'] = $summary;
-    $args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$_POST['koordinaten']),
+    $args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$geo),
                                               array('field' => array('id'=>'3'),'value'=>$schadensort));
 
     //Add login information
