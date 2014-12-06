@@ -30,6 +30,7 @@
   <link rel="shortcut icon" href="img/favicon.png">
   
 	<script type="text/javascript" src="dropzone.js"></script>
+	<script type="text/javascript" src="dropzone.min.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
@@ -103,6 +104,38 @@ function sichern () {
         <div class="dropzone-previews"></div>
         <div class="fallback"> <!-- this is the fallback if JS isn't working -->
         <input name="file" type="file" >
+		<script>
+  // myDropzone is the configuration for the element that has an id attribute
+  // with the value my-dropzone (or myDropzone)
+  Dropzone.options.myAwesomeDropzone = {
+    init: function() {
+      this.on("addedfile", function(file) {
+
+        // Create the remove button
+        var removeButton = Dropzone.createElement("<button>Remove file</button>");
+
+
+        // Capture the Dropzone instance as closure.
+        var _this = this;
+
+        // Listen to the click event
+        removeButton.addEventListener("click", function(e) {
+          // Make sure the button click doesn't submit the form:
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Remove the file preview.
+          _this.removeFile(file);
+          // If you want to the delete the file on the server as well,
+          // you can do the AJAX request here.
+        });
+
+        // Add the button to the file preview element.
+        file.previewElement.appendChild(removeButton);
+      });
+    }
+  };
+</script>
         </div>
 		</form>
 		<input type="submit" class="btn btn-lg btn-success" name="submit" value="Weiter"></input>
