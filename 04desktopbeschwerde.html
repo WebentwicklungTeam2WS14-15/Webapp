@@ -163,7 +163,8 @@
 						
 						var click = new OpenLayers.Control.Click();
 						map.addControl(click);
-						click.activate();				
+						click.activate();	
+						textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);
 				    }
 				//Set up a click handler
 				OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
