@@ -95,7 +95,7 @@
 					<div class="form-group">
 						 <label>Adresse des Schadenortes</label>
 						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" value=""></p>
-						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress(); aktivieren()"></input>
+						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();"></input>
 					</div>
 					<div class="form-group">
 						<br><label>Foto hochladen</label></br>
@@ -285,8 +285,9 @@
 						}
 						markers.addMarker(new OpenLayers.Marker(lonLat));
 						map.addLayer(markers);
+						aktivieren();
 					} else {
-					  alert('Geocode was not successful for the following reason: ' + status);
+					  alert('Die Adresse konnte leider nicht gefunden werden.');
 					}
 				  });
 				}

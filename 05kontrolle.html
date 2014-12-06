@@ -52,6 +52,7 @@ function sichern () {
 	if (storage.get("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){storage.set("mobil", "12default90");}else{storage.set("mobil", document.forms.form.elements.mobil.value);}
 	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}
 	storage.set("nachricht", document.getElementById("nachricht").innerHTML;
+	location.href = "07vielendank.php";
 }
 
 function pflichtfelder () {
@@ -98,7 +99,7 @@ function pflichtfelder () {
 	<div class="row clearfix">
 		<div class="col-md-4 column">	</div>
 		<div class="col-md-5 column">	
-			<form role="form" method="post" action="07vielendank.php"><br></br>
+			<form role="form" method="post" action="javascript:pflichtfelder();"><br></br>
 				<table width="100%"><tbody><tr><td><label>Art des Anliegens:</label></td><td>
 				<label id="art"></label></td></tr>
 				<input id="arthidden" name="art" hidden></input>
@@ -180,7 +181,7 @@ function pflichtfelder () {
 				</script>
 				<input name="attachmentCount" value="1" hidden>
 
-				<tr><td></td><td><br></br><input class="btn btn-blue pos" type="submit" onclick="pflichtfelder()" style="float: right;" value="Weiter (Anregung jetzt absenden)"></a></td></tr></tbody></table>
+				<tr><td></td><td><br></br><input class="btn btn-blue pos" type="submit" style="float: right;" value="Weiter (Anregung jetzt absenden)"></a></td></tr></tbody></table>
 			</form>
 			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>
