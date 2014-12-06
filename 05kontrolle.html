@@ -53,6 +53,34 @@ function sichern () {
 	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}
 	storage.set("nachricht", document.getElementById("nachricht").innerHTML;
 }
+
+function pflichtfelder () {
+	var i=0;
+	if (document.getElementById("nachname").value==""){
+		document.getElementById("nachname").placeholder="Bitte ausfüllen!";
+	 }else {i++;}
+	if (document.getElementById("vorname").value ==""){
+		document.getElementById("vorname").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if (document.getElementById("strasse").value==""){
+		document.getElementById("strasse").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if (document.getElementById("hausnummer").value==""){
+		document.getElementById("hausnummer").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if (document.getElementById("postleitzahl").value==""){
+		document.getElementById("postleitzahl").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if (document.getElementById("ort").value==""){
+		document.getElementById("ort").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if (document.getElementById("nachricht").innerHTML==""){
+		document.getElementById("nachricht").placeholder="Bitte ausfüllen!";
+	} else {i++;}
+	if(i==7){
+		sichern();
+	}
+}
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
@@ -80,53 +108,53 @@ function sichern () {
 				</script>				
 				<script type="text/javascript">
 				if (storage.get("nachname") == "12default90"){}else{                  
-				document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("nachname").setAttribute("value", storage.get("nachname"));
 				}
 				
 				if (storage.get("vorname") == "12default90"){}else{                  
-				document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("vorname").setAttribute("value", storage.get("vorname"));
 				}
 				
 				if (storage.get("strasse") == "12default90"){}else{                  
-				document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("strasse").setAttribute("value", storage.get("strasse"));
 				}
 				
 				if (storage.get("hausnummer") == "12default90"){}else{                  
-				document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("hausnummer").setAttribute("value", storage.get("hausnummer"));
 				}
 				
 				if (storage.get("postleitzahl") == "12default90"){}else{                  
-				document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("postleitzahl").setAttribute("value", storage.get("postleitzahl"));
 				}
 				
 				if (storage.get("ort") == "12default90"){}else{                  
-				document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' required></input></td></tr>");
+				document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("ort").setAttribute("value", storage.get("ort"));
 				}
 				
 				if (storage.get("telefon") == "12default90"){}else{                  
-				document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text'></input></td></tr>");
+				document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("telefon").setAttribute("value", storage.get("telefon"));
 				}
 
 				if (storage.get("mobil") == "12default90"){}else{                   
-				document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text'></input></td></tr>");
+				document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></input></td></tr>");
 				document.getElementById("mobil").setAttribute("value", storage.get("mobil"));
 				}
 				
 				if (storage.get("email") == "12default90"){}else{                   
-				document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email'></input></td></tr>");
+				document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email' maxlength='25'></input></td></tr>");
 				document.getElementById("email").setAttribute("value", storage.get("email"));
 				}
 				</script>
 
 				<tr><td><label>Ihre Nachricht:*</label></td>
-				<td><textarea id="nachricht" name="nachricht"></textarea>
+				<td><textarea id="nachricht" name="nachricht" maxlength="128"></textarea>
 				<script type="text/javascript">
 				document.getElementById("nachricht").innerHTML = storage.get("nachricht");
 				</script></td></tr>
@@ -152,7 +180,7 @@ function sichern () {
 				</script>
 				<input name="attachmentCount" value="1" hidden>
 
-				<tr><td></td><td><br></br><input class="btn btn-blue pos" type="submit" style="float: right;" onclick="sichern()" value="Weiter (Anregung jetzt absenden)"></a></td></tr></tbody></table>
+				<tr><td></td><td><br></br><input class="btn btn-blue pos" type="submit" onclick="pflichtfelder()" style="float: right;" value="Weiter (Anregung jetzt absenden)"></a></td></tr></tbody></table>
 			</form>
 			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>

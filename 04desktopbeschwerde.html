@@ -48,6 +48,19 @@
 		storage.set("longitude", document.getElementById("longi").innerHTML);
 		location.href = "05kontrolle.html";
 	}
+	
+	function pflichtfelder () {
+		var i=0;
+		if (document.getElementById("nachricht").value==""){
+			document.getElementById("divnachricht").style.backgroundColor="red";
+		 }else {
+			sichern();
+		}
+	}
+	
+	function textCounter(field, countfield, maxlimit) {
+			countfield.innerHTML = "Ihre Nachricht* (Noch "+(maxlimit - field.value.length)+" Zeichen)";
+	}
 	</script>
 	<div class="container jumbotron">
 		<div class="row clearfix">
@@ -62,11 +75,12 @@
 		</div>
 		<div class="row clearfix">
 			<div class="col-md-6 column">
-			<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
-					<div class="form-group">
-					<br>
-					<label>Ihre Nachricht*</label></br>
-					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="35" rows="4" required></textarea>
+			<form role="form" method="post" name="form" id="form" action="" onsubmit="pflichtfelder(); return false;">
+					<div class="form-group" id="divnachricht">
+					
+					<label id="zeichen" name="zeichen">Ihre Nachricht* (Noch 128 Zeichen)</label></br>
+					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="35" rows="4" 
+					maxlength="128" onKeyDown="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);" onKeyUp="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);"></textarea>
 					</br> 
 					</div>
 					<p id="feedback"></p>
@@ -81,7 +95,7 @@
 					<div class="form-group">
 						 <label>Adresse des Schadenortes</label>
 						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" value=""></p>
-						 <input type="button" value="Adresse überprüfen" onclick="coordsByAddress(); aktivieren()"></input>
+						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress(); aktivieren()"></input>
 					</div>
 					<div class="form-group">
 						<br><label>Foto hochladen</label></br>

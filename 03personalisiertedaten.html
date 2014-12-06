@@ -61,6 +61,37 @@ function fuellen () {
 	document.getElementById("plz").setAttribute("value", "12345");
 	document.getElementById("ort").setAttribute("value", "Musterstadt");
 }
+
+function pflichtfelder () {
+	var i=0;
+	if (document.getElementById("nachname").value==""){
+		document.getElementById("divnachname").style.backgroundColor="red";
+		document.getElementById("nachname").placeholder="Bitte ausfüllen!";
+	 }else {document.getElementById("divnachname").style.backgroundColor="transparent"; i++;}
+	if (document.forms.form.elements.vorname.value ==""){
+		document.getElementById("divvorname").style.backgroundColor="red";
+		document.getElementById("vorname").placeholder="Bitte ausfüllen!";
+	} else {document.getElementById("divvorname").style.backgroundColor="transparent"; i++;}
+	if (document.getElementById("strasse").value==""){
+		document.getElementById("divstrasse").style.backgroundColor="red";
+		document.getElementById("strasse").placeholder="Bitte ausfüllen!";
+	} else {document.getElementById("divstrasse").style.backgroundColor="transparent"; i++;}
+	if (document.getElementById("hausnr").value==""){
+		document.getElementById("divhausnr").style.backgroundColor="red";
+		document.getElementById("hausnr").placeholder="Bitte ausfüllen!";
+	} else {document.getElementById("divhausnr").style.backgroundColor="transparent"; i++;}
+	if (document.getElementById("plz").value==""){
+		document.getElementById("divplz").style.backgroundColor="red";
+		document.getElementById("plz").placeholder="Bitte ausfüllen!";
+	} else {document.getElementById("divplz").style.backgroundColor="transparent"; i++;}
+	if (document.getElementById("ort").value==""){
+		document.getElementById("divort").style.backgroundColor="red";
+		document.getElementById("ort").placeholder="Bitte ausfüllen!";
+	} else {document.getElementById("divort").style.backgroundColor="transparent"; i++;}
+	if(i==6){
+		sichern();
+	}
+}
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
@@ -77,42 +108,42 @@ function fuellen () {
 		<div class="col-md-3 column"></div>
 		<div class="col-md-6 column">
 			<input type="button" value="[Zum Testen] Formular ausfüllen" onclick="fuellen()"></input>
-			<form role="form" name="form" method="post" action="" onsubmit="sichern(); return false;">
-				<div class="form-group">
+			<form role="form" name="form" method="post" action="" onsubmit="pflichtfelder(); return false;">
+				<div class="form-group" id="divnachname">
 					 <label>Name*</label>
-					 <input class="form-control" id="nachname" name="nachname" type="name" value="" required>
+					 <input class="form-control" id="nachname" name="nachname" type="name" value="" maxlength="25">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="divvorname">
 					 <label>Vorname*</label>
-					 <input class="form-control" id="vorname" name="vorname" type="name" value="" required>
+					 <input class="form-control" id="vorname" name="vorname" type="name" value="" maxlength="25">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="divstrasse">
 					 <label>Straße*</label>
-					 <input class="form-control" id="strasse" type="name" name="strasse" value="" required>
+					 <input class="form-control" id="strasse" type="name" name="strasse" value="" maxlength="25">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="divhausnr">
 					 <label>Hausnummer*</label>
-					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="" required>
+					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="" maxlength="25">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="divplz">
 					 <label>Postleitzahl*</label>
-					 <input class="form-control" id="plz" type="name" name="plz" value=""required>
+					 <input class="form-control" id="plz" type="name" name="plz" value="" maxlength="25">
 				</div>
-				<div class="form-group">
+				<div class="form-group" id="divort">
 					 <label>Ort*</label>
-					 <input class="form-control" id="ort" type="name" name="ort" value="" required>
+					 <input class="form-control" id="ort" type="name" name="ort" value="" maxlength="25">
 				</div>
 				<div class="form-group">
 					 <label>Telefon</label>
-					 <input class="form-control" id="telefon" type="name" name="telefon" value="">
+					 <input class="form-control" id="telefon" type="name" name="telefon" value="" maxlength="25">
 				</div>
 				<div class="form-group">
 					 <label>Mobil</label>
-					 <input class="form-control" id="mobil" type="name" name="mobil" value="">
+					 <input class="form-control" id="mobil" type="name" name="mobil" value="" maxlength="25">
 				</div>
 				<div class="form-group">
 					 <label >E-Mail</label>
-					 <input class="form-control" id="email" type="email" name="email" value="">
+					 <input class="form-control" id="email" type="email" name="email" value="" maxlength="35">
 				</div>
 				<input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter"></input> 
 			</form><br></br>
