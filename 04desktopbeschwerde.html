@@ -95,7 +95,7 @@
 			</br>
 					<div class="form-group">
 						 <label>Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
-						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" value="" maxlength="128"></p>
+						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown="deaktivieren()" value="" maxlength="128"></p>
 						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();"></input>
 					</div>
 					<div class="form-group">
@@ -133,9 +133,13 @@
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
-							weiter.setAttribute("class", "btn btn-blue");
 							weiter.setAttribute("value", "Weiter");
 							weiter.removeAttribute("disabled");
+						}
+						function deaktivieren(){
+							var weiter = document.getElementById("weiter");
+							weiter.setAttribute("disabled", true);
+							weiter.setAttribute("value", "Bitte geben Sie einen Schadensort an");
 						}
 					</script>
 				</form>
