@@ -48,38 +48,49 @@ function sichern () {
 	if (storage.get("hausnummer") == "12default90"){}else{ storage.set("hausnummer", document.forms.form.elements.hausnummer.value);}
 	if (storage.get("postleitzahl") == "12default90"){}else{ storage.set("postleitzahl", document.forms.form.elements.postleitzahl.value);}
 	if (storage.get("ort") == "12default90"){}else{ storage.set("ort", document.forms.form.elements.ort.value);}
-	if (storage.get("telefon") == "12default90"){}else{ if (document.forms.form.elements.telefon.value == ""){storage.set("telefon", "12default90");}else{storage.set("telefon", document.forms.form.elements.telefon.value);}
-	if (storage.get("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){storage.set("mobil", "12default90");}else{storage.set("mobil", document.forms.form.elements.mobil.value);}
-	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}
-	storage.set("nachricht", document.getElementById("nachricht").innerHTML;
-	location.href = "07vielendank.php";
+	if (storage.get("telefon") == "12default90"){}else{ if (document.forms.form.elements.telefon.value == ""){storage.set("telefon", "12default90");}else{storage.set("telefon", document.forms.form.elements.telefon.value);}}
+	if (storage.get("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){storage.set("mobil", "12default90");}else{storage.set("mobil", document.forms.form.elements.mobil.value);}}
+	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}}
+	storage.set("nachricht", document.getElementById("nachricht").innerHTML);
 }
+
 
 function pflichtfelder () {
 	var i=0;
+	var weiter=true;
 	if (document.getElementById("nachname").value==""){
 		document.getElementById("nachname").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	 }else {i++;}
 	if (document.getElementById("vorname").value ==""){
 		document.getElementById("vorname").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if (document.getElementById("strasse").value==""){
 		document.getElementById("strasse").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if (document.getElementById("hausnummer").value==""){
 		document.getElementById("hausnummer").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if (document.getElementById("postleitzahl").value==""){
 		document.getElementById("postleitzahl").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if (document.getElementById("ort").value==""){
 		document.getElementById("ort").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if (document.getElementById("nachricht").innerHTML==""){
 		document.getElementById("nachricht").placeholder="Bitte ausfüllen!";
+		weiter = false;
 	} else {i++;}
 	if(i==7){
 		sichern();
+		return true;
+	} else {
+		return false;
 	}
 }
 </script>
@@ -99,7 +110,7 @@ function pflichtfelder () {
 	<div class="row clearfix">
 		<div class="col-md-4 column">	</div>
 		<div class="col-md-5 column">	
-			<form role="form" method="post" action="javascript:pflichtfelder();"><br></br>
+			<form role="form" method="post" action="07vielendank.php" onsubmit="return pflichtfelder();"><br></br>
 				<table width="100%"><tbody><tr><td><label>Art des Anliegens:</label></td><td>
 				<label id="art"></label></td></tr>
 				<input id="arthidden" name="art" hidden></input>
