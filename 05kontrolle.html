@@ -181,7 +181,7 @@ function pflichtfelder () {
 				<td><label id="koordinaten" type="text"></label>
 				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
-				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", "+storage.get("longitude");
+				document.getElementById("koordinaten").innerHTML = storage.get("latitude")+", </br>"+storage.get("longitude");
 				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
 				</script></td></tr>
 				<input id="attachment1" name="attachment1" hidden></input>
@@ -202,7 +202,7 @@ function pflichtfelder () {
 </div>
 <h5 align="center"><a href="http://www.dorsten.de/" id="link">
 		<b style="color: #8b8b8b">www.dorsten.de</b></a>
-		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		| <a href="impressum.html" id="link">
 		<b style="color: #8b8b8b">Impressum</b>
 		</a>
 		</h5>

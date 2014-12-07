@@ -53,6 +53,7 @@
 		var i=0;
 		if (document.getElementById("nachricht").value==""){
 			document.getElementById("divnachricht").style.backgroundColor="red";
+			document.getElementById("nachricht").focus();
 		 }else {
 			sichern();
 		}
@@ -84,8 +85,8 @@
 					</br> 
 					</div>
 					<p id="feedback"></p>
-			<p id="lati" class="lalo" name="lati">Latitude: </p>
-			<p id="longi" class="lalo" name="longi">Longitude: </p>
+			<p id="lati" class="lalo" name="lati" hidden>Latitude: </p>
+			<p id="longi" class="lalo" name="longi" hidden>Longitude: </p>
 
 
 			<a href="#" class="btn btn-yellow" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
@@ -128,7 +129,7 @@
 								}
 							</script>
 					</div>
-					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p>
+					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br>
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
@@ -319,7 +320,7 @@
 	</div>
 	<h5 align="center"><a href="http://www.dorsten.de/" id="link">
 		<b style="color: #8b8b8b">www.dorsten.de</b></a>
-		| <a href="http://www.dorsten.de/Impressum.htm" id="link">
+		| <a href="impressum.html" id="link">
 		<b style="color: #8b8b8b">Impressum</b>
 		</a>
 		</h5>
