@@ -108,8 +108,8 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     $function_name = "mc_issue_add";
     $args['issueData']['project']['name'] = $projectname;
     $args['issueData']['category'] = $category;
-    $args['issueData']['description'] = $summary
-    $args['issueData']['summary'] = "Anonym: " . substr($summary,0,63);
+    $args['issueData']['description'] = $summary;
+    $args['issueData']['summary'] = reporterName . ": " . substr($summary,0,63);
     $args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$geo),
                                               array('field' => array('id'=>'3'),'value'=>$schadensort));
 
