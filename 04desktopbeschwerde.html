@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Beschwerdemeldung</title>
+  <title>ABBA Dorsten</title>
   <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -33,8 +33,8 @@
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<script type="text/javascript" src="tom.js"></script>
 	
-	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
+	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
+	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
 <body onload="mapping()">
@@ -67,7 +67,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<h3>
-					Bitte füllen Sie alle gekennzeichneten Felder aus!
+					Bitte geben Sie eine Nachricht und den Schadensort an.
 				</h3>
 				<h4>
 					*Pflichtfelder
@@ -79,9 +79,9 @@
 			<form role="form" method="post" name="form" id="form" action="" onsubmit="pflichtfelder(); return false;">
 					<div class="form-group" id="divnachricht">
 					
-					<label id="zeichen" name="zeichen">Ihre Nachricht* (Noch 128 Zeichen)</label></br>
+					<label id="zeichen" name="zeichen">Ihre Nachricht* (Noch 1024 Zeichen)</label></br>
 					<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben*" cols="35" rows="4" 
-					maxlength="128" onKeyDown="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);" onKeyUp="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);"></textarea>
+					maxlength="1024" onKeyDown="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),1024);" onKeyUp="textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),1024);"></textarea>
 					</br> 
 					</div>
 					<p id="feedback"></p>
@@ -129,7 +129,7 @@
 								}
 							</script>
 					</div>
-					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br>
+					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br></br>
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
@@ -169,7 +169,7 @@
 						var click = new OpenLayers.Control.Click();
 						map.addControl(click);
 						click.activate();	
-						textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),128);
+						textCounter(document.getElementById('nachricht'),document.getElementById('zeichen'),1024);
 				    }
 				//Set up a click handler
 				OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
@@ -322,11 +322,13 @@
 		</div>
 		</br>
 	</div>
-	<h5 align="center"><a href="http://www.dorsten.de/" id="link">
-		<b style="color: #8b8b8b">www.dorsten.de</b></a>
-		| <a href="impressum.html" id="link">
-		<b style="color: #8b8b8b">Impressum</b>
-		</a>
-		</h5>
+<h5 align="center">
+	<b style="color: #8b8b8b">Version 0.5 | </b>
+	<a href="http://www.dorsten.de/" id="link">
+	<b style="color: #8b8b8b">www.dorsten.de</b></a>
+	| <a href="impressum.html" id="link">
+	<b style="color: #8b8b8b">Impressum</b>
+	</a>
+</h5>
 </body>
 </html>

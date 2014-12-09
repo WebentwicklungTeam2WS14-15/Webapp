@@ -165,7 +165,7 @@ function addAttachment($issueID,$filecontent,$count) {
 ?>
 <head>
   <meta charset="utf-8">
-  <title>Beschwerdemeldung</title>
+  <title>ABBA Dorsten</title>
   <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -195,8 +195,8 @@ function addAttachment($issueID,$filecontent,$count) {
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
-	<h4><a href="http://www.dorsten.de/" id="link"><img alt="" src="img/Logo.gif" id="logo">
-	 <b style="color: #BDBDBD">www.</b>dorsten<b style="color: #BDBDBD">.de</b></a></h4>
+	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
+	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
 <body>
@@ -218,12 +218,14 @@ function addAttachment($issueID,$filecontent,$count) {
 	</div>
 	</br>
 </div>
-<h5 align="center"><a href="http://www.dorsten.de/" id="link">
-		<b style="color: #8b8b8b">www.dorsten.de</b></a>
-		| <a href="impressum.html" id="link">
-		<b style="color: #8b8b8b">Impressum</b>
-		</a>
-		</h5>
+<h5 align="center">
+	<b style="color: #8b8b8b">Version 0.5 | </b>
+	<a href="http://www.dorsten.de/" id="link">
+	<b style="color: #8b8b8b">www.dorsten.de</b></a>
+	| <a href="impressum.html" id="link">
+	<b style="color: #8b8b8b">Impressum</b>
+	</a>
+</h5>
 </div>
 </body>
 </html>
