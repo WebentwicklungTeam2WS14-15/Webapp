@@ -3,6 +3,7 @@
 <?php
 // Mantis API URL
 define('MANTISCONNECT_URL', 'http://www.patrickdehnel.de/mantis/api/soap/mantisconnect.php');
+//TODO Daten in config.php auslagern
 
 //Login information
 define('USERNAME', 'web_reporter');
@@ -64,7 +65,6 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort) {
     $function_name = "mc_issue_add";
     $args['issueData']['project']['name'] = $projectName;
     $args['issueData']['category'] = $category;
-    $args['issueData']['summary'] = $summary;
     $args['issueData']['description'] = $summary;
     //escape personal data strings
     $reporterName = htmlspecialchars($_POST['vorname']) . " " . htmlspecialchars($_POST['nachname']);
@@ -72,6 +72,7 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort) {
     $mobile = htmlspecialchars($_POST['mobil']);
     $email = htmlspecialchars($_POST['email']);
     $telefon = htmlspecialchars($_POST['telefon']);
+    $args['issueData']['summary'] = $reporterName . ": " . substr($summary,0,63);
     $args['issueData']['custom_fields']=array(
                                          array('field' => array('id'=>'6'),'value'=>$adress),
                                          array('field' => array('id'=>'2'),'value'=>$geo),
@@ -107,8 +108,8 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
     $function_name = "mc_issue_add";
     $args['issueData']['project']['name'] = $projectname;
     $args['issueData']['category'] = $category;
-    $args['issueData']['summary'] = $summary;
     $args['issueData']['description'] = $summary;
+    $args['issueData']['summary'] = "Anonym: " . substr($summary,0,63);
     $args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$geo),
                                               array('field' => array('id'=>'3'),'value'=>$schadensort));
 
