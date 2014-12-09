@@ -89,37 +89,55 @@ function pflichtfelder () {
 		document.getElementById("ort").placeholder="Bitte ausfüllen!";
 	} else {document.getElementById("divort").style.backgroundColor="transparent"; i++;}
 	if(i==6){
-		var o=0;
-		if(validVorname(document.getElementById("vorname").value)){
-			
+		var o=9;
+		/*if(validVorname(document.getElementById("vorname").value)){
+			o++;
+		}
+		if(validNachname(document.getElementById("nachname").value)){
+			o++;
+		} 		
+		if(validStrasse(document.getElementById("strasse").value)){
+			o++;
+		}
+		if(validHausnummer(document.getElementById("hausnr").value)){
+			o++;
 		} 
+		if(validPostleitzahl(document.getElementById("plz").value)){
+			o++;
+		}
+		if(validOrt(document.getElementById("ort").value)){
+			o++;
+		} 
+		if(validTelefonnummer(document.getElementById("telefon").value)){
+			o++;
+		}
+		if(validMobil(document.getElementById("mobil").value)){
+			o++;
+		} 
+		o++;
+		/*if(validEmail(document.getElementById("email").value)){
+			o++;
+		} */
 		if(o==9){
 			sichern();
 		} else{
-			alert("bob");
 		}
 	}
 }
-		/*validNachname(document.getElementById("nachname").value);
-		validStrasse(document.getElementById("strasse").value);
-		validHausnummer(document.getElementById("hausnr").value);
-		validPostleitzahl(document.getElementById("plz").value);
-		validOrt(document.getElementById("ort").value);
-		validTelefonnummer(document.getElementById("telefon").value);
-		validMobil(document.getElementById("mobil").value);
-		validEmail(document.getElementById("email").value);*/
+
 	
 	function validVorname(vorname) {
-	var strReg="([a-zA-Z]{1,})";
+	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
 
 	var regex = new RegExp(strReg);
+	alert(regex.test(vorname));
 	return (regex.test(vorname));
 	}
 
 
 
 	function validNachname(nachname) {
-	var strReg="([a-zA-Z]{1,})";
+	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
 
 	var regex = new RegExp(strReg);
 	return (regex.test(nachname));
@@ -128,7 +146,7 @@ function pflichtfelder () {
 
 
 	function validStrasse(strasse) {
-	var strReg="([a-zA-z]{1,})";
+	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
 
 	var regex = new RegExp(strReg);
 	return (regex.test(strasse));
@@ -137,7 +155,7 @@ function pflichtfelder () {
 
 
 	function validHausnummer(hausnummer){
-	var strReg="([0-9]{1,})";
+	var strReg="(([0-9]{1,})+([a-zA-Z]{0,1}))";
 
 	var regex = new RegExp(strReg);
 	return (regex.test(hausnummer));
@@ -156,7 +174,7 @@ function pflichtfelder () {
 
 
 	function validOrt(ort) {
-	var strReg="([a-zA-Z]{1,})";
+	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
 
 	var regex = new RegExp(strReg);
 	return (regex.test(ort));
@@ -183,7 +201,7 @@ function pflichtfelder () {
 
 
 	function validEmail(email) {
-	var strReg="(([a-zA-Z0-9\-\.\_]{1,}+\@+([a-zA-Z0-9]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
+	var strReg="(([a-zA-Z0-9-._]{1,}+\@+([a-zA-Z0-9-]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
 
 	var regex = new RegExp(strReg);
 	return (regex.test(email));
@@ -239,7 +257,7 @@ function pflichtfelder () {
 				</div>
 				<div class="form-group">
 					 <label >E-Mail</label>
-					 <input class="form-control" id="email" type="email" name="email" value="" maxlength="35">
+					 <input class="form-control" id="email" type="name" name="email" value="" maxlength="35">
 				</div>
 				<input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter"></input> 
 			</form><br></br>
