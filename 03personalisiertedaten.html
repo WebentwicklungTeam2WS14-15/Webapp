@@ -89,9 +89,105 @@ function pflichtfelder () {
 		document.getElementById("ort").placeholder="Bitte ausfüllen!";
 	} else {document.getElementById("divort").style.backgroundColor="transparent"; i++;}
 	if(i==6){
-		sichern();
+		var o=0;
+		if(validVorname(document.getElementById("vorname").value)){
+			
+		} 
+		if(o==9){
+			sichern();
+		} else{
+			alert("bob");
+		}
 	}
 }
+		/*validNachname(document.getElementById("nachname").value);
+		validStrasse(document.getElementById("strasse").value);
+		validHausnummer(document.getElementById("hausnr").value);
+		validPostleitzahl(document.getElementById("plz").value);
+		validOrt(document.getElementById("ort").value);
+		validTelefonnummer(document.getElementById("telefon").value);
+		validMobil(document.getElementById("mobil").value);
+		validEmail(document.getElementById("email").value);*/
+	
+	function validVorname(vorname) {
+	var strReg="([a-zA-Z]{1,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(vorname));
+	}
+
+
+
+	function validNachname(nachname) {
+	var strReg="([a-zA-Z]{1,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(nachname));
+	}
+
+
+
+	function validStrasse(strasse) {
+	var strReg="([a-zA-z]{1,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(strasse));
+	}
+
+
+
+	function validHausnummer(hausnummer){
+	var strReg="([0-9]{1,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(hausnummer));
+	}
+
+
+
+
+	function validPostleitzahl(postleitzahl) {
+	var strReg="([0-9]{5})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(postleitzahl));
+	}
+
+
+
+	function validOrt(ort) {
+	var strReg="([a-zA-Z]{1,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(ort));
+	}
+
+
+
+	function validTelefonnummer(telefon) {
+	var strReg="([0-9]{0,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(telefon));
+	}
+
+
+
+	function validMobil(mobil) {
+	var strReg="([0-9]{0,})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(mobil));
+	}
+
+
+
+	function validEmail(email) {
+	var strReg="(([a-zA-Z0-9\-\.\_]{1,}+\@+([a-zA-Z0-9]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
+
+	var regex = new RegExp(strReg);
+	return (regex.test(email));
+	}
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
