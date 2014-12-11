@@ -85,8 +85,8 @@
 					</br> 
 					</div>
 					<p id="feedback"></p>
-			<p id="lati" class="lalo" name="lati" hidden>Latitude: </p>
-			<p id="longi" class="lalo" name="longi" hidden>Longitude: </p>
+			<p id="lati" class="lalo" name="lati" hidden></p>
+			<p id="longi" class="lalo" name="longi" hidden></p>
 
 
 			<a href="#" class="btn btn-yellow" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
@@ -198,8 +198,8 @@
                       new OpenLayers.Projection("EPSG:900913"), 
                       new OpenLayers.Projection("EPSG:4326")
                     );
-                    lati.innerHTML="Latitude: " + lonlat.lat;
-					longi.innerHTML="Longitude: " + lonlat.lon;
+                    lati.innerHTML=lonlat.lat;
+					longi.innerHTML=lonlat.lon;
 					addressByCoords(lonlat.lat, lonlat.lon);
 					lonLat = new OpenLayers.LonLat(lonlat.lon,lonlat.lat)
 							.transform(
@@ -221,8 +221,8 @@
 					map.addLayer(mapnik);
 
 					navigator.geolocation.getCurrentPosition(function(position) {
-						lati.innerHTML="Latitude: " + position.coords.latitude;
-						longi.innerHTML="Longitude: " + position.coords.longitude;
+						lati.innerHTML=position.coords.latitude;
+						longi.innerHTML=position.coords.longitude;
 						addressByCoords(position.coords.latitude, position.coords.longitude);
 						lonLat = new OpenLayers.LonLat(position.coords.longitude,position.coords.latitude)
 							.transform(
@@ -276,8 +276,8 @@
 					var address = document.getElementById('schadensort').value;
 					  geocoder.geocode( { 'address': address}, function(results, status) {
 						if (status == google.maps.GeocoderStatus.OK) {
-						  lati.innerHTML = "Latitude: " + results[0].geometry.location.lat();
-						  longi.innerHTML = "Longitude: " + results[0].geometry.location.lng();
+						  lati.innerHTML = results[0].geometry.location.lat();
+						  longi.innerHTML = results[0].geometry.location.lng();
 
 					lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(),results[0].geometry.location.lat())
 							.transform(
@@ -312,7 +312,15 @@
 				    geocoder.geocode({'latLng': latlng}, function(results, status) {
 					  if (results[0]) {
 						var address = document.getElementById('schadensort');
-						address.value = results[0].formatted_address;
+						addressResult = results[0].formatted_address;					 
+						if (addressResult.contains(" Dorsten, Deutschland")){
+						} else{
+							alert("Der angegebene Schadensort ist nicht in Dorsten.");
+						}
+						if(addressResult.contains(", Deutschland")){
+							addressResult = addressResult.replace(', Deutschland','');	
+						}
+						address.value = addressResult;
 					  } 
 					});
 				}

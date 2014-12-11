@@ -38,7 +38,7 @@
 	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
-<body>
+<body onload="mapping()">
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
@@ -96,7 +96,7 @@ function pflichtfelder () {
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
-		<div class="col-md-4 column">	</div>
+	<div class="col-md-4 column"> </div>
 		<div class="col-md-5 column">
 			<h3>
 				Kontrollformular:
@@ -108,7 +108,7 @@ function pflichtfelder () {
 		<div class="col-md-3 column">	</div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-4 column">	</div>
+		<div class="col-md-4 column"> </div>
 		<div class="col-md-5 column">	
 			<form role="form" method="post" action="07vielendank.php" onsubmit="return pflichtfelder();"><br></br>
 				<table width="100%"><tbody><tr><td><label>Art des Anliegens:</label></td><td>
@@ -177,7 +177,10 @@ function pflichtfelder () {
 				document.getElementById("schadensort").innerHTML=storage.get("schadensort");
 				document.getElementById("schadensorthidden").setAttribute("value",storage.get("schadensort"));
 				</script></td></tr>
-				
+				<script type="text/javascript">	
+					var koords =storage.get("latitude")+","+storage.get("longitude");
+					document.write("<tr><td></td><td><div style='height:20; width:20; overflow:hidden'><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center="+koords+"&zoom=13&size=300x200&markers="+koords+",ol-marker' /></p></div></td></tr>");
+				</script>
 				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
 				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
@@ -194,7 +197,8 @@ function pflichtfelder () {
 			</form>
 			<!-- <a href="#" class="btn btn-warning" type="button">Bearbeiten</a> -->
 		</div>
-		<div class="col-md-3 column">	</div>
+		<div class="col-md-3 column">
+		</div>
 	</div>
 	</br>
 </div>
