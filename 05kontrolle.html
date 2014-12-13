@@ -32,26 +32,23 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	
-	<script type="text/javascript" src="storage.js"></script>
-	
 	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
 	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
 <body onload="mapping()">
-<script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
 function sichern () {
-	if (storage.get("nachname") == "12default90"){}else{ storage.set("nachname", document.forms.form.elements.nachname.value);}
-	if (storage.get("vorname") == "12default90"){}else{ storage.set("vorname", document.forms.form.elements.vorname.value);}
-	if (storage.get("strasse") == "12default90"){}else{ storage.set("strasse", document.forms.form.elements.strasse.value);}
-	if (storage.get("hausnummer") == "12default90"){}else{ storage.set("hausnummer", document.forms.form.elements.hausnummer.value);}
-	if (storage.get("postleitzahl") == "12default90"){}else{ storage.set("postleitzahl", document.forms.form.elements.postleitzahl.value);}
-	if (storage.get("ort") == "12default90"){}else{ storage.set("ort", document.forms.form.elements.ort.value);}
-	if (storage.get("telefon") == "12default90"){}else{ if (document.forms.form.elements.telefon.value == ""){storage.set("telefon", "12default90");}else{storage.set("telefon", document.forms.form.elements.telefon.value);}}
-	if (storage.get("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){storage.set("mobil", "12default90");}else{storage.set("mobil", document.forms.form.elements.mobil.value);}}
-	if (storage.get("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){storage.set("email", "12default90");}else{storage.set("email", document.forms.form.elements.email.value);}}
-	storage.set("nachricht", document.getElementById("nachricht").innerHTML);
+	if (localStorage.getItem("nachname") == "12default90"){}else{ localStorage.setItem("nachname", document.forms.form.elements.nachname.value);}
+	if (localStorage.getItem("vorname") == "12default90"){}else{ localStorage.setItem("vorname", document.forms.form.elements.vorname.value);}
+	if (localStorage.getItem("strasse") == "12default90"){}else{ localStorage.setItem("strasse", document.forms.form.elements.strasse.value);}
+	if (localStorage.getItem("hausnummer") == "12default90"){}else{ localStorage.setItem("hausnummer", document.forms.form.elements.hausnummer.value);}
+	if (localStorage.getItem("postleitzahl") == "12default90"){}else{ localStorage.setItem("postleitzahl", document.forms.form.elements.postleitzahl.value);}
+	if (localStorage.getItem("ort") == "12default90"){}else{ localStorage.setItem("ort", document.forms.form.elements.ort.value);}
+	if (localStorage.getItem("telefon") == "12default90"){}else{ if (document.forms.form.elements.telefon.value == ""){localStorage.setItem("telefon", "12default90");}else{localStorage.setItem("telefon", document.forms.form.elements.telefon.value);}}
+	if (localStorage.getItem("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){localStorage.setItem("mobil", "12default90");}else{localStorage.setItem("mobil", document.forms.form.elements.mobil.value);}}
+	if (localStorage.getItem("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){localStorage.setItem("email", "12default90");}else{localStorage.setItem("email", document.forms.form.elements.email.value);}}
+	localStorage.setItem("nachricht", document.getElementById("nachricht").innerHTML);
 }
 
 
@@ -115,81 +112,81 @@ function pflichtfelder () {
 				<label id="art"></label></td></tr>
 				<input id="arthidden" name="art" hidden></input>
 				<script type="text/javascript">
-				document.getElementById("art").innerHTML=storage.get("art");
-				document.getElementById("arthidden").setAttribute("value",storage.get("art"));
+				document.getElementById("art").innerHTML=localStorage.getItem("art");
+				document.getElementById("arthidden").setAttribute("value",localStorage.getItem("art"));
 				</script>				
 				<script type="text/javascript">
-				if (storage.get("nachname") == "12default90"){}else{                  
+				if (localStorage.getItem("nachname") == "12default90"){}else{                  
 				document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("nachname").setAttribute("value", storage.get("nachname"));
+				document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
 				}
 				
-				if (storage.get("vorname") == "12default90"){}else{                  
+				if (localStorage.getItem("vorname") == "12default90"){}else{                  
 				document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("vorname").setAttribute("value", storage.get("vorname"));
+				document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
 				}
 				
-				if (storage.get("strasse") == "12default90"){}else{                  
+				if (localStorage.getItem("strasse") == "12default90"){}else{                  
 				document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("strasse").setAttribute("value", storage.get("strasse"));
+				document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
 				}
 				
-				if (storage.get("hausnummer") == "12default90"){}else{                  
+				if (localStorage.getItem("hausnummer") == "12default90"){}else{                  
 				document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("hausnummer").setAttribute("value", storage.get("hausnummer"));
+				document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));
 				}
 				
-				if (storage.get("postleitzahl") == "12default90"){}else{                  
+				if (localStorage.getItem("postleitzahl") == "12default90"){}else{                  
 				document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("postleitzahl").setAttribute("value", storage.get("postleitzahl"));
+				document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));
 				}
 				
-				if (storage.get("ort") == "12default90"){}else{                  
+				if (localStorage.getItem("ort") == "12default90"){}else{                  
 				document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("ort").setAttribute("value", storage.get("ort"));
+				document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
 				}
 				
-				if (storage.get("telefon") == "12default90"){}else{                  
+				if (localStorage.getItem("telefon") == "12default90"){}else{                  
 				document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></input></td></tr>");
-				document.getElementById("telefon").setAttribute("value", storage.get("telefon"));
+				document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
 				}
 
-				if (storage.get("mobil") == "12default90"){}else{                   
+				if (localStorage.getItem("mobil") == "12default90"){}else{                   
 				document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></input></td></tr>");
-				document.getElementById("mobil").setAttribute("value", storage.get("mobil"));
+				document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
 				}
 				
-				if (storage.get("email") == "12default90"){}else{                   
+				if (localStorage.getItem("email") == "12default90"){}else{                   
 				document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email' maxlength='25'></input></td></tr>");
-				document.getElementById("email").setAttribute("value", storage.get("email"));
+				document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
 				}
 				</script>
 
 				<tr><td><label>Ihre Nachricht:*</label></td>
 				<td><textarea id="nachricht" name="nachricht" maxlength="128"></textarea>
 				<script type="text/javascript">
-					document.getElementById("nachricht").innerHTML = storage.get("nachricht");
+					document.getElementById("nachricht").innerHTML = localStorage.getItem("nachricht");
 				</script></td></tr>
 				<tr><td><label>Schadensort:</label></td>
 				<td><label id="schadensort"></label>
 				<input id="schadensorthidden" name="schadensort" hidden></input>
 				<script type="text/javascript">
-				document.getElementById("schadensort").innerHTML=storage.get("schadensort");
-				document.getElementById("schadensorthidden").setAttribute("value",storage.get("schadensort"));
+				document.getElementById("schadensort").innerHTML=localStorage.getItem("schadensort");
+				document.getElementById("schadensorthidden").setAttribute("value",localStorage.getItem("schadensort"));
 				</script></td></tr>
 				<script type="text/javascript">	
-					var koords =storage.get("latitude")+","+storage.get("longitude");
+					var koords =localStorage.getItem("latitude")+","+localStorage.getItem("longitude");
 					document.write("<tr><td></td><td><div style='height:20; width:20; overflow:hidden'><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center="+koords+"&zoom=13&size=300x200&markers="+koords+",ol-marker' /></p></div></td></tr>");
 				</script>
 				<input id="koordinatenhidden" name="koordinaten" hidden></input>
 				<script type="text/javascript">
-				document.getElementById("koordinatenhidden").setAttribute("value",storage.get("latitude")+", "+storage.get("longitude"));
+				document.getElementById("koordinatenhidden").setAttribute("value",localStorage.getItem("latitude")+", "+localStorage.getItem("longitude"));
 				</script>
 				<input id="attachment1" name="attachment1" hidden></input>
 				<input id="anonym" name="anonym" hidden></input>
 				<script type="text/javascript">
-				document.getElementById("attachment1").setAttribute("value", storage.get("attachment1"));
-				document.getElementById("anonym").setAttribute("value", storage.get("anonym"));
+				document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
+				document.getElementById("anonym").setAttribute("value", localStorage.getItem("anonym"));
 				</script>
 				<input name="attachmentCount" value="1" hidden>
 

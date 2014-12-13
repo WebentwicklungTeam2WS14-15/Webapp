@@ -36,20 +36,50 @@
 	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
-<body>
+<body onload="person()">
 <script type="text/javascript" src="storage.js"></script>
 <script type="text/javascript">
+function person (){
+	if((localStorage.getItem("nachname")!="12default90")&&(localStorage.getItem("nachname")!=null)){
+		document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
+	}
+	if((localStorage.getItem("vorname")!="12default90")&&(localStorage.getItem("vorname")!=null)){
+		document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
+	}
+	if((localStorage.getItem("strasse")!="12default90")&&(localStorage.getItem("strasse")!=null)){
+		document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
+	}
+	if((localStorage.getItem("hausnummer")!="12default90")&&(localStorage.getItem("hausnummer")!=null)){
+		document.getElementById("hausnr").setAttribute("value", localStorage.getItem("hausnummer"));
+	}
+	if((localStorage.getItem("postleitzahl")!="12default90")&&(localStorage.getItem("postleitzahl")!=null)){
+		document.getElementById("plz").setAttribute("value", localStorage.getItem("postleitzahl"));
+	}
+	if((localStorage.getItem("ort")!="12default90")&&(localStorage.getItem("ort")!=null)){
+		document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
+	}
+	if((localStorage.getItem("telefon")!="12default90")&&(localStorage.getItem("telefon")!=null)){
+		document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
+	}
+	if((localStorage.getItem("mobil")!="12default90")&&(localStorage.getItem("mobil")!=null)){
+		document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
+	}
+	if((localStorage.getItem("email")!="12default90")&&(localStorage.getItem("email")!=null)){
+		document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
+	}
+}
+
 function sichern () {
-	storage.set("nachname", document.forms.form.elements.nachname.value);
-	storage.set("vorname", document.forms.form.elements.vorname.value);
-	storage.set("strasse", document.forms.form.elements.strasse.value);
-	storage.set("hausnummer", document.forms.form.elements.hausnr.value);
-	storage.set("postleitzahl", document.forms.form.elements.plz.value);
-	storage.set("ort", document.forms.form.elements.ort.value);
-	storage.set("telefon", document.forms.form.elements.telefon.value);
-	storage.set("mobil", document.forms.form.elements.mobil.value);
-	storage.set("email", document.forms.form.elements.email.value);
-	storage.set("anonym", "f");
+	localStorage.setItem("nachname", document.forms.form.elements.nachname.value);
+	localStorage.setItem("vorname", document.forms.form.elements.vorname.value);
+	localStorage.setItem("strasse", document.forms.form.elements.strasse.value);
+	localStorage.setItem("hausnummer", document.forms.form.elements.hausnr.value);
+	localStorage.setItem("postleitzahl", document.forms.form.elements.plz.value);
+	localStorage.setItem("ort", document.forms.form.elements.ort.value);
+	localStorage.setItem("telefon", document.forms.form.elements.telefon.value);
+	localStorage.setItem("mobil", document.forms.form.elements.mobil.value);
+	localStorage.setItem("email", document.forms.form.elements.email.value);
+	localStorage.setItem("anonym", "f");
 	location.href = "04desktopbeschwerde.html";
 }
 
@@ -221,7 +251,6 @@ function pflichtfelder () {
 	<div class="row clearfix">
 		<div class="col-md-3 column"></div>
 		<div class="col-md-6 column">
-			<input type="button" value="[Zum Testen] Formular ausfüllen" onclick="fuellen()"></input>
 			<form role="form" name="form" method="post" action="" onsubmit="pflichtfelder(); return false;">
 				<div class="form-group" id="divnachname">
 					 <label>Name*</label>

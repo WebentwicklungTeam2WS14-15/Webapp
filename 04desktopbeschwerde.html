@@ -41,11 +41,11 @@
 	<script type="text/javascript" src="storage.js"></script>
 	<script type="text/javascript">
 	function sichern () {
-		storage.set("nachricht", document.forms.form.elements.nachricht.value);
-		//storage.set("Foto", document.forms.form.elements.foto.value);
-		storage.set("schadensort", document.forms.form.elements.schadensort.value);
-		storage.set("latitude", document.getElementById("lati").innerHTML);
-		storage.set("longitude", document.getElementById("longi").innerHTML);
+		localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
+		//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
+		localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
+		localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
+		localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
 		location.href = "05kontrolle.html";
 	}
 	
@@ -115,7 +115,7 @@
 											newImage.src = srcData;
 											document.getElementById("imgTest").innerHTML = newImage.outerHTML;
 											//alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
-											storage.set("attachment1", document.getElementById("imgTest").innerHTML);
+											localStorage.setItem("attachment1", document.getElementById("imgTest").innerHTML);
 										}
 										fileReader.readAsDataURL(fileToLoad);
 									}
@@ -240,37 +240,6 @@
 					});				
 				}
 				
-				//Tried with OpenLayers Geocoder
-				/*function getCoordsByAddress() {
-					var queryString = document.getElementById("schadensort").value;
-					OpenLayers.Request.POST({
-						url: "http://www.openrouteservice.org/php/OpenLSLUS_Geocode.php",
-						scope: this,
-						failure: this.requestFailure,
-						success: this.requestSuccess,
-						headers: {"Content-Type": "application/x-www-form-urlencoded"},
-						data: "FreeFormAdress=" + encodeURIComponent(queryString) + "&MaxResponse=1"
-					});
-				}
-				function requestSuccess(response) {
-					var format = new OpenLayers.Format.XLS();
-					alert("ok");
-					var output = format.read(response.responseXML);
-					if (output.responseLists[0]) {
-						var geometry = output.responseLists[0].features[0].geometry;
-						var foundPosition = new OpenLayers.LonLat(geometry.x, geometry.y).transform(
-								new OpenLayers.Projection("EPSG:4326"),
-								map.getProjectionObject()
-								);
-						map.setCenter(foundPosition, 16);
-					} else {
-						alert("Sorry, no address found");
-					}
-				}
-				function requestFailure(response) {
-					alert("An error occurred while communicating with the OpenLS service. Please try again.");
-				}*/
-				
 				function coordsByAddress(){
 					var geocoder = new google.maps.Geocoder();
 					var address = document.getElementById('schadensort').value;
@@ -297,14 +266,6 @@
 					}
 				  });
 				}
-				
-				//Tried with OpenLayers Reverse Geocoder
-				/*function search() {
-					var s = document.createElement('script');       
-					s.src = 'http://nominatim.openstreetmap.org/reverse?json_callback=cb&format=json&lat=51.56320001&lon=6.66140002&zoom=27&addressdetails=1';
-					document.getElementsByTagName('head')[0].appendChild(s);
-					alert(s);
-				};*/
 				
 				function addressByCoords(eins, zwei) {
 					var geocoder = new google.maps.Geocoder();
