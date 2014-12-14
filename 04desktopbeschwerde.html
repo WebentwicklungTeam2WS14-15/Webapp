@@ -15,6 +15,7 @@
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link href="css/dropzone.css" rel="stylesheet">
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -28,6 +29,7 @@
   <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
   <link rel="shortcut icon" href="img/favicon.png">
   
+	<script type="text/javascript" src="dropzone.min.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
@@ -46,6 +48,7 @@
 		localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
 		localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
 		localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
+		document.getElementById("my-awesome-dropzone").submit();
 		location.href = "05kontrolle.html";
 	}
 	
@@ -89,7 +92,7 @@
 			<p id="longi" class="lalo" name="longi" hidden></p>
 
 
-			<a href="#" class="btn btn-yellow" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a>
+			<a href="#" class="btn btn-sm btn-blue" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a>
 			<label id="gpsfail" hidden><span> Ihr Standort konnte leider nicht bestimmt werden.</span></label>
 			</br></br>
 			<label>Oder manuell eingeben:</label>
@@ -99,38 +102,7 @@
 						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128"></p>
 						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();"></input>
 					</div>
-					<div class="form-group">
-						<br><label>Foto hochladen</label></br>
-							<input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL();">
-							<input id="rmpicture" type="button" value="Foto löschen" style="float: right" onclick="removePicture()" hidden></input>
-							<div id="imgTest"></div>
-							<script type='text/javascript'>
-								function encodeImageFileAsURL(){
-									var filesSelected = document.getElementById("inputFileToLoad").files;
-									if (filesSelected.length > 0){
-										var fileToLoad = filesSelected[0];
-										var fileReader = new FileReader();
-										fileReader.onload = function(fileLoadedEvent) {
-											var srcData = fileLoadedEvent.target.result; // <--- data: base64
-											var newImage = document.createElement('img');
-											newImage.src = srcData;
-											document.getElementById("imgTest").innerHTML = newImage.outerHTML;
-											//alert("Converted Base64 version is "+document.getElementById("imgTest").innerHTML);
-											localStorage.setItem("attachment1", document.getElementById("imgTest").innerHTML);
-										}
-										fileReader.readAsDataURL(fileToLoad);
-									}
-									document.getElementById("rmpicture").removeAttribute("hidden");
-								}
-								
-								function removePicture(){
-									document.getElementById("imgTest").innerHTML = "";
-									document.getElementById("rmpicture").setAttribute("hidden", true);
-									document.getElementById("inputFileToLoad").innerHTML = "";
-								}
-							</script>
-					</div>
-					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br></br>
+					
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
@@ -148,8 +120,17 @@
 								weiter.setAttribute("value", "Der angegebene Schadensort ist nicht in Dorsten.");
 							}
 						}
+						
+						function submitForms(){
+							//document.getElementById("my-awesome-dropzone").submit();
+							//document.getElementById("form").submit();
+							pflichtfelder(); return false;
+							
+						}
 					</script>
+					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br></br>
 				</form>
+				
 			</div>
 			<div class="col-md-6 column mapdiv">
 				</br>
@@ -309,6 +290,43 @@
 				</script>
 			</div>
 		</div>
+					<form id="my-awesome-dropzone" action="upload.php" class="dropzone">  
+						<div class="dropzone-previews"></div>
+						<div class="fallback"> <!--   this is the fallback if JS isn't working -->
+						<input name="file" type="file" >
+					</form>
+					<script>
+					  // myDropzone is the configuration for the element that has an id attribute
+					  // with the value my-dropzone (or myDropzone)
+					  Dropzone.options.myAwesomeDropzone = {
+						init: function() {
+						  this.on("addedfile", function(file) {
+
+							// Create the remove button
+							var removeButton = Dropzone.createElement("<button>Remove file</button>");
+
+
+							// Capture the Dropzone instance as closure.
+							var _this = this;
+
+							// Listen to the click event
+							removeButton.addEventListener("click", function(e) {
+							  // Make sure the button click doesn't submit the form:
+							  e.preventDefault();
+							  e.stopPropagation();
+
+							  // Remove the file preview.
+							  _this.removeFile(file);
+							  // If you want to the delete the file on the server as well,
+							  // you can do the AJAX request here.
+							});
+
+							// Add the button to the file preview element.
+							file.previewElement.appendChild(removeButton);
+						  });
+						}
+					  };
+					</script>
 		</br>
 	</div>
 <h5 align="center">

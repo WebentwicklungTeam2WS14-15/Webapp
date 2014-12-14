@@ -10,7 +10,7 @@
 }
 
 #link{
-	color: #fff500;
+	color: #F2F2F2;
 	font-weight: lighter;
 	font-family: Verdana;
 	font-size: 14px;
@@ -30,6 +30,10 @@ text-align:left;
 #formular{
 	margin-left: 10%;
 	width: 80%;
+}
+
+.imgbtn{
+	min-height: 60px;
 }
 
 .btn{
@@ -53,6 +57,51 @@ a.btn.btn-block.btn-default:hover {
 	color: #FFFFFF;
 	background-color: #A4A4A4;
 }
+.bl{
+	background-color: black;
+	width: 100%;
+	margin-top: 30px;
+	height: 23px;
+}
+
+#bltext{
+	margin-left: 90px;
+	line-height: 23px;
+	white-space: nowrap;
+}
+
+.btnicon{
+	border: 0;
+	width: 40px;
+	float: left;
+	margin-right: 15px;
+	overflow: hidden;
+}
+.btnicon2{
+	width: 30px !important;
+}
+
+a:link .btnicon {
+			filter: brightness(1);
+			-webkit-filter: brightness(1)
+			-moz-filter: brightness(1);
+			-ms-filter: brightness(1);
+			-o-filter: brightness(1);
+} 
+a:visited .btnicon {
+			filter: brightness(4);
+			-webkit-filter: brightness(4);
+			-moz-filter: brightness(4);
+			-o-filter: brightness(4);
+			-ms-filter: brightness(4);
+} 
+a:hover .btnicon {
+			filter: brightness(4);
+			-webkit-filter: brightness(4);
+			-moz-filter: brightness(4)
+			-o-filter: brightness(4)
+			-ms-filter: brightness(4);
+}
 
 .btn-yellow { 
 	color: #000000; 
@@ -75,21 +124,21 @@ a.btn.btn-block.btn-default:hover {
 
 .btn-blue  {
 	color: #FFFFFF; 
-	background-color:#0B0B61;
-	border-color:#0B0B61;
+	background-color:#5882FA;
+	border-color:#5882FA;
 	border-radius:10px;
 }
 
 .btn-blue:active{
 	color: #FFFFFF; 
-	background-color:#0B0B61;
-	border-color:#0B0B61;
+	background-color:#5882FA;
+	border-color:#5882FA;
 }
 
 .btn-blue:hover{
 	color: #FFFFFF; 
-	background-color:#2E64FE;
-	border-color:#2E64FE;
+	background-color:#5882FA;
+	border-color:#5882FA;
 }
 
 .form-group{
@@ -140,18 +189,6 @@ font-size:0.8em !important;
     resize: none;
 }
 
-.bl{
-	background-color: black;
-	width: 100%;
-	margin-top: 30px;
-	height: 23px;
-}
-
-#bltext{
-	margin-left: 90px;
-	line-height: 23px;
-	white-space: nowrap;
-}
 
 
 @media all 
@@ -197,7 +234,7 @@ h4{
 }
 
 a.btn.btn-block.btn-default{
-	min-height: 50px;
+	min-height: 60px;
 }
 
 }
