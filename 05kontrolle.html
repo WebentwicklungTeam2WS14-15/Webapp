@@ -49,6 +49,18 @@ function sichern () {
 	if (localStorage.getItem("mobil") == "12default90"){}else{ if (document.forms.form.elements.mobil.value == ""){localStorage.setItem("mobil", "12default90");}else{localStorage.setItem("mobil", document.forms.form.elements.mobil.value);}}
 	if (localStorage.getItem("email") == "12default90"){}else{ if (document.forms.form.elements.email.value == ""){localStorage.setItem("email", "12default90");}else{localStorage.setItem("email", document.forms.form.elements.email.value);}}
 	localStorage.setItem("nachricht", document.getElementById("nachricht").innerHTML);
+	
+	/*
+	localStorage.setItem("nachname", "12default90");
+	localStorage.setItem("vorname", "12default90");
+	localStorage.setItem("strasse", "12default90");
+	localStorage.setItem("hausnummer", "12default90");
+	localStorage.setItem("postleitzahl", "12default90");
+	localStorage.setItem("ort", "12default90");
+	localStorage.setItem("telefon", "12default90");
+	localStorage.setItem("mobil", "12default90");
+	localStorage.setItem("email", "12default90");
+	*/
 }
 
 
@@ -116,47 +128,47 @@ function pflichtfelder () {
 				document.getElementById("arthidden").setAttribute("value",localStorage.getItem("art"));
 				</script>				
 				<script type="text/javascript">
-				if (localStorage.getItem("nachname") == "12default90"){}else{                  
+				if ((localStorage.getItem("nachname") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
 				}
 				
-				if (localStorage.getItem("vorname") == "12default90"){}else{                  
+				if ((localStorage.getItem("vorname") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
 				}
 				
-				if (localStorage.getItem("strasse") == "12default90"){}else{                  
+				if ((localStorage.getItem("strasse") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
 				}
 				
-				if (localStorage.getItem("hausnummer") == "12default90"){}else{                  
+				if ((localStorage.getItem("hausnummer") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));
 				}
 				
-				if (localStorage.getItem("postleitzahl") == "12default90"){}else{                  
+				if ((localStorage.getItem("postleitzahl") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));
 				}
 				
-				if (localStorage.getItem("ort") == "12default90"){}else{                  
+				if ((localStorage.getItem("ort") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
 				}
 				
-				if (localStorage.getItem("telefon") == "12default90"){}else{                  
+				if ((localStorage.getItem("telefon") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                  
 				document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></input></td></tr>");
 				document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
 				}
 
-				if (localStorage.getItem("mobil") == "12default90"){}else{                   
+				if ((localStorage.getItem("mobil") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                   
 				document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></input></td></tr>");
 				document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
 				}
 				
-				if (localStorage.getItem("email") == "12default90"){}else{                   
+				if ((localStorage.getItem("email") == "12default90")||(localStorage.getItem("anonym")=="t")){}else{                   
 				document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email' maxlength='25'></input></td></tr>");
 				document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
 				}

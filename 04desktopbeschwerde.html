@@ -37,7 +37,7 @@
 	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
 </head>
 
-<body onload="mapping()">
+<body onload="mapping(); deaktivieren('change');">
 	<script type="text/javascript" src="storage.js"></script>
 	<script type="text/javascript">
 	function sichern () {
@@ -89,13 +89,14 @@
 			<p id="longi" class="lalo" name="longi" hidden></p>
 
 
-			<a href="#" class="btn btn-yellow" onclick="init();" type="button">Aktuellen Standort verwenden (GPS)</a>
+			<a href="#" class="btn btn-yellow" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a>
+			<label id="gpsfail" hidden><span> Ihr Standort konnte leider nicht bestimmt werden.</span></label>
 			</br></br>
 			<label>Oder manuell eingeben:</label>
 			</br>
 					<div class="form-group">
 						 <label>Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
-						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown="deaktivieren()" value="" maxlength="128"></p>
+						 <p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128"></p>
 						 <input type="button" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();"></input>
 					</div>
 					<div class="form-group">
@@ -136,10 +137,16 @@
 							weiter.setAttribute("value", "Weiter");
 							weiter.removeAttribute("disabled");
 						}
-						function deaktivieren(){
+						
+						function deaktivieren(reason){
 							var weiter = document.getElementById("weiter");
 							weiter.setAttribute("disabled", true);
-							weiter.setAttribute("value", "Bitte geben Sie einen Schadensort an");
+							if(reason=="change"){
+								weiter.setAttribute("value", "Bitte geben Sie einen Schadensort an.");
+							}
+							if(reason=="nichtDorsten"){
+								weiter.setAttribute("value", "Der angegebene Schadensort ist nicht in Dorsten.");
+							}
 						}
 					</script>
 				</form>
@@ -212,9 +219,19 @@
 						}
 						markers.addMarker(new OpenLayers.Marker(lonLat));
 						map.addLayer(markers);
-						aktivieren();
+						//aktivieren();
                 }
             });
+				
+				function leeren(){
+					document.getElementById("schadensort").value="";
+				}
+				
+				function gpsCheck(){
+					if(document.getElementById("schadensort").value==""){
+						document.getElementById("gpsfail").removeAttribute("hidden");
+					}
+				}
 				
 				function init() {
 					var mapnik = new OpenLayers.Layer.OSM();
@@ -236,7 +253,8 @@
 						markers.addMarker(new OpenLayers.Marker(lonLat));
 						map.setCenter(lonLat, 16);
 						map.addLayer(markers);
-						aktivieren();
+						//aktivieren();
+						document.getElementById("gpsfail").setAttribute("hidden", true);
 					});				
 				}
 				
@@ -247,7 +265,7 @@
 						if (status == google.maps.GeocoderStatus.OK) {
 						  lati.innerHTML = results[0].geometry.location.lat();
 						  longi.innerHTML = results[0].geometry.location.lng();
-
+						  addressByCoords(results[0].geometry.location.lat(),results[0].geometry.location.lng());
 					lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(),results[0].geometry.location.lat())
 							.transform(
 								new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
@@ -260,7 +278,7 @@
 						}
 						markers.addMarker(new OpenLayers.Marker(lonLat));
 						map.addLayer(markers);
-						aktivieren();
+						//aktivieren();
 					} else {
 					  alert('Die Adresse konnte leider nicht gefunden werden.');
 					}
@@ -275,8 +293,10 @@
 						var address = document.getElementById('schadensort');
 						addressResult = results[0].formatted_address;					 
 						if (addressResult.contains(" Dorsten, Deutschland")){
+							aktivieren();
 						} else{
-							alert("Der angegebene Schadensort ist nicht in Dorsten.");
+							//alert("Der angegebene Schadensort ist nicht in Dorsten.");
+							deaktivieren("nichtDorsten");
 						}
 						if(addressResult.contains(", Deutschland")){
 							addressResult = addressResult.replace(', Deutschland','');	
