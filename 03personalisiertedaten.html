@@ -95,34 +95,34 @@ function fuellen () {
 function pflichtfelder () {
 	var i=0;
 	if (document.getElementById("nachname").value==""){
-		document.getElementById("divnachname").style.backgroundColor="red";
 		document.getElementById("nachname").placeholder="Bitte ausfüllen!";
-	 }else {document.getElementById("divnachname").style.backgroundColor="transparent"; i++;}
+		document.getElementById("nachname").setAttribute("style","background-color:#ffccdd");
+	 }else {document.getElementById("nachname").removeAttribute("style"); i++;}
 	if (document.forms.form.elements.vorname.value ==""){
-		document.getElementById("divvorname").style.backgroundColor="red";
 		document.getElementById("vorname").placeholder="Bitte ausfüllen!";
-	} else {document.getElementById("divvorname").style.backgroundColor="transparent"; i++;}
+		document.getElementById("vorname").setAttribute("style","background-color:#ffccdd");
+	} else {document.getElementById("vorname").removeAttribute("style"); i++;}
 	if (document.getElementById("strasse").value==""){
-		document.getElementById("divstrasse").style.backgroundColor="red";
 		document.getElementById("strasse").placeholder="Bitte ausfüllen!";
-	} else {document.getElementById("divstrasse").style.backgroundColor="transparent"; i++;}
+		document.getElementById("strasse").setAttribute("style","background-color:#ffccdd");
+	} else {document.getElementById("strasse").removeAttribute("style"); i++;}
 	if (document.getElementById("hausnr").value==""){
-		document.getElementById("divhausnr").style.backgroundColor="red";
 		document.getElementById("hausnr").placeholder="Bitte ausfüllen!";
-	} else {document.getElementById("divhausnr").style.backgroundColor="transparent"; i++;}
+		document.getElementById("hausnr").setAttribute("style","background-color:#ffccdd");
+	} else {document.getElementById("hausnr").removeAttribute("style"); i++;}
 	if (document.getElementById("plz").value==""){
-		document.getElementById("divplz").style.backgroundColor="red";
 		document.getElementById("plz").placeholder="Bitte ausfüllen!";
-	} else {document.getElementById("divplz").style.backgroundColor="transparent"; i++;}
+		document.getElementById("plz").setAttribute("style","background-color:#ffccdd");
+	} else {document.getElementById("plz").removeAttribute("style"); i++;}
 	if (document.getElementById("ort").value==""){
-		document.getElementById("divort").style.backgroundColor="red";
 		document.getElementById("ort").placeholder="Bitte ausfüllen!";
-	} else {document.getElementById("divort").style.backgroundColor="transparent"; i++;}
+		document.getElementById("ort").setAttribute("style","background-color:#ffccdd");
+	} else {document.getElementById("ort").removeAttribute("style"); i++;}
 	if(i==6){
-		var o=9;
-		/*if(validVorname(document.getElementById("vorname").value)){
+		var o=0;
+		if(validVorname(document.getElementById("vorname").value)){
 			o++;
-		}
+		}		
 		if(validNachname(document.getElementById("nachname").value)){
 			o++;
 		} 		
@@ -160,7 +160,7 @@ function pflichtfelder () {
 	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
 
 	var regex = new RegExp(strReg);
-	alert(regex.test(vorname));
+	//alert(regex.test(vorname));
 	return (regex.test(vorname));
 	}
 
@@ -296,7 +296,7 @@ function pflichtfelder () {
 	</div>
 </div>
 <h5 align="center">
-	<b style="color: #8b8b8b">Version 0.6 | </b>
+	<b style="color: #8b8b8b">Version 0.61 | </b>
 	<a href="http://www.dorsten.de/" id="link">
 	<b style="color: #8b8b8b">www.dorsten.de</b></a>
 	| <a href="impressum.html" id="link">
