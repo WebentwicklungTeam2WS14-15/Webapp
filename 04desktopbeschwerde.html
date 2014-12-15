@@ -273,13 +273,12 @@
 					  if (results[0]) {
 						var address = document.getElementById('schadensort');
 						addressResult = results[0].formatted_address;					 
-						if (addressResult.contains(" Dorsten, Deutschland")){
-							aktivieren();
-						} else{
-							//alert("Der angegebene Schadensort ist nicht in Dorsten.");
+						if (addressResult.indexOf(" Dorsten, Deutschland")==-1){
 							deaktivieren("nichtDorsten");
+						} else{
+							aktivieren();
 						}
-						if(addressResult.contains(", Deutschland")){
+						if(addressResult.indexOf(", Deutschland")==-1){}else{
 							addressResult = addressResult.replace(', Deutschland','');	
 						}
 						address.value = addressResult;
