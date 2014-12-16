@@ -111,18 +111,21 @@
 					<script type="text/javascript">
 						function aktivieren(){
 							var weiter = document.getElementById("weiter");
-							weiter.setAttribute("value", "Weiter");
+							//weiter.setAttribute("value", "Weiter");
 							weiter.removeAttribute("disabled");
+							document.getElementById("rueckmeldung").setAttribute("hidden", true);
 						}
 						
 						function deaktivieren(reason){
 							var weiter = document.getElementById("weiter");
 							weiter.setAttribute("disabled", true);
+							var rueckmeldung=document.getElementById("rueckmeldung");
+							rueckmeldung.removeAttribute("hidden");
 							if(reason=="change"){
-								weiter.setAttribute("value", "Bitte geben Sie einen Schadensort an.");
+								rueckmeldung.innerHTML = "Bitte geben Sie einen Schadensort an.";
 							}
 							if(reason=="nichtDorsten"){
-								weiter.setAttribute("value", "Der angegebene Schadensort ist nicht in Dorsten.");
+								rueckmeldung.innerHTML = "Der angegebene Schadensort ist nicht in Dorsten.";
 							}
 						}
 						
@@ -133,7 +136,8 @@
 							
 						}
 					</script>
-					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Bitte geben Sie einen Schadensort an"></input></p><br></br></br>
+					<div align="right"><label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label></div>
+					<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Weiter"></input></p><br></br></br>
 				</form>
 				
 			</div>
