@@ -219,7 +219,7 @@ function addAttachment($issueID,$filecontent,$count) {
 	</br>
 </div>
 <h5 align="center">
-	<b style="color: #8b8b8b">Version 0.61 | </b>
+	<b style="color: #8b8b8b">Version 0.65 | <//b>
 	<a href="http://www.dorsten.de/" id="link">
 	<b style="color: #8b8b8b">www.dorsten.de</b></a>
 	| <a href="impressum.html" id="link">
