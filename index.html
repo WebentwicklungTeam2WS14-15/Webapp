@@ -1,94 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ABBA Dorsten</title>
-  <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>ABBA Dorsten</title>
+        <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
-  
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	
-	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
-	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
-</head>
-
-<body>
-<script type="text/javascript" src="storage.js"></script>
-<script type="text/javascript">
-function briefkasten() {
-	localStorage.setItem("art", "Briefkasten Bürgermeister");
-}
-function strasse() {
-	localStorage.setItem("art", "Straßenschaden");
-}
-function spielplatz() {
-	localStorage.setItem("art", "Schaden auf einem Spielplatz");
-}
-function parken() {
-	localStorage.setItem("art", "Schaden an einem Parkautomaten");
-}
-function schilder() {
-	localStorage.setItem("art", "Schaden an Verkehrsschildern");
-}
-</script>
-<center>
-<div class="container jumbotron" >
-	<div class="row clearfix">
-		<div class="col-md-3 column"></div>
-		<div class="col-md-6 column">
-			<h3>
-				Willkommen! Um welche Art von Anregung handelt es sich?
-			</h3>
-		</div>
-		<div class="col-md-3 column"></div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-4 column"></div>
-		<div class="col-md-4 column"><br></br>
-			 <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="briefkasten();"><img class="btnicon" src="img/think.png"></img><span>Briefkasten Bürgermeister </br>(für allgemeine Anregungen, ausgefallene Ideen, Lob und Kritik)</span></a> 
-			 <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="strasse();"><img class="btnicon" src="img/Straße.png"></img><span>Meldung von Straßenschäden</span></a> 
-			 <a href="09rweverlinkung.html" class="btn btn-block btn-default imgbtn" type="button"><img class="btnicon" src="img/light.png"></img><span>Störungsmeldung Straßenbeleuchtung</span></a> 
-			 <a href="02anonymodernicht.html" class="btn btn-default btn-block imgbtn" type="button" onclick="spielplatz();"><img class="btnicon" src="img/play.png"></img><span>Meldung von Schäden auf Spielplätzen</span></a> 
-			 <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="parken();"><img class="btnicon" src="img/park.png"></img><span>Meldung von Schäden an Parkautomaten und Parkuhren</span></a> 
-			 <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="schilder();"><img class="btnicon" src="img/sign.png"></img><span>Meldung von Schäden an Verkehrsschildern</span></a>
-			 </br>
-		</div>
-		<div class="col-md-4 column"></div>
-	</div>
-</div>
-</center>
-<h5 align="center">
-	<b style="color: #8b8b8b">Version 0.65 | <//b>
-	<a href="http://www.dorsten.de/" id="link">
-	<b style="color: #8b8b8b">www.dorsten.de</b></a>
-	| <a href="impressum.html" id="link">
-	<b style="color: #8b8b8b">Impressum</b>
-	</a>
-</h5>
-</body>
+        <div class="bl">
+            <h4 id="link">
+                <a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage">
+                    <img alt="" src="img/Logo.gif" id="logo">
+                </a>
+                <span id="bltext">Aktive Bürger Beteiligungs App</span>
+            </h4>
+        </div>
+    </head>
+    
+    <body>
+        <script type="text/javascript">
+            function briefkasten() {
+                localStorage.setItem("art", "Briefkasten Bürgermeister");
+            }
+            function strasse() {
+                localStorage.setItem("art", "Straßenschaden");
+            }
+            function spielplatz() {
+                localStorage.setItem("art", "Schaden auf einem Spielplatz");
+            }
+            function parken() {
+                localStorage.setItem("art", "Schaden an einem Parkautomaten");
+            }
+            function schilder() {
+                localStorage.setItem("art", "Schaden an Verkehrsschildern");
+            }
+        </script>
+        <center>
+            <div class="container jumbotron" >
+                <div class="row clearfix">
+                    <div class="col-md-3 column"></div>
+                    <div class="col-md-6 column">
+                        <h3>
+                            Willkommen! Um welche Art von Anregung handelt es sich?
+                        </h3>
+                    </div>
+                    <div class="col-md-3 column"></div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-4 column"></div>
+                    <div class="col-md-4 column"><br></br>
+                        <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="briefkasten();">
+                            <img class="btnicon" src="img/think.png">
+                            <span>Briefkasten Bürgermeister </br>(für allgemeine Anregungen, ausgefallene Ideen, Lob und Kritik)</span>
+                        </a> 
+                        <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="strasse();">
+                            <img class="btnicon" src="img/Straße.png">
+                            <span>Meldung von Straßenschäden</span>
+                        </a> 
+                        <a href="09rweverlinkung.html" class="btn btn-block btn-default imgbtn" type="button">
+                            <img class="btnicon" src="img/light.png">
+                            <span>Störungsmeldung Straßenbeleuchtung</span>
+                        </a> 
+                        <a href="02anonymodernicht.html" class="btn btn-default btn-block imgbtn" type="button" onclick="spielplatz();">
+                            <img class="btnicon" src="img/play.png">
+                            <span>Meldung von Schäden auf Spielplätzen</span>
+                        </a> 
+                        <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="parken();">
+                            <img class="btnicon" src="img/park.png">
+                            <span>Meldung von Schäden an Parkautomaten und Parkuhren</span>
+                        </a> 
+                        <a href="02anonymodernicht.html" class="btn btn-block btn-default imgbtn" type="button" onclick="schilder();">
+                            <img class="btnicon" src="img/sign.png">
+                            <span>Meldung von Schäden an Verkehrsschildern</span>
+                        </a>
+                        </br>
+                    </div>
+                    <div class="col-md-4 column"></div>
+                </div>
+            </div>
+        </center>
+        <h5 align="center">
+            <b style="color: #8b8b8b">Version 0.65 | </b>
+            <a href="http://www.dorsten.de/" id="link">
+                <b style="color: #8b8b8b">www.dorsten.de</b>
+            </a>
+            | <a href="impressum.html" id="link">
+                <b style="color: #8b8b8b">Impressum</b>
+            </a>
+        </h5>
+    </body>
 </html>

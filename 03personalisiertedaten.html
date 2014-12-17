@@ -1,307 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ABBA Dorsten</title>
-  <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>ABBA Dorsten</title>
+        <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
-  
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	
-	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
-	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
-</head>
+        <div class="bl">
+            <h4 id="link">
+                <a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage">
+                    <img alt="" src="img/Logo.gif" id="logo">
+                </a>
+                <span id="bltext">Aktive Bürger Beteiligungs App</span>
+            </h4>
+        </div>
+    </head>
 
-<body onload="person()">
-<script type="text/javascript" src="storage.js"></script>
-<script type="text/javascript">
-function person (){
-	if((localStorage.getItem("nachname")!="12default90")&&(localStorage.getItem("nachname")!=null)){
-		document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
-	}
-	if((localStorage.getItem("vorname")!="12default90")&&(localStorage.getItem("vorname")!=null)){
-		document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
-	}
-	if((localStorage.getItem("strasse")!="12default90")&&(localStorage.getItem("strasse")!=null)){
-		document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
-	}
-	if((localStorage.getItem("hausnummer")!="12default90")&&(localStorage.getItem("hausnummer")!=null)){
-		document.getElementById("hausnr").setAttribute("value", localStorage.getItem("hausnummer"));
-	}
-	if((localStorage.getItem("postleitzahl")!="12default90")&&(localStorage.getItem("postleitzahl")!=null)){
-		document.getElementById("plz").setAttribute("value", localStorage.getItem("postleitzahl"));
-	}
-	if((localStorage.getItem("ort")!="12default90")&&(localStorage.getItem("ort")!=null)){
-		document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
-	}
-	if((localStorage.getItem("telefon")!="12default90")&&(localStorage.getItem("telefon")!=null)){
-		document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
-	}
-	if((localStorage.getItem("mobil")!="12default90")&&(localStorage.getItem("mobil")!=null)){
-		document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
-	}
-	if((localStorage.getItem("email")!="12default90")&&(localStorage.getItem("email")!=null)){
-		document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
-	}
-}
+    <body onload="person()">
+        <script type="text/javascript">
+            function person() {
+                if (localStorage.getItem("nachname") != null) {
+                    document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
+                }
+                if (localStorage.getItem("vorname") != null) {
+                    document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
+                }
+                if (localStorage.getItem("strasse") != null) {
+                    document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
+                }
+                if (localStorage.getItem("hausnummer") != null) {
+                    document.getElementById("hausnr").setAttribute("value", localStorage.getItem("hausnummer"));
+                }
+                if (localStorage.getItem("postleitzahl") != null) {
+                    document.getElementById("plz").setAttribute("value", localStorage.getItem("postleitzahl"));
+                }
+                if (localStorage.getItem("ort") != null) {
+                    document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
+                }
+                if (localStorage.getItem("telefon") != null) {
+                    document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
+                }
+                if (localStorage.getItem("mobil") != null) {
+                    document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
+                }
+                if (localStorage.getItem("email") != null) {
+                    document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
+                }
+            }
 
-function sichern () {
-	localStorage.setItem("nachname", document.forms.form.elements.nachname.value);
-	localStorage.setItem("vorname", document.forms.form.elements.vorname.value);
-	localStorage.setItem("strasse", document.forms.form.elements.strasse.value);
-	localStorage.setItem("hausnummer", document.forms.form.elements.hausnr.value);
-	localStorage.setItem("postleitzahl", document.forms.form.elements.plz.value);
-	localStorage.setItem("ort", document.forms.form.elements.ort.value);
-	localStorage.setItem("telefon", document.forms.form.elements.telefon.value);
-	localStorage.setItem("mobil", document.forms.form.elements.mobil.value);
-	localStorage.setItem("email", document.forms.form.elements.email.value);
-	localStorage.setItem("anonym", "f");
-	location.href = "04desktopbeschwerde.html";
-}
+            function sichern() {
+                localStorage.setItem("nachname", document.forms.form.elements.nachname.value);
+                localStorage.setItem("vorname", document.forms.form.elements.vorname.value);
+                localStorage.setItem("strasse", document.forms.form.elements.strasse.value);
+                localStorage.setItem("hausnummer", document.forms.form.elements.hausnr.value);
+                localStorage.setItem("postleitzahl", document.forms.form.elements.plz.value);
+                localStorage.setItem("ort", document.forms.form.elements.ort.value);
+                localStorage.setItem("telefon", document.forms.form.elements.telefon.value);
+                localStorage.setItem("mobil", document.forms.form.elements.mobil.value);
+                localStorage.setItem("email", document.forms.form.elements.email.value);
+                localStorage.setItem("anonym", "f");
+                location.href = "04desktopbeschwerde.html";
+            }
 
-function fuellen () {
-	document.getElementById("nachname").setAttribute("value", "Mustermann");
-	document.getElementById("vorname").setAttribute("value", "Max");
-	document.getElementById("strasse").setAttribute("value", "Musterstraße");
-	document.getElementById("hausnr").setAttribute("value", "123");
-	document.getElementById("plz").setAttribute("value", "12345");
-	document.getElementById("ort").setAttribute("value", "Musterstadt");
-}
+            function pflichtfelder() {
+                var i = 0;
+                var nachname = document.getElementById("nachname");
+                var vorname = document.getElementById("vorname");
+                var strasse = document.getElementById("strasse");
+                var hausnummer = document.getElementById("hausnr");
+                var postleitzahl = document.getElementById("plz");
+                var ort = document.getElementById("ort");
+                if (nachname.value == "") {
+                    nachname.placeholder = "Bitte ausfüllen!";
+                    nachname.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    nachname.removeAttribute("style");
+                    i++;
+                }
+                if (vorname.value == "") {
+                    vorname.placeholder = "Bitte ausfüllen!";
+                    vorname.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    vorname.removeAttribute("style");
+                    i++;
+                }
+                if (strasse.value == "") {
+                    strasse.placeholder = "Bitte ausfüllen!";
+                    strasse.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    strasse.removeAttribute("style");
+                    i++;
+                }
+                if (hausnummer.value == "") {
+                    hausnummer.placeholder = "Bitte ausfüllen!";
+                    hausnummer.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    hausnummer.removeAttribute("style");
+                    i++;
+                }
+                if (postleitzahl.value == "") {
+                    postleitzahl.placeholder = "Bitte ausfüllen!";
+                    postleitzahl.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    postleitzahl.removeAttribute("style");
+                    i++;
+                }
+                if (ort.value == "") {
+                    ort.placeholder = "Bitte ausfüllen!";
+                    ort.setAttribute("style", "background-color:#ffccdd");
+                } else {
+                    ort.removeAttribute("style");
+                    i++;
+                }
+                if (i == 6) {
+                    var o = 0;
+                    if (validNachname(nachname.value)) {
+                        o++;
+                    }
+                    if (validVorname(vorname.value)) {
+                        o++;
+                    }
+                    if (validStrasse(strasse.value)) {
+                        o++;
+                    }
+                    if (validHausnummer(hausnummer.value)) {
+                        o++;
+                    }
+                    if (validPostleitzahl(postleitzahl.value)) {
+                        o++;
+                    }
+                    if (validOrt(ort.value)) {
+                        o++;
+                    }
+                    if (validTelefonnummer(document.getElementById("telefon").value)) {
+                        o++;
+                    }
+                    if (validMobil(document.getElementById("mobil").value)) {
+                        o++;
+                    }
+                    o++;
+                    /*if(validEmail(document.getElementById("email").value)){
+                     o++;
+                     } */
+                    if (o == 9) {
+                        sichern();
+                    } else {
+                    }
+                }
+            }
 
-function pflichtfelder () {
-	var i=0;
-	if (document.getElementById("nachname").value==""){
-		document.getElementById("nachname").placeholder="Bitte ausfüllen!";
-		document.getElementById("nachname").setAttribute("style","background-color:#ffccdd");
-	 }else {document.getElementById("nachname").removeAttribute("style"); i++;}
-	if (document.forms.form.elements.vorname.value ==""){
-		document.getElementById("vorname").placeholder="Bitte ausfüllen!";
-		document.getElementById("vorname").setAttribute("style","background-color:#ffccdd");
-	} else {document.getElementById("vorname").removeAttribute("style"); i++;}
-	if (document.getElementById("strasse").value==""){
-		document.getElementById("strasse").placeholder="Bitte ausfüllen!";
-		document.getElementById("strasse").setAttribute("style","background-color:#ffccdd");
-	} else {document.getElementById("strasse").removeAttribute("style"); i++;}
-	if (document.getElementById("hausnr").value==""){
-		document.getElementById("hausnr").placeholder="Bitte ausfüllen!";
-		document.getElementById("hausnr").setAttribute("style","background-color:#ffccdd");
-	} else {document.getElementById("hausnr").removeAttribute("style"); i++;}
-	if (document.getElementById("plz").value==""){
-		document.getElementById("plz").placeholder="Bitte ausfüllen!";
-		document.getElementById("plz").setAttribute("style","background-color:#ffccdd");
-	} else {document.getElementById("plz").removeAttribute("style"); i++;}
-	if (document.getElementById("ort").value==""){
-		document.getElementById("ort").placeholder="Bitte ausfüllen!";
-		document.getElementById("ort").setAttribute("style","background-color:#ffccdd");
-	} else {document.getElementById("ort").removeAttribute("style"); i++;}
-	if(i==6){
-		var o=0;
-		if(validVorname(document.getElementById("vorname").value)){
-			o++;
-		}		
-		if(validNachname(document.getElementById("nachname").value)){
-			o++;
-		} 		
-		if(validStrasse(document.getElementById("strasse").value)){
-			o++;
-		}
-		if(validHausnummer(document.getElementById("hausnr").value)){
-			o++;
-		} 
-		if(validPostleitzahl(document.getElementById("plz").value)){
-			o++;
-		}
-		if(validOrt(document.getElementById("ort").value)){
-			o++;
-		} 
-		if(validTelefonnummer(document.getElementById("telefon").value)){
-			o++;
-		}
-		if(validMobil(document.getElementById("mobil").value)){
-			o++;
-		} 
-		o++;
-		/*if(validEmail(document.getElementById("email").value)){
-			o++;
-		} */
-		if(o==9){
-			sichern();
-		} else{
-		}
-	}
-}
-
-	
-	function validVorname(vorname) {
-	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
-
-	var regex = new RegExp(strReg);
-	//alert(regex.test(vorname));
-	return (regex.test(vorname));
-	}
-
-
-
-	function validNachname(nachname) {
-	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(nachname));
-	}
-
-
-
-	function validStrasse(strasse) {
-	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(strasse));
-	}
-
-
-
-	function validHausnummer(hausnummer){
-	var strReg="(([0-9]{1,})+([a-zA-Z]{0,1}))";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(hausnummer));
-	}
-
-
-
-
-	function validPostleitzahl(postleitzahl) {
-	var strReg="([0-9]{5})";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(postleitzahl));
-	}
-
-
-
-	function validOrt(ort) {
-	var strReg="(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(ort));
-	}
-
-
-
-	function validTelefonnummer(telefon) {
-	var strReg="([0-9]{0,})";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(telefon));
-	}
-
-
-
-	function validMobil(mobil) {
-	var strReg="([0-9]{0,})";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(mobil));
-	}
-
-
-
-	function validEmail(email) {
-	var strReg="(([a-zA-Z0-9-._]{1,}+\@+([a-zA-Z0-9-]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
-
-	var regex = new RegExp(strReg);
-	return (regex.test(email));
-	}
-</script>
-<div class="container jumbotron">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="goleft">
-				Bitte füllen Sie alle gekennzeichneten Felder aus!
-			</h3>
-			<h4 class="goleft">
-				*Pflichtfelder
-			</h4><br></br>
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-3 column"></div>
-		<div class="col-md-6 column">
-			<form role="form" name="form" method="post" action="" onsubmit="pflichtfelder(); return false;">
-				<div class="form-group" id="divnachname">
-					 <label>Name*</label>
-					 <input class="form-control" id="nachname" name="nachname" type="name" value="" maxlength="25">
-				</div>
-				<div class="form-group" id="divvorname">
-					 <label>Vorname*</label>
-					 <input class="form-control" id="vorname" name="vorname" type="name" value="" maxlength="25">
-				</div>
-				<div class="form-group" id="divstrasse">
-					 <label>Straße*</label>
-					 <input class="form-control" id="strasse" type="name" name="strasse" value="" maxlength="25">
-				</div>
-				<div class="form-group" id="divhausnr">
-					 <label>Hausnummer*</label>
-					 <input class="form-control" id="hausnr" type="name" name="hausnr" value="" maxlength="25">
-				</div>
-				<div class="form-group" id="divplz">
-					 <label>Postleitzahl*</label>
-					 <input class="form-control" id="plz" type="name" name="plz" value="" maxlength="25">
-				</div>
-				<div class="form-group" id="divort">
-					 <label>Ort*</label>
-					 <input class="form-control" id="ort" type="name" name="ort" value="" maxlength="25">
-				</div>
-				<div class="form-group">
-					 <label>Telefon</label>
-					 <input class="form-control" id="telefon" type="name" name="telefon" value="" maxlength="25">
-				</div>
-				<div class="form-group">
-					 <label>Mobil</label>
-					 <input class="form-control" id="mobil" type="name" name="mobil" value="" maxlength="25">
-				</div>
-				<div class="form-group">
-					 <label >E-Mail</label>
-					 <input class="form-control" id="email" type="name" name="email" value="" maxlength="35">
-				</div>
-				<input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter"></input> 
-			</form><br></br>
-		</div>
-		<div class="col-md-6 column">
-		</div>
-	</div>
-</div>
-<h5 align="center">
-	<b style="color: #8b8b8b">Version 0.65 | <//b>
-	<a href="http://www.dorsten.de/" id="link">
-	<b style="color: #8b8b8b">www.dorsten.de</b></a>
-	| <a href="impressum.html" id="link">
-	<b style="color: #8b8b8b">Impressum</b>
-	</a>
-</h5>
-</body>
+            function validNachname(nachname) {
+                var strReg = "(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
+                var regex = new RegExp(strReg);
+                return (regex.test(nachname));
+            }
+            function validVorname(vorname) {
+                var strReg = "(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
+                var regex = new RegExp(strReg);
+                return (regex.test(vorname));
+            }
+            function validStrasse(strasse) {
+                var strReg = "(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
+                var regex = new RegExp(strReg);
+                return (regex.test(strasse));
+            }
+            function validHausnummer(hausnummer) {
+                var strReg = "(([0-9]{1,})+([a-zA-Z]{0,1}))";
+                var regex = new RegExp(strReg);
+                return (regex.test(hausnummer));
+            }
+            function validPostleitzahl(postleitzahl) {
+                var strReg = "([0-9]{5})";
+                var regex = new RegExp(strReg);
+                return (regex.test(postleitzahl));
+            }
+            function validOrt(ort) {
+                var strReg = "(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
+                var regex = new RegExp(strReg);
+                return (regex.test(ort));
+            }
+            function validTelefonnummer(telefon) {
+                var strReg = "([0-9]{0,})";
+                var regex = new RegExp(strReg);
+                return (regex.test(telefon));
+            }
+            function validMobil(mobil) {
+                var strReg = "([0-9]{0,})";
+                var regex = new RegExp(strReg);
+                return (regex.test(mobil));
+            }
+            function validEmail(email) {
+                var strReg = "(([a-zA-Z0-9-._]{1,}+\@+([a-zA-Z0-9-]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
+                var regex = new RegExp(strReg);
+                return (regex.test(email));
+            }
+        </script>
+        <div class="container jumbotron">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h3 class="goleft">
+                        Bitte füllen Sie alle gekennzeichneten Felder aus!
+                    </h3>
+                    <h4 class="goleft">
+                        *Pflichtfelder
+                    </h4><br></br>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-3 column"></div>
+                <div class="col-md-6 column">
+                    <form role="form" name="form" method="post" action="" onsubmit="pflichtfelder(); return false;">
+                        <div class="form-group" id="divnachname">
+                            <label>Name*</label>
+                            <input class="form-control" id="nachname" name="nachname" type="name" value="" maxlength="25">
+                        </div>
+                        <div class="form-group" id="divvorname">
+                            <label>Vorname*</label>
+                            <input class="form-control" id="vorname" name="vorname" type="name" value="" maxlength="25">
+                        </div>
+                        <div class="form-group" id="divstrasse">
+                            <label>Straße*</label>
+                            <input class="form-control" id="strasse" type="name" name="strasse" value="" maxlength="25">
+                        </div>
+                        <div class="form-group" id="divhausnr">
+                            <label>Hausnummer*</label>
+                            <input class="form-control" id="hausnr" type="name" name="hausnr" value="" maxlength="25">
+                        </div>
+                        <div class="form-group" id="divplz">
+                            <label>Postleitzahl*</label>
+                            <input class="form-control" id="plz" type="name" name="plz" value="" maxlength="25">
+                        </div>
+                        <div class="form-group" id="divort">
+                            <label>Ort*</label>
+                            <input class="form-control" id="ort" type="name" name="ort" value="" maxlength="25">
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input class="form-control" id="telefon" type="name" name="telefon" value="" maxlength="25">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobil</label>
+                            <input class="form-control" id="mobil" type="name" name="mobil" value="" maxlength="25">
+                        </div>
+                        <div class="form-group">
+                            <label >E-Mail</label>
+                            <input class="form-control" id="email" type="name" name="email" value="" maxlength="35">
+                        </div>
+                        <input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter">
+                    </form><br></br>
+                </div>
+                <div class="col-md-6 column">
+                </div>
+            </div>
+        </div>
+        <h5 align="center">
+            <b style="color: #8b8b8b">Version 0.65 | </b>
+            <a href="http://www.dorsten.de/" id="link">
+                <b style="color: #8b8b8b">www.dorsten.de</b>
+            </a>
+            | <a href="impressum.html" id="link">
+                <b style="color: #8b8b8b">Impressum</b>
+            </a>
+        </h5>
+    </body>
 </html>
