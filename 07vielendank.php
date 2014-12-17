@@ -163,62 +163,50 @@ function addAttachment($issueID,$filecontent,$count) {
 }
 
 ?>
-<head>
-  <meta charset="utf-8">
-  <title>ABBA Dorsten</title>
-  <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>ABBA Dorsten</title>
+        <link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
-	
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
 
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon" href="img/favicon.png">
-  
-	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
-	
-	<div class="bl"><h4 id="link"><a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage"><img alt="" src="img/Logo.gif" id="logo"></a>
-	<span id="bltext">Aktive Bürger Beteiligungs App</span></h4></div><p></p>
-</head>
+        <div class="bl">
+            <h4 id="link">
+                <a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage">
+                    <img alt="" src="img/Logo.gif" id="logo">
+                </a>
+                <span id="bltext">Aktive B�rger Beteiligungs App</span>
+            </h4>
+        </div>
+    </head>
 
-<body>
-<div class="container jumbotron">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<h3 class="text-center">
-				Vielen Dank, wir haben Ihre Anregung entgegengenommen!
-			</h3>
-			<h4 class="text-center">
-				Falls Sie eine personalisierte Anregung gemeldet haben, werden Sie in Kürze eine persönliche Rückmeldung von uns erhalten.
-			</h4><p></p>
-		</div>
-	</div>
-		<div class="row clearfix">
-		<div class="col-md-12 column text-center">
-			 <a href="index.html" class="btn btn-blue" type="button">Zurück zur Startseite</a>
-		</div>
-	</div>
-	</br>
-</div>
-<h5 align="center">
+    <body>
+        <div class="container jumbotron">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <h3 class="text-center">
+                        Vielen Dank, wir haben Ihre Anregung entgegengenommen!
+                    </h3>
+                    <h4 class="text-center">
+                        Falls Sie eine personalisierte Anregung gemeldet haben, werden Sie in Kürze eine persönliche Rückmeldung von uns erhalten.
+                    </h4>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <a href="index.html" class="btn btn-blue" type="button">Zurück zur Startseite</a>
+                </div>
+            </div></br>
+        </div>
+        <h5 align="center">
             <b style="color: #8b8b8b">Version 0.65 | </b>
             <a href="http://www.dorsten.de/" id="link">
                 <b style="color: #8b8b8b">www.dorsten.de</b>
@@ -227,6 +215,5 @@ function addAttachment($issueID,$filecontent,$count) {
                 <b style="color: #8b8b8b">Impressum</b>
             </a>
         </h5>
-</div>
-</body>
+    </body>
 </html>
