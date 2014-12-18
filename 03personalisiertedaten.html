@@ -67,7 +67,6 @@
                 localStorage.setItem("telefon", document.forms.form.elements.telefon.value);
                 localStorage.setItem("mobil", document.forms.form.elements.mobil.value);
                 localStorage.setItem("email", document.forms.form.elements.email.value);
-                localStorage.setItem("anonym", "f");
                 location.href = "04desktopbeschwerde.html";
             }
 
@@ -75,10 +74,7 @@
                 var i = 0;
                 var nachname = document.getElementById("nachname");
                 var vorname = document.getElementById("vorname");
-                var strasse = document.getElementById("strasse");
-                var hausnummer = document.getElementById("hausnr");
-                var postleitzahl = document.getElementById("plz");
-                var ort = document.getElementById("ort");
+                var email = document.getElementById("email");
                 if (nachname.value == "") {
                     nachname.placeholder = "Bitte ausfüllen!";
                     nachname.setAttribute("style", "background-color:#ffccdd");
@@ -93,35 +89,14 @@
                     vorname.removeAttribute("style");
                     i++;
                 }
-                if (strasse.value == "") {
-                    strasse.placeholder = "Bitte ausfüllen!";
-                    strasse.setAttribute("style", "background-color:#ffccdd");
+                if (email.value == "") {
+                    email.placeholder = "Bitte ausfüllen!";
+                    email.setAttribute("style", "background-color:#ffccdd");
                 } else {
-                    strasse.removeAttribute("style");
+                    email.removeAttribute("style");
                     i++;
-                }
-                if (hausnummer.value == "") {
-                    hausnummer.placeholder = "Bitte ausfüllen!";
-                    hausnummer.setAttribute("style", "background-color:#ffccdd");
-                } else {
-                    hausnummer.removeAttribute("style");
-                    i++;
-                }
-                if (postleitzahl.value == "") {
-                    postleitzahl.placeholder = "Bitte ausfüllen!";
-                    postleitzahl.setAttribute("style", "background-color:#ffccdd");
-                } else {
-                    postleitzahl.removeAttribute("style");
-                    i++;
-                }
-                if (ort.value == "") {
-                    ort.placeholder = "Bitte ausfüllen!";
-                    ort.setAttribute("style", "background-color:#ffccdd");
-                } else {
-                    ort.removeAttribute("style");
-                    i++;
-                }
-                if (i == 6) {
+                }     
+                if (i == 3) {
                     var o = 0;
                     if (validNachname(nachname.value)) {
                         o++;
@@ -129,16 +104,16 @@
                     if (validVorname(vorname.value)) {
                         o++;
                     }
-                    if (validStrasse(strasse.value)) {
+                    if (validStrasse(document.getElementById("strasse").value)) {
                         o++;
                     }
-                    if (validHausnummer(hausnummer.value)) {
+                    if (validHausnummer(document.getElementById("hausnr").value)) {
                         o++;
                     }
-                    if (validPostleitzahl(postleitzahl.value)) {
+                    if (validPostleitzahl(document.getElementById("plz").value)) {
                         o++;
                     }
-                    if (validOrt(ort.value)) {
+                    if (validOrt(document.getElementById("ort").value)) {
                         o++;
                     }
                     if (validTelefonnummer(document.getElementById("telefon").value)) {
@@ -198,11 +173,11 @@
                 var regex = new RegExp(strReg);
                 return (regex.test(mobil));
             }
-            function validEmail(email) {
+            /*function validEmail(email) {
                 var strReg = "(([a-zA-Z0-9-._]{1,}+\@+([a-zA-Z0-9-]{1,})+\.+([a-zA-Z]{2-4}){0-1})";
                 var regex = new RegExp(strReg);
                 return (regex.test(email));
-            }
+            }*/
         </script>
         <div class="container jumbotron">
             <div class="row clearfix">
@@ -212,7 +187,10 @@
                     </h3>
                     <h4 class="goleft">
                         *Pflichtfelder
-                    </h4><br></br>
+                    </h4>
+                    <div align="center">
+                        <Label><span>Hinweis: Je mehr Felder sie ausfüllen, desto besser können wir Kontakt mit Ihnen aufnehmen.</span></Label>
+                    </div><br></br>
                 </div>
             </div>
             <div class="row clearfix">
@@ -227,20 +205,24 @@
                             <label>Vorname*</label>
                             <input class="form-control" id="vorname" name="vorname" type="name" value="" maxlength="25">
                         </div>
+                        <div class="form-group">
+                            <label >E-Mail*</label>
+                            <input class="form-control" id="email" type="name" name="email" value="" maxlength="35">
+                        </div>
                         <div class="form-group" id="divstrasse">
-                            <label>Straße*</label>
+                            <label>Straße</label>
                             <input class="form-control" id="strasse" type="name" name="strasse" value="" maxlength="25">
                         </div>
                         <div class="form-group" id="divhausnr">
-                            <label>Hausnummer*</label>
+                            <label>Hausnummer</label>
                             <input class="form-control" id="hausnr" type="name" name="hausnr" value="" maxlength="25">
                         </div>
                         <div class="form-group" id="divplz">
-                            <label>Postleitzahl*</label>
+                            <label>Postleitzahl</label>
                             <input class="form-control" id="plz" type="name" name="plz" value="" maxlength="25">
                         </div>
                         <div class="form-group" id="divort">
-                            <label>Ort*</label>
+                            <label>Ort</label>
                             <input class="form-control" id="ort" type="name" name="ort" value="" maxlength="25">
                         </div>
                         <div class="form-group">
@@ -250,10 +232,6 @@
                         <div class="form-group">
                             <label>Mobil</label>
                             <input class="form-control" id="mobil" type="name" name="mobil" value="" maxlength="25">
-                        </div>
-                        <div class="form-group">
-                            <label >E-Mail</label>
-                            <input class="form-control" id="email" type="name" name="email" value="" maxlength="35">
                         </div>
                         <input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter">
                     </form><br></br>

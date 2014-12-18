@@ -55,31 +55,13 @@
                 } else {
                     i++;
                 }
-                if (document.getElementById("strasse").value == "") {
-                    document.getElementById("strasse").placeholder = "Bitte ausfüllen!";
+                if (document.getElementById("email").value == "") {
+                    document.getElementById("email").placeholder = "Bitte ausfüllen!";
                     weiter = false;
                 } else {
                     i++;
                 }
-                if (document.getElementById("hausnummer").value == "") {
-                    document.getElementById("hausnummer").placeholder = "Bitte ausfüllen!";
-                    weiter = false;
-                } else {
-                    i++;
-                }
-                if (document.getElementById("postleitzahl").value == "") {
-                    document.getElementById("postleitzahl").placeholder = "Bitte ausfüllen!";
-                    weiter = false;
-                } else {
-                    i++;
-                }
-                if (document.getElementById("ort").value == "") {
-                    document.getElementById("ort").placeholder = "Bitte ausfüllen!";
-                    weiter = false;
-                } else {
-                    i++;
-                }
-                if (i == 6) {
+                if (i == 3) {
                     sichern();
                     return true;
                 } else {
@@ -116,59 +98,24 @@
                                             document.getElementById("arthidden").setAttribute("value", localStorage.getItem("art"));
                                         </script>				
                                 <script type="text/javascript">
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
                                         document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
+                                        document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));                                   
                                         document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Straße:*</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Hausnummer:*</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Postleitzahl:*</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Ort:*</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></td></tr>");
-                                        document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></td></tr>");
-                                        document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
-                                    }
-
-                                    if (localStorage.getItem("anonym") == "t") {
-                                    } else {
-                                        document.write("<tr><td><label>E-Mail:</label></td><td><input id='email' name='email' type='email' maxlength='25'></td></tr>");
+                                        document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname")); 
+                                        document.write("<tr><td><label>E-Mail:*</label></td><td><input id='email' name='email' type='email' maxlength='25'></td></tr>");
                                         document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
-                                    }
+                                        document.write("<tr><td><label>Straße:</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></td></tr>");
+                                        document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));                                
+                                        document.write("<tr><td><label>Hausnummer:</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></td></tr>");
+                                        document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));                                   
+                                        document.write("<tr><td><label>Postleitzahl:</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></td></tr>");
+                                        document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));                                 
+                                        document.write("<tr><td><label>Ort:</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></td></tr>");
+                                        document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));                                  
+                                        document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></td></tr>");
+                                        document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));                                 
+                                        document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></td></tr>");
+                                        document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));                                                                                                           
                                 </script>
                                 <tr><td><label>Ihre Nachricht:</label></td>
                                     <td><textarea id="nachricht" name="nachricht" maxlength="128"></textarea>
@@ -194,9 +141,8 @@
                                 <input id="anonym" name="anonym" hidden>
                                 <script type="text/javascript">
                                     document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
-                                    document.getElementById("anonym").setAttribute("value", localStorage.getItem("anonym"));
                                 </script>
-                                <input name="attachmentCount" value="1" hidden>
+                                <input name="attachmentCount" value="0" hidden>
                             </tbody>
                         </table><br></br>
                         <input class="btn btn-blue pos" type="submit" value="Weiter (Anregung jetzt absenden)">
