@@ -67,7 +67,8 @@
                         </div>
                         <p id="lati" class="lalo" name="lati" hidden></p>
                         <p id="longi" class="lalo" name="longi" hidden></p>
-                        <a href="#" class="btn btn-sm btn-blue" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a>
+                        <a href="#" class="btn btn-sm btn-blue" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
+                        <a class="btn btn-sm btn-blue" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
                         <script>
                             function hilfeAnzeigen() {
                                 alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
@@ -210,29 +211,33 @@
                         }
 
                         function coordsByAddress() {
-                            var geocoder = new google.maps.Geocoder();
                             var address = document.getElementById('schadensort').value;
-                            geocoder.geocode({'address': address}, function (results, status) {
-                                if (status == google.maps.GeocoderStatus.OK) {
-                                    lati.innerHTML = results[0].geometry.location.lat();
-                                    longi.innerHTML = results[0].geometry.location.lng();
-                                    addressByCoords(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-                                    lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(), results[0].geometry.location.lat())
-                                                .transform(
-                                                        new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-                                                        map.getProjectionObject() //to Spherical Mercator Projection
-                                                        );
-                                    map.setCenter(lonLat, 16);
-                                    if (markers) {
-                                        markers.destroy();
-                                        markers = new OpenLayers.Layer.Markers("Markers");
+                            if (address=="Dorsten (allgemein)"){
+                                alert("ok");
+                            } else{
+                                var geocoder = new google.maps.Geocoder();
+                                geocoder.geocode({'address': address}, function (results, status) {
+                                    if (status == google.maps.GeocoderStatus.OK) {
+                                        lati.innerHTML = results[0].geometry.location.lat();
+                                        longi.innerHTML = results[0].geometry.location.lng();
+                                        addressByCoords(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+                                        lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(), results[0].geometry.location.lat())
+                                                    .transform(
+                                                            new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+                                                            map.getProjectionObject() //to Spherical Mercator Projection
+                                                            );
+                                        map.setCenter(lonLat, 16);
+                                        if (markers) {
+                                            markers.destroy();
+                                            markers = new OpenLayers.Layer.Markers("Markers");
+                                        }
+                                        markers.addMarker(new OpenLayers.Marker(lonLat));
+                                        map.addLayer(markers);
+                                    } else {
+                                        alert('Die Adresse konnte leider nicht gefunden werden.');
                                     }
-                                    markers.addMarker(new OpenLayers.Marker(lonLat));
-                                    map.addLayer(markers);
-                                } else {
-                                    alert('Die Adresse konnte leider nicht gefunden werden.');
-                                }
-                            });
+                                });
+                            }
                         }
 
                         function addressByCoords(eins, zwei) {
@@ -254,6 +259,23 @@
                                     address.value = addressResult;
                                 }
                             });
+                        }
+                        
+                        function setDorsten(){
+                            lonLat = new OpenLayers.LonLat(6.969115639564525, 51.66996827834537)
+                                                .transform(
+                                                        new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+                                                        map.getProjectionObject() //to Spherical Mercator Projection
+                                                        );
+                                    map.setCenter(lonLat, 11);
+                                    if (markers) {
+                                        markers.destroy();
+                                        markers = new OpenLayers.Layer.Markers("Markers");
+                                    }
+                                    markers.addMarker(new OpenLayers.Marker(lonLat));
+                                    map.addLayer(markers);
+                            document.getElementById("schadensort").value="Dorsten (allgemein)";
+                            aktivieren();
                         }
                     </script>
                 </div>
