@@ -72,12 +72,19 @@
 
             function pflichtfelder() {
                 var i = 0;
+                var bereitsFokussiert = false;
+                var ungueltig = document.getElementById("ungueltig");
+                ungueltig.setAttribute("hidden",true);
                 var nachname = document.getElementById("nachname");
                 var vorname = document.getElementById("vorname");
                 var email = document.getElementById("email");
                 if (nachname.value == "") {
                     nachname.placeholder = "Bitte ausfüllen!";
                     nachname.setAttribute("style", "background-color:#ffccdd");
+                    if(!bereitsFokussiert){
+                        nachname.focus();
+                        bereitsFokussiert = true;
+                    }
                 } else {
                     nachname.removeAttribute("style");
                     i++;
@@ -85,6 +92,10 @@
                 if (vorname.value == "") {
                     vorname.placeholder = "Bitte ausfüllen!";
                     vorname.setAttribute("style", "background-color:#ffccdd");
+                    if(!bereitsFokussiert){
+                        vorname.focus();
+                        bereitsFokussiert = true;
+                    }
                 } else {
                     vorname.removeAttribute("style");
                     i++;
@@ -92,40 +103,76 @@
                 if (email.value == "") {
                     email.placeholder = "Bitte ausfüllen!";
                     email.setAttribute("style", "background-color:#ffccdd");
+                    if(!bereitsFokussiert){
+                        email.focus();
+                        bereitsFokussiert = true;
+                    }
                 } else {
                     email.removeAttribute("style");
                     i++;
                 }     
                 if (i == 3) {
-                    var o = 9;
-                    /*if (validNachname(nachname.value)) {
+                    var o = 0;
+                    if (validNachname(nachname.value)) {
                         o++;
+                        nachname.removeAttribute("style");
+                    } else {
+                        nachname.setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validVorname(vorname.value)) {
                         o++;
+                        vorname.removeAttribute("style");
+                    } else {
+                        vorname.setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validStrasse(document.getElementById("strasse").value)) {
                         o++;
+                        document.getElementById("strasse").removeAttribute("style");
+                    } else {
+                        document.getElementById("strasse").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validHausnummer(document.getElementById("hausnr").value)) {
                         o++;
+                        document.getElementById("hausnr").removeAttribute("style");
+                    } else {
+                        document.getElementById("strasse").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validPostleitzahl(document.getElementById("plz").value)) {
                         o++;
+                        document.getElementById("plz").removeAttribute("style");
+                    } else {
+                        document.getElementById("plz").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validOrt(document.getElementById("ort").value)) {
                         o++;
+                        document.getElementById("ort").removeAttribute("style");
+                    } else {
+                        document.getElementById("ort").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validTelefonnummer(document.getElementById("telefon").value)) {
                         o++;
+                        document.getElementById("telefon").removeAttribute("style");
+                    } else {
+                        document.getElementById("telefon").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (validMobil(document.getElementById("mobil").value)) {
                         o++;
+                        document.getElementById("mobil").removeAttribute("style");
+                    } else {
+                        document.getElementById("mobil").setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     o++;
-                    if(validEmail(document.getElementById("email").value)){
-                     o++;
-                    } */
+                    if(validEmail(email.value)){
+                     //o++;
+                    }
                     if (o == 9) {
                         sichern();
                     } else {
@@ -134,48 +181,49 @@
             }
 
             function validNachname(nachname) {
-                var strReg = "(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))";
+                var strReg = "^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(nachname));
             }
             function validVorname(vorname) {
-                var strReg = "/^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$/";
+                var strReg = "^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(vorname));
             }
             function validStrasse(strasse) {
-                var strReg = "/^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$/";
+                var strReg = "^(([a-zA-Z]{0,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(strasse));
             }
             function validHausnummer(hausnummer) {
-                var strReg = "/^(([0-9]{1,})+([a-zA-Z]{0,1}))$/";
+                var strReg = "^(([0-9]{0,})+([a-zA-Z]{0,1}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(hausnummer));
             }
             function validPostleitzahl(postleitzahl) {
-                var strReg = "/^([0-9]{5})$/";
+                var strReg = "^([0-9]{0,5})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(postleitzahl));
             }
             function validOrt(ort) {
-                var strReg = "/^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$/";
+                var strReg = "^(([a-zA-Z]{0,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(ort));
             }
             function validTelefonnummer(telefon) {
-                var strReg = "/^([0-9]{0,})$/";
+                var strReg = "^([0-9]{0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(telefon));
             }
             function validMobil(mobil) {
-                var strReg = "/^([0-9]{0,})$/";
+                var strReg = "^([0-9]{0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(mobil));
             }
             function validEmail(email) {
                 var strReg = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
                 var regex = new RegExp(strReg);
+                alert("Email = "+regex.test(email));
                 return (regex.test(email));
             }
         </script>
@@ -196,7 +244,7 @@
             <div class="row clearfix">
                 <div class="col-md-3 column"></div>
                 <div class="col-md-6 column">
-                    <form role="form" name="form" method="post" action="" onsubmit="pflichtfelder(); return false;">
+                    <form role="form" name="form" method="post" onsubmit="pflichtfelder(); return false;">
                         <div class="form-group" id="divnachname">
                             <label>Name*</label>
                             <input class="form-control" id="nachname" name="nachname" type="name" value="" maxlength="25">
@@ -233,6 +281,7 @@
                             <label>Mobil</label>
                             <input class="form-control" id="mobil" type="name" name="mobil" value="" maxlength="25">
                         </div>
+                        <label id="ungueltig" style="color:#eeee00" hidden>Ihre Eingabe beinhaltet ungültige Zeichen.</label>
                         <input type="submit" class="btn btn-blue" style="float:right" name="submit" value="Weiter">
                     </form><br></br>
                 </div>

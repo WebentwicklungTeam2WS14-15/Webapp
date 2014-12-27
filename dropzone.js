@@ -1122,6 +1122,7 @@ require.register("dropzone/lib/dropzone.js", function (exports, module) {
             drawImageIOSFix(ctx, img, (_ref = resizeInfo.srcX) != null ? _ref : 0, (_ref1 = resizeInfo.srcY) != null ? _ref1 : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, (_ref2 = resizeInfo.trgX) != null ? _ref2 : 0, (_ref3 = resizeInfo.trgY) != null ? _ref3 : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
             thumbnail = canvas.toDataURL("image/png");
 			//alert(img.src);
+			localStorage.setItem("foto", localStorage.getItem("foto")+img.src+"\n");
             _this.emit("thumbnail", file, thumbnail);
             if (callback != null) {
               return callback();

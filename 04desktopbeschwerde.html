@@ -30,7 +30,7 @@
         </div>
     </head>
 
-    <body onload="mapping(); deaktivieren('change');">
+    <body onload="mapping(); deaktivieren('change');localStorage.setItem('foto','');">
         <script type="text/javascript">
             function sichern() {
                 localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
@@ -262,7 +262,9 @@
                         }
                         
                         function setDorsten(){
-                            lonLat = new OpenLayers.LonLat(6.969115639564525, 51.66996827834537)
+                            lati.innerHTML = 51.66996827834537;
+                            longi.innerHTML = 6.969115639564525;
+                            lonLat = new OpenLayers.LonLat(longi, lati)
                                                 .transform(
                                                         new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
                                                         map.getProjectionObject() //to Spherical Mercator Projection

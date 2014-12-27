@@ -130,8 +130,16 @@
                                             document.getElementById("schadensorthidden").setAttribute("value", localStorage.getItem("schadensort"));
                                         </script></td></tr>
                                 <script type="text/javascript">
-                                    var koords = localStorage.getItem("latitude") + "," + localStorage.getItem("longitude");
-                                    document.write("<tr><td></td><td><div style='height:20; width:20; overflow:hidden'><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=13&size=300x200&markers=" + koords + ",ol-marker' /></p></div></td></tr>");
+                                    if(localStorage.getItem("schadensort")!="Dorsten (allgemein)"){
+                                        var koords = localStorage.getItem("latitude") + "," + localStorage.getItem("longitude");
+                                        document.write("<tr><td></td><td><div><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=15&size=300x200&markers=" + koords + ",ol-marker' width='200' height='150'/></p></div></td></tr>");
+                                    }
+                                    var fotos = localStorage.getItem("foto").split("data:image");
+                                    for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
+                                        if(fotoElement>0){
+                                            document.write("<tr><td><label>Foto["+fotoElement+"]:</label></td><td><div style='height:20; width:20; overflow:hidden'><img src='data:image"+fotos[fotoElement]+"' width='200' height='200'></div></td></tr>");
+                                        }
+                                    }
                                 </script>
                                 <input id="koordinatenhidden" name="koordinaten" hidden>
                                 <script type="text/javascript">
