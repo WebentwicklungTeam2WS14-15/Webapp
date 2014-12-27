@@ -169,9 +169,12 @@
                         document.getElementById("mobil").setAttribute("style", "background-color:#eeee00");
                         ungueltig.removeAttribute("hidden");
                     }
-                    o++;
                     if(validEmail(email.value)){
-                     //o++;
+                        o++;
+                        email.removeAttribute("style");
+                    } else {
+                        email.setAttribute("style", "background-color:#eeee00");
+                        ungueltig.removeAttribute("hidden");
                     }
                     if (o == 9) {
                         sichern();
@@ -180,50 +183,49 @@
                 }
             }
 
-            function validNachname(nachname) {
-                var strReg = "^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
-                var regex = new RegExp(strReg);
-                return (regex.test(nachname));
-            }
             function validVorname(vorname) {
-                var strReg = "^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
+                var strReg="^([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}))$";
                 var regex = new RegExp(strReg);
                 return (regex.test(vorname));
             }
+            function validNachname(nachname) {
+                var strReg="^([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,}))$";
+                var regex = new RegExp(strReg);
+                return (regex.test(nachname));
+            }
             function validStrasse(strasse) {
-                var strReg = "^(([a-zA-Z]{0,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
+                var strReg="^(([a-zA-Z]{1,})+(([\s-]{0,1})+([a-zA-Z]{0,})){0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(strasse));
             }
-            function validHausnummer(hausnummer) {
-                var strReg = "^(([0-9]{0,})+([a-zA-Z]{0,1}))$";
+            function validHausnummer(hausnummer){
+                var strReg="^((([0-9]{1,})+([a-zA-Z]{0,1})){0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(hausnummer));
             }
             function validPostleitzahl(postleitzahl) {
-                var strReg = "^([0-9]{0,5})$";
+                var strReg="^(([0-9]{5}){0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(postleitzahl));
             }
             function validOrt(ort) {
-                var strReg = "^(([a-zA-Z]{0,})+(([\s-]{0,1})+([a-zA-Z]{0,}){0,}))$";
+                var strReg="^(([a-zA-Z]{0,})+(([\s-]{0,1})+([a-zA-Z]{0,})){0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(ort));
             }
             function validTelefonnummer(telefon) {
-                var strReg = "^([0-9]{0,})$";
+                var strReg="^([0-9]{0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(telefon));
             }
             function validMobil(mobil) {
-                var strReg = "^([0-9]{0,})$";
+                var strReg="^([0-9]{0,})$";
                 var regex = new RegExp(strReg);
                 return (regex.test(mobil));
             }
             function validEmail(email) {
-                var strReg = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
+                var strReg="^([a-zA-Z0-9._-]{1,})+([@]{1})+([a-zA-Z0-9-]{1,})+([.]{1})+([a-zA-Z]{2,4})$";
                 var regex = new RegExp(strReg);
-                alert("Email = "+regex.test(email));
                 return (regex.test(email));
             }
         </script>
