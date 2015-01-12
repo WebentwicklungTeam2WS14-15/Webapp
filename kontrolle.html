@@ -1,0 +1,134 @@
+<script type="text/javascript">
+	function sichern() {
+		localStorage.setItem("nachname", document.forms.form.elements.nachname.value);
+		localStorage.setItem("vorname", document.forms.form.elements.vorname.value);
+		localStorage.setItem("strasse", document.forms.form.elements.strasse.value);
+		localStorage.setItem("hausnummer", document.forms.form.elements.hausnummer.value);
+		localStorage.setItem("postleitzahl", document.forms.form.elements.postleitzahl.value);
+		localStorage.setItem("ort", document.forms.form.elements.ort.value);
+		localStorage.setItem("telefon", document.forms.form.elements.telefon.value);
+		localStorage.setItem("mobil", document.forms.form.elements.mobil.value);
+		localStorage.setItem("email", document.forms.form.elements.email.value);
+		localStorage.setItem("nachricht", document.getElementById("nachricht").innerHTML);
+	}
+
+	function pflichtfelder() {
+		var i = 0;
+		var weiter = true;
+		if (document.getElementById("nachname").value == "") {
+			document.getElementById("nachname").placeholder = "Bitte ausfüllen!";
+			weiter = false;
+		} else {
+			i++;
+		}
+		if (document.getElementById("vorname").value == "") {
+			document.getElementById("vorname").placeholder = "Bitte ausfüllen!";
+			weiter = false;
+		} else {
+			i++;
+		}
+		if (document.getElementById("email").value == "") {
+			document.getElementById("email").placeholder = "Bitte ausfüllen!";
+			weiter = false;
+		} else {
+			i++;
+		}
+		if (i == 3) {
+			sichern();
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+<div class="container jumbotron">
+	<div class="row clearfix">
+		<div class="col-md-4 column"></div>
+		<div class="col-md-5 column">
+			<h3>
+				Kontrollformular:
+			</h3>
+			<h4>
+				Bitte überprüfen Sie Ihre angegebenen Daten!
+			</h4>
+		</div>
+		<div class="col-md-3 column"></div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-4 column"></div>
+		<div class="col-md-5 column">
+		<form role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();"><br><br>
+				<table width="100%">
+					<tbody>
+						<tr>
+							<td>
+								<label>Art des Anliegens:</label></td><td>
+								<label id="art"></label></td></tr>
+								<input id="arthidden" name="art" hidden>
+								<script type="text/javascript">
+									document.getElementById("art").innerHTML = localStorage.getItem("art");
+									document.getElementById("arthidden").setAttribute("value", localStorage.getItem("art"));
+								</script>
+								<script type="text/javascript">
+									document.write("<tr><td><label>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></td></tr>");
+									document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
+									document.write("<tr><td><label>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></td></tr>");
+									document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
+									document.write("<tr><td><label>E-Mail:*</label></td><td><input id='email' name='email' type='email' maxlength='25'></td></tr>");
+									document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
+									document.write("<tr><td><label>Straße:</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></td></tr>");
+									document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
+									document.write("<tr><td><label>Hausnummer:</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></td></tr>");
+									document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));
+									document.write("<tr><td><label>Postleitzahl:</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></td></tr>");
+									document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));
+									document.write("<tr><td><label>Ort:</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></td></tr>");
+									document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
+									document.write("<tr><td><label>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></td></tr>");
+									document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
+									document.write("<tr><td><label>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></td></tr>");
+									document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
+								</script>
+								<tr><td><label>Ihre Nachricht:</label></td>
+									<td><textarea id="nachricht" name="nachricht" maxlength="128"></textarea>
+										<script type="text/javascript">
+											document.getElementById("nachricht").innerHTML = localStorage.getItem("nachricht");
+										</script></td></tr>
+										<tr><td><label>Schadensort:</label></td>
+											<td><label id="schadensort"></label>
+												<input id="schadensorthidden" name="schadensort" hidden>
+												<script type="text/javascript">
+													document.getElementById("schadensort").innerHTML = localStorage.getItem("schadensort");
+													document.getElementById("schadensorthidden").setAttribute("value", localStorage.getItem("schadensort"));
+												</script></td></tr>
+												<script type="text/javascript">
+													if(localStorage.getItem("schadensort")!="Dorsten (allgemein)"){
+														var koords = localStorage.getItem("latitude") + "," + localStorage.getItem("longitude");
+														document.write("<tr><td></td><td><div><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=15&size=300x200&markers=" + koords + ",ol-marker' width='200' height='150'/></p></div></td></tr>");
+													}
+													var fotos = localStorage.getItem("foto").split("data:image");
+													for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
+														if(fotoElement>0){
+															document.write("<tr><td><label>Foto["+fotoElement+"]:</label></td><td><div style='height:20; width:20; overflow:hidden'><img src='data:image"+fotos[fotoElement]+"' width='200' height='200'></div></td></tr>");
+														}
+													}
+												</script>
+												<input id="koordinatenhidden" name="koordinaten" hidden>
+												<script type="text/javascript">
+													document.getElementById("koordinatenhidden").setAttribute("value", localStorage.getItem("latitude") + ", " + localStorage.getItem("longitude"));
+												</script>
+												<input id="attachment1" name="attachment1" hidden>
+												<input id="anonym" name="anonym" hidden>
+												<script type="text/javascript">
+													document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
+												</script>
+												<input name="attachmentCount" value="0" hidden>
+											</tbody>
+										</table><br><br>
+										<input class="btn btn-blue pos" type="submit" value="Weiter (Anregung jetzt absenden)">
+									</form>
+								</div>
+								<div class="col-md-3 column">
+								</div>
+							</div><br>
+						</div>
