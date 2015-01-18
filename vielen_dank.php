@@ -1,45 +1,38 @@
 <?php
-// Mantis API URL
-define('MANTISCONNECT_URL', 'http://www.patrickdehnel.de/mantis/api/soap/mantisconnect.php');
-//TODO Daten in config.php auslagern
-
-//Login information
-define('USERNAME', 'web_reporter');
-define('PASSWORD', 'keeese');
-
-//Project specific values
-$projectName = "Schadensmeldung";
-$category = getMantisCategory($_POST['art']);
-$summary = htmlspecialchars($_POST['nachricht']);
-$geo = htmlspecialchars($_POST['koordinaten']);
-$schadensort = htmlspecialchars($_POST['schadensort']);
-
-//Distinguish between anonymous and personalized complaints
-if(strcmp($_POST['anonym'],"t") == 0)  {
-	$issueID = addIssueAnon($projectName,$category,$summary,$geo,$schadensort);
-     //check for attachments, add all found attachments
-	if($_POST['attachmentCount'] > 0) {
-		for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
-			$currentAttachment = $_POST['attachment' . $i];
-			addAttachment($issueID,$currentAttachment,$i);
-		}
-	}
-}
-if(strcmp($_POST['anonym'],"f") == 0) {
-	$issueID = addIssue($projectName,$category,$summary,$geo,$schadensort);
-     //check for attachments, add all found attachments
-	if($_POST['attachmentCount'] > 0) {
-		for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
-			$currentAttachment = $_POST['attachment' . $i];
-			addAttachment($issueID,$currentAttachment,$i);
-		}
+include("inc/config.php");
+//Call to get user data from POST-variables and sanitize it
+$data = prepareUserData();
+//Add new issue
+$issueID = addIssue($data);
+var_dump($issueID);
+//Check for attachments, add all found attachments
+if($_POST['attachmentCount'] > 0) {
+	for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
+		$currentAttachment = $_POST['attachment' . $i];
+		addAttachment($issueID,$currentAttachment,$i);
 	}
 }
 
-//TODO error handling?
-//TODO test nicer way of doing this
-//preg_match(pattern, subject)??
+function prepareUserData() {
+	//Get form data
+	$userData['projectName'] = "Schadensmeldung";
+	$userData['category'] = getMantisCategory($_POST['art']);
+	$userData['summary'] = htmlspecialchars($_POST['nachricht']);
+	if($_POST['nachricht'] == "") {
+		$userData['summary'] = "[keine Angabe]";
+	}
+	$userData['reportedPlace'] = htmlspecialchars($_POST['schadensort']);
+	$userData['geo'] = htmlspecialchars($_POST['koordinaten']);
+	$userData['firstName'] = htmlspecialchars($_POST['vorname']);
+	$userData['lastName'] = htmlspecialchars($_POST['nachname']);
+	$userData['adress'] = htmlspecialchars($_POST['strasse']) . " " . htmlspecialchars($_POST['hausnummer']) . " " . htmlspecialchars($_POST['postleitzahl']) . " " . htmlspecialchars($_POST['ort']);
+	$userData['phone'] = htmlspecialchars($_POST['telefon']);
+	$userData['mobile'] = htmlspecialchars($_POST['mobil']);
+	$userData['email'] = htmlspecialchars($_POST['email']);
+	return $userData;
+}
 
+//Takes string from form and converts it into mantis-compatible categories
 function getMantisCategory($formCategory) {
   //default category
 	$category = "Sonstiges";
@@ -58,28 +51,39 @@ function getMantisCategory($formCategory) {
 	return $category;
 }
 
-function addIssue($projectName,$category,$summary,$geo,$schadensort) {
-
+function addIssue($data) {
+	//Get data
+	$projectName = $data['projectName'];
+	$category = $data['category'];
+	$summary = $data['summary'];
+	$reportedPlace = $data['reportedPlace'];
+	$geo = $data['geo'];
+	$firstName = $data['firstName'];
+	$lastName = $data['lastName'];
+	$adress = $data['adress'];
+	$phone = $data['phone'];
+	$mobile = $data['mobile'];
+	$email = $data['email'];
+	//Put data in proper mantis form
 	$function_name = "mc_issue_add";
 	$args['issueData']['project']['name'] = $projectName;
 	$args['issueData']['category'] = $category;
 	$args['issueData']['description'] = $summary;
-    //escape personal data strings
-	$reporterName = htmlspecialchars($_POST['vorname']) . " " . htmlspecialchars($_POST['nachname']);
-	$adress = htmlspecialchars($_POST['strasse']) . " " . htmlspecialchars($_POST['hausnummer']) . " " . htmlspecialchars($_POST['postleitzahl']) . " " . htmlspecialchars($_POST['ort']);
-	$mobile = htmlspecialchars($_POST['mobil']);
-	$email = htmlspecialchars($_POST['email']);
-	$telefon = htmlspecialchars($_POST['telefon']);
-	$args['issueData']['summary'] = $reporterName . ": " . substr($summary,0,63);
+	$args['issueData']['summary'] = $lastName . ": " . substr($summary,0,63);
 	$args['issueData']['custom_fields']=array(
-		array('field' => array('id'=>'6'),'value'=>$adress),
+		array('field' => array('id'=>'3'),'value'=>$reportedPlace),	
 		array('field' => array('id'=>'2'),'value'=>$geo),
-		array('field' => array('id'=>'4'),'value'=>$reporterName),
+		array('field' => array('id'=>'4'),'value'=>$firstName),
+		array('field' => array('id'=>'10'),'value'=>$lastName),
+		array('field' => array('id'=>'6'),'value'=>$adress),
+		array('field' => array('id'=>'7'),'value'=>$phone),
 		array('field' => array('id'=>'8'),'value'=>$mobile),
 		array('field' => array('id'=>'9'),'value'=>$email),
-		array('field' => array('id'=>'7'),'value'=>$telefon),
-		array('field' => array('id'=>'3'),'value'=>$schadensort));
+		);
 
+	echo("<pre>");
+	var_dump($args);
+	echo("</pre");
 
     //Add login information
 	$args = array_merge(
@@ -90,35 +94,6 @@ function addIssue($projectName,$category,$summary,$geo,$schadensort) {
 		$args
 		);
 
-    //connect and do the SOAP call
-	try {
-		$client = new SoapClient(MANTISCONNECT_URL . '?wsdl');
-		$result = $client->__soapCall($function_name, $args);
-		return $result;
-	} catch (SoapFault $e) {
-		$result = array(
-			'error' => $e->faultstring
-			);
-	}
-}
-
-function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
-	$function_name = "mc_issue_add";
-	$args['issueData']['project']['name'] = $projectname;
-	$args['issueData']['category'] = $category;
-	$args['issueData']['description'] = $summary;
-	$args['issueData']['summary'] = "Anonym: " . substr($summary,0,63);
-	$args['issueData']['custom_fields']=array(array('field' => array('id'=>'2'),'value'=>$geo),
-		array('field' => array('id'=>'3'),'value'=>$schadensort));
-
-    //Add login information
-	$args = array_merge(
-		array(
-			'username' => USERNAME,
-			'password' => PASSWORD
-			),
-		$args
-		);
 
     //connect and do the SOAP call
 	try {
@@ -129,8 +104,8 @@ function addIssueAnon($projectname,$category,$summary,$geo,$schadensort) {
 		$result = array(
 			'error' => $e->faultstring
 			);
+		return $result;
 	}
-
 }
 
 function addAttachment($issueID,$filecontent,$count) {
