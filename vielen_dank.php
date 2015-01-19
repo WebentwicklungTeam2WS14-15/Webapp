@@ -4,12 +4,16 @@ include("inc/config.php");
 $data = prepareUserData();
 //Add new issue
 $issueID = addIssue($data);
-//var_dump($issueID);
 //Check for attachments, add all found attachments
 if($_POST['attachmentCount'] > 0) {
 	for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
 		$currentAttachment = $_POST['attachment' . $i];
-		addAttachment($issueID,$currentAttachment,$i);
+		//prepare attachment
+		list($type, $data) = explode(';', $currentAttachment);
+		list(, $data)      = explode(',', $currentAttachment);
+		$data = base64_decode($data);
+		$type = preg_replace("/data:/", "", $type);
+		addAttachment($issueID,$data,$type,$i);
 	}
 }
 
@@ -81,10 +85,6 @@ function addIssue($data) {
 		array('field' => array('id'=>'9'),'value'=>$email),
 		);
 
-	//echo("<pre>");
-	//var_dump($args);
-	//echo("</pre");
-
     //Add login information
 	$args = array_merge(
 		array(
@@ -104,15 +104,16 @@ function addIssue($data) {
 		$result = array(
 			'error' => $e->faultstring
 			);
-		return $result;
 	}
 }
 
-function addAttachment($issueID,$filecontent,$count) {
+function addAttachment($issueID,$filecontent,$type,$count) {
 	$function_name = "mc_issue_attachment_add";
 	$args['issue_id'] = $issueID;
-	$args['name'] = $issueID . "-ANHANG-" . $count;
-	$args['file_type'] = "image/png";
+	$extension = preg_replace("/image\//", "", $type);
+	$args['name'] = $issueID . "-ANHANG-" . $count . "." . $extension;
+	echo("TYPE: " . $type);
+	$args['file_type'] = $type;
 	$args['content'] = $filecontent;
 
    //Add login information
@@ -132,6 +133,7 @@ function addAttachment($issueID,$filecontent,$count) {
 		$result = array(
 			'error' => $e->faultstring
 			);
+		var_dump($result);
 	}
 }
 
