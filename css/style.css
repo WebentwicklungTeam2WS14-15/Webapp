@@ -1,16 +1,23 @@
 
 
 #logo{
-	//margin-top: -20px;
-	width: 80px;
-	position: absolute;
+    width:20%;
+    height: auto;
 }
 
 #link{
-	color: #ffffff;
-	font-weight: lighter;
-	font-family: Helvetica;
-	font-size: 14px;
+    color: #ffffff;
+    font-weight: lighter;
+    font-family: Verdana;
+    font-size: 10pt;
+    margin-top: 10px;
+}
+#link2{
+    color: #ffffff;
+}
+#link2:hover{
+    text-decoration: none;
+    color: #fecb04;
 }
 
 body{
@@ -24,10 +31,10 @@ body{
 	bottom: 0;
 	width: 100%;
 	height: 35px;
-	background-color: #2E4D74;
+    background-color: #444444;
 	text-align: center;
 	font-weight: bold;
-	font-family: Helvetica;
+	font-family: Verdana;
 	color: #ffffff;
 }
 
@@ -45,10 +52,22 @@ text-align:left;
 .imgbtn{
 	height: 250px;
     width: 250px;
+    border-radius: 0px;
+}
+.imgbtn:hover{
+    border-radius: 0px;
+    border-color: #444444;
+    background-color: rgba(254, 203, 4, 0.2);
 }
 
 .btn{
 	white-space: normal;
+    width: 250px;
+    font-size: 12pt;
+}
+
+.btn-neu{
+    width:200px;
 }
 
 a.btn.btn-block.btn-default button {
@@ -74,27 +93,28 @@ a.btn.btn-block.btn-default:hover {
 }
 
 .bl{
-	//background-color: black;
-	background-color: #2E4D74;
-	width: 100%;
-	margin-top: 0px;
-	height: 80px;
-	position: absolute;
-	top: 0;
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    margin-top: 2%;
+    margin-left: 30%;
 }
 
 #bltext{
-	position: absolute;
-	margin-left: 90px;
-	margin-top: 25px !important;
-	white-space: nowrap;
-	color: #ffffff;
-	font-family: Helvetica;
+    position: absolute;
+    margin-left: 4%;
+    margin-top: 3% !important;
+    white-space: nowrap;
+    color: #000;
+    font-family: Verdana;
+    font-size: 12pt;
 }
 
 .btnicon{
 	border: 0;
 	width: 100%;
+    padding-top: 5px;
 	/*float: left;*/
 	/*margin-right: 15px;*/
 	/*overflow: hidden;*/
@@ -139,7 +159,7 @@ a.btn.btn-block.btn-default:hover {
 }
 
 .form-group{
-	font-size:12px;
+	font-size: 14pt;
 }
 
 .mapcontainer{
@@ -151,8 +171,8 @@ a.btn.btn-block.btn-default:hover {
 }
 
 .mapdiv{
-	width: 400px;
-	height: 400px;
+	width: 500px;
+	height: 500px;
 }
 
 .startinfo{
@@ -160,6 +180,7 @@ a.btn.btn-block.btn-default:hover {
 }
 .container.jumbotron{
     background-color: #ffffff;
+    font-family: Verdana;
 }
 .jumbotron{
 	/*box-shadow: 10px 10px 15px #cccccc;*/
@@ -197,6 +218,17 @@ h4{
 }
 #nachricht{
     resize: none;
+    font-size: 10pt;
+    width: 100%;
+    height: 250px;
+    padding: 30px;
+}
+#nachricht2{
+    resize: none;
+    font-size: 10pt;
+    width: 50%;
+    height: 250px;
+    padding: 30px;
 }
 
 .btntable{
@@ -283,4 +315,27 @@ a.btn.btn-block.btn-default{
         width: 50% !important;
     }
 	
+}
+div.ueberschrift{
+    font-size: 18pt;
+}
+div.meldeart{
+    font-family: Verdana;
+    font-size: 12pt;
+    width: 250px;
+    line-height: 14pt;
+    margin: 15px;
+}
+label.hinweis{
+    font-size: 10pt;
+}
+#form{
+    padding: 40px;
+}
+#zeichen{
+    font-size: 12pt;
+}
+.kontrolle {
+    width: 200%;
+    margin-left: -150px;
 }

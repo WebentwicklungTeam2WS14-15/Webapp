@@ -43,8 +43,7 @@
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
-		<div class="col-md-4 column"></div>
-		<div class="col-md-5 column">
+		<div class="ueberschrift">
 			<h3>
 				Kontrollformular:
 			</h3>
@@ -52,12 +51,11 @@
 				Bitte überprüfen Sie Ihre angegebenen Daten!
 			</h4>
 		</div>
-		<div class="col-md-3 column"></div>
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-4 column"></div>
 		<div class="col-md-5 column">
-		<form role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();"><br><br>
+		<form class="kontrolle" role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();"><br><br>
 				<table width="100%">
 					<tbody>
 						<tr>
@@ -90,7 +88,7 @@
 									document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
 								</script>
 								<tr><td><label>Ihre Nachricht:</label></td>
-									<td><textarea id="nachricht" name="nachricht" maxlength="128"></textarea>
+									<td><textarea id="nachricht2" name="nachricht" maxlength="128"></textarea>
 										<script type="text/javascript">
 											document.getElementById("nachricht").innerHTML = localStorage.getItem("nachricht");
 										</script></td></tr>
@@ -104,7 +102,7 @@
 												<script type="text/javascript">
 													if(localStorage.getItem("schadensort")!="Dorsten (allgemein)"){
 														var koords = localStorage.getItem("latitude") + "," + localStorage.getItem("longitude");
-														//document.write("<tr><td></td><td><div><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=15&size=300x200&markers=" + koords + ",ol-marker' width='200' height='150'/></p></div></td></tr>");
+														document.write("<tr><td></td><td><div><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=15&size=300x200&markers=" + koords + ",ol-marker' width='200' height='150'/></p></div></td></tr>");
 													}
 													var fotos = localStorage.getItem("foto").split("data:image");
 													for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
@@ -117,18 +115,15 @@
 												<script type="text/javascript">
 													document.getElementById("koordinatenhidden").setAttribute("value", localStorage.getItem("latitude") + ", " + localStorage.getItem("longitude"));
 												</script>
+												<input id="attachment1" name="attachment1" hidden>
+												<input id="anonym" name="anonym" hidden>
 												<script type="text/javascript">
-													for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
-														if(fotoElement>0){
-															document.write("<input name='attachment"+fotoElement+"' value='data:image"+fotos[fotoElement]+"' hidden>");
-														}
-													}
-													var anzahlFotos = fotos.length-1;
-													document.write('<input name="attachmentCount" value="'+anzahlFotos+'" hidden>');
+													document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
 												</script>
+												<input name="attachmentCount" value="0" hidden>
 											</tbody>
 										</table><br><br>
-										<input class="btn btn-blue pos" type="submit" value="Weiter (Anregung jetzt absenden)">
+										<input class="btn btn-primary btn-lg btn-neu pos" type="submit" value="Weiter (Anregung jetzt absenden)">
 									</form>
 								</div>
 								<div class="col-md-3 column">

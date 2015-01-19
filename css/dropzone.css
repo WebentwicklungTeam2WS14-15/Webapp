@@ -948,13 +948,15 @@ h1#project {
   background-image: url("../images/spritemap.png");
   background-repeat: no-repeat;
   background-position: 0 0;
-  position: absolute;
-  width: 428px;
-  height: 123px;
-  margin-left: -214px;
-  margin-top: -61.5px;
-  top: 50%;
-  left: 50%;
+  /* position: absolute; */
+  width: 370px;
+  height: 120px;
+  /* margin-left: -214px; */
+  /* margin-top: -61.5px; */
+  /* top: 50%; */
+  /* left: 50%; */
+  margin-left: 40px;
+  margin-top: 20px;
 }
 @media all and (-webkit-min-device-pixel-ratio: 1.5) {
   .dropzone .dz-default.dz-message {

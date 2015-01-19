@@ -138,7 +138,7 @@ function addAttachment($issueID,$filecontent,$type,$count) {
 ?>
 <div class="container jumbotron">
 	<div class="row clearfix">
-		<div class="col-md-12 column">
+		<div class="ueberschrift">
 			<h3 class="text-center">
 				Vielen Dank, wir haben Ihre Anregung entgegengenommen!
 			</h3>
@@ -149,7 +149,7 @@ function addAttachment($issueID,$filecontent,$type,$count) {
 	</div>
 	<div class="row clearfix">
 		<div class="col-md-12 column text-center">
-			<a href="index.php" class="btn btn-blue" type="button">Zurück zur Startseite</a>
+			<a href="index.php" class="btn btn-primary btn-lg btn-neu" type="button">Zurück zur Startseite</a>
 		</div>
 	</div></br>
 </div>

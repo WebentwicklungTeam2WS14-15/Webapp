@@ -25,7 +25,7 @@
 		<div class="bl">
 			<h5>
 				<a href="./index.php?inc=main" title="Startseite">
-					<img alt="" src="img/Logo.gif" id="logo">
+					<img alt="" src="img/logo.png" id="logo">
 				</a>
 				<span id="bltext">Aktive Bürger Beteiligungs App</span>
 			</h5>
@@ -73,9 +73,9 @@
 	<div id="footer">
 		<h5 id="link">
 			Version 0.70 | 
-			<a href="http://www.dorsten.de/" id="link">www.dorsten.de</a>
+			<a href="http://www.dorsten.de/" id="link2">www.dorsten.de</a>
 			| 
-			<a href="./index.php?inc=impressum" id="link">Impressum</a>
+			<a href="./index.php?inc=impressum" id="link2">Impressum</a>
 		</h5>
 	</div>
 </body>

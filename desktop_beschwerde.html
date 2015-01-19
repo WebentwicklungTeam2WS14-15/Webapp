@@ -16,7 +16,7 @@
 		</script>
 		<div class="container jumbotron">
 			<div class="row clearfix">
-				<div class="col-md-12 column">
+				<div class="ueberschrift">
 					<h3>
 						Bitte geben Sie den Schadensort an.
 					</h3>
@@ -29,14 +29,14 @@
 				<div class="col-md-6 column">
 					<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
 						<div class="form-group" id="divnachricht">
-							<label id="zeichen" name="zeichen">Ihre Nachricht (Noch 1024 Zeichen)</label></br>
+                            <label id="zeichen" name="zeichen">Ihre Nachricht (Noch 1024 Zeichen):</label></br>
 							<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben" cols="35" rows="4"
 							maxlength="1024" onKeyDown="textCounter(document.getElementById('nachricht'), document.getElementById('zeichen'), 1024);" onKeyUp="textCounter(document.getElementById('nachricht'), document.getElementById('zeichen'), 1024);"></textarea></br>
 						</div>
 						<p id="lati" class="lalo" name="lati" hidden></p>
 						<p id="longi" class="lalo" name="longi" hidden></p>
-						<a href="#" class="btn btn-sm btn-blue" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
-						<a class="btn btn-sm btn-blue" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
+						<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
+						<a class="btn btn-sm btn-primary btn-lg btn-neu" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
 						<script>
 							function hilfeAnzeigen() {
 								alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
@@ -48,12 +48,12 @@
 							</span>
 						</label>
 					</br></br>
-					<label>Oder manuell eingeben:</label>
+					<label class="ueberschrift">Oder manuell eingeben:</label>
 				</br>
 				<div class="form-group">
-					<label>Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
+					<label id="zeichen">Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
 					<p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128"></p>
-					<input type="button" class="btn btn-sm btn-blue" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();">
+					<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();">
 				</div>
 				<script type="text/javascript">
 					function aktivieren() {
@@ -78,7 +78,7 @@
 				<div align="right">
 					<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
 				</div>
-				<p><input type="submit" id="weiter" class="btn btn-blue" name="submit" style="float:right" value="Weiter"></p><br></br></br>
+				<p><input type="submit" id="weiter" class="btn btn-primary btn-lg" disabled name="submit" style="float:right" value="Weiter"></p><br></br></br>
 			</form>
 		</div>
 		<div class="col-md-6 column mapdiv"></br>
@@ -232,15 +232,8 @@ function addressByCoords(eins, zwei) {
 function setDorsten(){
 	lati.innerHTML = 51.66996827834537;
 	longi.innerHTML = 6.969115639564525;
-/*	
 	lonLat = new OpenLayers.LonLat(longi, lati)
 	.transform(
-		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-		map.getProjectionObject() //to Spherical Mercator Projection
-		);
-*/	
-	lonLat = new OpenLayers.LonLat(longi.innerHTML, lati.innerHTML);
-	lonLat.transform(
 		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
 		map.getProjectionObject() //to Spherical Mercator Projection
 		);
@@ -257,12 +250,13 @@ function setDorsten(){
 </script>
 </div>
 </div>
-<form id="my-awesome-dropzone" action="upload.php" class="dropzone">
+<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
 	<div class="dropzone-previews"></div>
 	<div class="fallback"> <!--   this is the fallback if JS isn't working -->
 		<input name="file" type="file">
 	</div>
 </form>
+
 <script>
 	// myDropzone is the configuration for the element that has an id attribute
 	// with the value my-dropzone (or myDropzone)
@@ -296,11 +290,7 @@ function setDorsten(){
 	// on document ready
 	$(function() {
 		mapping();
-		if (document.getElementById("schadensort").value==""){
-			deaktivieren("change");
-		} else {
-			aktivieren();
-		}
+		deaktivieren('change');
 		localStorage.setItem('foto','');
 	});
 </script>
