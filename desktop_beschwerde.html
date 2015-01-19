@@ -2,267 +2,103 @@
 	<script type="text/javascript">
 		function sichern() {
 			localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
-				//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
-				localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
-				localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
-				localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
-				document.getElementById("my-awesome-dropzone").submit();
-				location.href = "index.php?inc=kontrolle";
-			}
-
-			function textCounter(field, countfield, maxlimit) {
-				countfield.innerHTML = "Ihre Nachricht (Noch " + (maxlimit - field.value.length) + " Zeichen)";
-			}
-		</script>
-		<div class="container jumbotron">
-			<div class="row clearfix">
-				<div class="ueberschrift">
-					<h3>
-						Bitte geben Sie den Schadensort an.
-					</h3>
-					<h4>
-						*Pflichtfelder
-					</h4>
-				</div>
+			//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
+			localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
+			localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
+			localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
+			document.getElementById("my-awesome-dropzone").submit();
+			location.href = "index.php?inc=kontrolle";
+		}
+	</script>
+	<div class="container jumbotron">
+		<div class="row clearfix">
+			<div class="ueberschrift">
+				<h3>
+					Bitte geben Sie den Schadensort an.
+				</h3>
+				<h4>
+					*Pflichtfelder
+				</h4>
 			</div>
-			<div class="row clearfix">
-				<div class="col-md-6 column">
-					<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
-						<div class="form-group" id="divnachricht">
-                            <label id="zeichen" name="zeichen">Ihre Nachricht (Noch 1024 Zeichen):</label></br>
-							<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben" cols="35" rows="4"
-							maxlength="1024" onKeyDown="textCounter(document.getElementById('nachricht'), document.getElementById('zeichen'), 1024);" onKeyUp="textCounter(document.getElementById('nachricht'), document.getElementById('zeichen'), 1024);"></textarea></br>
-						</div>
-						<p id="lati" class="lalo" name="lati" hidden></p>
-						<p id="longi" class="lalo" name="longi" hidden></p>
-						<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
-						<a class="btn btn-sm btn-primary btn-lg btn-neu" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
-						<script>
-							function hilfeAnzeigen() {
-								alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
-							}
-						</script>
-						<label id="gpsfail" hidden>
-							<span> Ihr Standort konnte leider nicht bestimmt werden.
-								<a onclick="hilfeAnzeigen()" type="button">?</a>
-							</span>
-						</label>
-					</br></br>
-					<label class="ueberschrift">Oder manuell eingeben:</label>
-				</br>
-				<div class="form-group">
-					<label id="zeichen">Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
-					<p><input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128"></p>
-					<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();">
-				</div>
-				<script type="text/javascript">
-					function aktivieren() {
-						var weiter = document.getElementById("weiter");
-						weiter.removeAttribute("disabled");
-						document.getElementById("rueckmeldung").setAttribute("hidden", true);
-					}
-
-					function deaktivieren(reason) {
-						var weiter = document.getElementById("weiter");
-						weiter.setAttribute("disabled", true);
-						var rueckmeldung = document.getElementById("rueckmeldung");
-						rueckmeldung.removeAttribute("hidden");
-						if (reason == "change") {
-							rueckmeldung.innerHTML = "Bitte geben Sie einen Schadensort an.";
-						}
-						if (reason == "nichtDorsten") {
-							rueckmeldung.innerHTML = "Der angegebene Schadensort ist nicht in Dorsten.";
-						}
-					}
-				</script>
-				<div align="right">
-					<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
-				</div>
-				<p><input type="submit" id="weiter" class="btn btn-primary btn-lg" disabled name="submit" style="float:right" value="Weiter"></p><br></br></br>
-			</form>
 		</div>
-		<div class="col-md-6 column mapdiv"></br>
-			<p><div id="basicMap" class="mapcontainer"></div></p>
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+				<form role="form" method="post" name="form" id="form" action="" onsubmit="sichern(); return false;">
+					<div class="form-group" id="divnachricht">
+						<label id="zeichen" name="zeichen">Ihre Nachricht (Noch 1024 Zeichen):</label><br>
+						<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben" cols="35" rows="4"
+						maxlength="1024"></textarea><br>
+					</div>
+					<p id="lati" class="lalo" name="lati" hidden></p>
+					<p id="longi" class="lalo" name="longi" hidden></p>
+					<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
+					<a class="btn btn-sm btn-primary btn-lg btn-neu" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
+					<script>
+						function hilfeAnzeigen() {
+							alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
+						}
+					</script>
+					<label id="gpsfail" hidden>
+						<span> Ihr Standort konnte leider nicht bestimmt werden.
+							<a onclick="hilfeAnzeigen()" type="button">?</a>
+						</span>
+					</label>
+					<br><br>
+					<label class="ueberschrift">Oder manuell eingeben:</label>
+					<br>
+					<div class="form-group">
+						<label id="zeichen">Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
+						<p>
+							<input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128">
+						</p>
+						<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();">
+					</div>
+					<script type="text/javascript">
+						function aktivieren() {
+							var weiter = $("#weiter");
+							weiter.removeAttr("disabled");
+							$("#rueckmeldung").attr("hidden", true);
+						}
 
-			<script type="text/javascript">
-				var lati = document.getElementById("lati");
-				var longi = document.getElementById("longi");
-				var markers = new OpenLayers.Layer.Markers("Markers");
-				function mapping() {
-					map = new OpenLayers.Map("basicMap");
-					map.addLayer(new OpenLayers.Layer.OSM());
-					var lonLat = new OpenLayers.LonLat(6.967222, 51.668889)
-					.transform(
-						new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-						map.getProjectionObject() //to Spherical Mercator Projection
-					);
-					map.setCenter(lonLat, 13);
-					var click = new OpenLayers.Control.Click();
-					map.addControl(click);
-					click.activate();
-					textCounter(document.getElementById('nachricht'), document.getElementById('zeichen'), 1024);
-				}
-						//Set up a click handler
-						OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
-							defaultHandlerOptions: {
-								'single': true,
-								'double': false,
-								'pixelTolerance': 8,
-								'stopSingle': false,
-								'stopDouble': false
-							}, initialize: function (options) {
-								this.handlerOptions = OpenLayers.Util.extend(
-									{}, this.defaultHandlerOptions
-									);
-								OpenLayers.Control.prototype.initialize.apply(
-									this, arguments
-									);
-								this.handler = new OpenLayers.Handler.Click(
-									this, {
-										'click': this.trigger
-									}, this.handlerOptions
-									);
-							}, trigger: function (e) {
-								//A click happened!
-								var lonlat = map.getLonLatFromViewPortPx(e.xy)
-								lonlat.transform(
-									new OpenLayers.Projection("EPSG:900913"),
-									new OpenLayers.Projection("EPSG:4326")
-									);
-								lati.innerHTML = lonlat.lat;
-								longi.innerHTML = lonlat.lon;
-								addressByCoords(lonlat.lat, lonlat.lon);
-								lonLat = new OpenLayers.LonLat(lonlat.lon, lonlat.lat)
-								.transform(
-									new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-									map.getProjectionObject() //to Spherical Mercator Projection
-									);
-								if (markers) {
-									markers.destroy();
-									markers = new OpenLayers.Layer.Markers("Markers");
-								}
-								markers.addMarker(new OpenLayers.Marker(lonLat));
-								map.addLayer(markers);
+						function deaktivieren(reason) {
+							var weiter = $("#weiter");
+							weiter.attr("disabled", true);
+							var rueckmeldung = $("#rueckmeldung");
+							rueckmeldung.removeAttr("hidden");
+							if (reason == "change") {
+								rueckmeldung.html("Bitte geben Sie einen Schadensort an.");
 							}
-						});
+							if (reason == "nichtDorsten") {
+								rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
+							}
+						}
+					</script>
+					<div align="right">
+						<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
+					</div>
+					<p><input type="submit" id="weiter" class="btn btn-primary btn-lg" disabled name="submit" style="float:right" value="Weiter"></p><br><br><br>
+				</form>
+			</div>
+			<div class="col-md-6 column mapdiv"><br>
+				<p>
+					<div id="basicMap" class="mapcontainer"></div>
+				</p>
+				<script type="text/javascript" src="js/desktop_complaint_functions.js"></script>
+			</div>
+		</div>
+		<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
+			<div class="dropzone-previews"></div>
+			<div class="fallback"> <!--   this is the fallback if JS isn't working -->
+				<input name="file" type="file">
+			</div>
+		</form>
 
-function leeren() {
-	document.getElementById("schadensort").value = "";
-}
-function gpsCheck() {
-	if (document.getElementById("schadensort").value == "") {
-		document.getElementById("gpsfail").removeAttribute("hidden");
-	}
-}
-
-function init() {
-	var mapnik = new OpenLayers.Layer.OSM();
-	map.addLayer(mapnik);
-	navigator.geolocation.getCurrentPosition(function (position) {
-		lati.innerHTML = position.coords.latitude;
-		longi.innerHTML = position.coords.longitude;
-		addressByCoords(position.coords.latitude, position.coords.longitude);
-		lonLat = new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude)
-		.transform(
-			new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-			map.getProjectionObject() //to Spherical Mercator Projection
-			);
-		if (markers) {
-			markers.destroy();
-			markers = new OpenLayers.Layer.Markers("Markers");
-		}
-		markers.addMarker(new OpenLayers.Marker(lonLat));
-		map.setCenter(lonLat, 16);
-		map.addLayer(markers);
-		document.getElementById("gpsfail").setAttribute("hidden", true);
-	});
-}
-
-function coordsByAddress() {
-	var address = document.getElementById('schadensort').value;
-	if (address=="Dorsten (allgemein)"){
-		alert("ok");
-	} else{
-		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'address': address}, function (results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				lati.innerHTML = results[0].geometry.location.lat();
-				longi.innerHTML = results[0].geometry.location.lng();
-				addressByCoords(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-				lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(), results[0].geometry.location.lat())
-				.transform(
-					new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-					map.getProjectionObject() //to Spherical Mercator Projection
-					);
-				map.setCenter(lonLat, 16);
-				if (markers) {
-					markers.destroy();
-					markers = new OpenLayers.Layer.Markers("Markers");
-				}
-				markers.addMarker(new OpenLayers.Marker(lonLat));
-				map.addLayer(markers);
-			} else {
-				alert('Die Adresse konnte leider nicht gefunden werden.');
-			}
-		});
-	}
-}
-
-function addressByCoords(eins, zwei) {
-	var geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(eins, zwei);
-	geocoder.geocode({'latLng': latlng}, function (results, status) {
-		if (results[0]) {
-			var address = document.getElementById('schadensort');
-			addressResult = results[0].formatted_address;
-			if (addressResult.indexOf(" Dorsten, Deutschland") == -1) {
-				deaktivieren("nichtDorsten");
-			} else {
-				aktivieren();
-			}
-			if (addressResult.indexOf(", Deutschland") == -1) {
-			} else {
-				addressResult = addressResult.replace(', Deutschland', '');
-			}
-			address.value = addressResult;
-		}
-	});
-}
-
-function setDorsten(){
-	lati.innerHTML = 51.66996827834537;
-	longi.innerHTML = 6.969115639564525;
-	lonLat = new OpenLayers.LonLat(longi, lati)
-	.transform(
-		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
-		map.getProjectionObject() //to Spherical Mercator Projection
-		);
-	map.setCenter(lonLat, 11);
-	if (markers) {
-		markers.destroy();
-		markers = new OpenLayers.Layer.Markers("Markers");
-	}
-	markers.addMarker(new OpenLayers.Marker(lonLat));
-	map.addLayer(markers);
-	document.getElementById("schadensort").value="Dorsten (allgemein)";
-	aktivieren();
-}
-</script>
-</div>
-</div>
-<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
-	<div class="dropzone-previews"></div>
-	<div class="fallback"> <!--   this is the fallback if JS isn't working -->
-		<input name="file" type="file">
-	</div>
-</form>
-
-<script>
-	// myDropzone is the configuration for the element that has an id attribute
-	// with the value my-dropzone (or myDropzone)
-	Dropzone.options.myAwesomeDropzone = {
-		init: function () {
-			this.on("addedfile", function (file) {
+		<script>
+			// myDropzone is the configuration for the element that has an id attribute
+			// with the value my-dropzone (or myDropzone)
+			Dropzone.options.myAwesomeDropzone = {
+				init: function () {
+					this.on("addedfile", function (file) {
 				// Create the remove button
 				var removeButton = Dropzone.createElement("<button>Löschen</button>");
 				// Capture the Dropzone instance as closure.
@@ -277,13 +113,13 @@ function setDorsten(){
 					// If you want to the delete the file on the server as well,
 					// you can do the AJAX request here.
 				});
-				// Add the button to the file preview element.
-				file.previewElement.appendChild(removeButton);
-			});
-}
-};
-</script>
-</div>
+					// Add the button to the file preview element.
+					file.previewElement.appendChild(removeButton);
+				});
+				}
+			};
+		</script>
+	</div>
 </div>
 
 <script type="text/javascript">

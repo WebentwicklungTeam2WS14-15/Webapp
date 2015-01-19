@@ -15,8 +15,8 @@
 	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-	<script type="text/javascript" src="dropzone.js"></script>
-	<script type="text/javascript" src="tom.js"></script>
+	<script type="text/javascript" src="js/dropzone.js"></script>
+	<script type="text/javascript" src="js/tom.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script src="http://openlayers.org/api/OpenLayers.js"></script>
 </head>
@@ -72,9 +72,9 @@
 
 	<div id="footer">
 		<h5 id="link">
-			Version 0.70 | 
+			Version 0.70 |
 			<a href="http://www.dorsten.de/" id="link2">www.dorsten.de</a>
-			| 
+			|
 			<a href="./index.php?inc=impressum" id="link2">Impressum</a>
 		</h5>
 	</div>
