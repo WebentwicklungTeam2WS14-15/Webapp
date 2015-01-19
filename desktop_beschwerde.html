@@ -232,8 +232,15 @@ function addressByCoords(eins, zwei) {
 function setDorsten(){
 	lati.innerHTML = 51.66996827834537;
 	longi.innerHTML = 6.969115639564525;
+/*	
 	lonLat = new OpenLayers.LonLat(longi, lati)
 	.transform(
+		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+		map.getProjectionObject() //to Spherical Mercator Projection
+		);
+*/	
+	lonLat = new OpenLayers.LonLat(longi.innerHTML, lati.innerHTML);
+	lonLat.transform(
 		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
 		map.getProjectionObject() //to Spherical Mercator Projection
 		);
