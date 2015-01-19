@@ -112,7 +112,6 @@ function addAttachment($issueID,$filecontent,$type,$count) {
 	$args['issue_id'] = $issueID;
 	$extension = preg_replace("/image\//", "", $type);
 	$args['name'] = $issueID . "-ANHANG-" . $count . "." . $extension;
-	echo("TYPE: " . $type);
 	$args['file_type'] = $type;
 	$args['content'] = $filecontent;
 
@@ -133,7 +132,6 @@ function addAttachment($issueID,$filecontent,$type,$count) {
 		$result = array(
 			'error' => $e->faultstring
 			);
-		var_dump($result);
 	}
 }
 
