@@ -23,14 +23,14 @@
 <body>
 	<header>
 		<div class="bl">
-			<h4 id="link">
-				<a href="http://www.dorsten.de/" title="Zur Dorsten-Homepage">
+			<h5>
+				<a href="./index.php?inc=main" title="Startseite">
 					<img alt="" src="img/Logo.gif" id="logo">
 				</a>
 				<span id="bltext">Aktive Bürger Beteiligungs App</span>
-			</h4>
+			</h5>
 		</div>
-	</header>
+	</header><br/>
 
 	<?php
 	$include_subsite = $_GET['inc'];
@@ -70,16 +70,13 @@
 	}
 	?>
 
-	<footer>
-		<h5 align="center">
-			<b style="color: #8b8b8b">Version 0.65 | </b>
-			<a href="http://www.dorsten.de/" id="link">
-				<b style="color: #8b8b8b">www.dorsten.de</b>
-			</a>
-			| <a href="./index.php?inc=impressum" id="link">
-			<b style="color: #8b8b8b">Impressum</b>
-		</a>
-	</h5>
-</footer>
+	<div id="footer">
+		<h5 id="link">
+			Version 0.70 | 
+			<a href="http://www.dorsten.de/" id="link">www.dorsten.de</a>
+			| 
+			<a href="./index.php?inc=impressum" id="link">Impressum</a>
+		</h5>
+	</div>
 </body>
 </html>

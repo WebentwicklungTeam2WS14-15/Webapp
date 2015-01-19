@@ -1,18 +1,15 @@
 
 
 #logo{
-	margin-top: -20px;
-	/*margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: 10%;*/
+	//margin-top: -20px;
 	width: 80px;
 	position: absolute;
 }
 
 #link{
-	color: #F2F2F2;
+	color: #ffffff;
 	font-weight: lighter;
-	font-family: Verdana;
+	font-family: Helvetica;
 	font-size: 14px;
 }
 
@@ -21,6 +18,19 @@ body{
 	font-family: Verdana;
 	overflow-x: hidden;
 }
+
+#footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 35px;
+	background-color: #2E4D74;
+	text-align: center;
+	font-weight: bold;
+	font-family: Helvetica;
+	color: #ffffff;
+}
+
 
 #h2{
 text-align:left;
@@ -34,6 +44,7 @@ text-align:left;
 
 .imgbtn{
 	min-height: 60px;
+	width: 80%;
 }
 
 .btn{
@@ -42,7 +53,7 @@ text-align:left;
 
 a.btn.btn-block.btn-default button {
 	color: #FFFFFF;
-	background-color: #24245A;
+	background-color: #2E4D74;
 	border-radius:10px;
 	border-color:#FFFFFF;
 	text-align:center;
@@ -55,52 +66,38 @@ a.btn.btn-block.btn-default:active {
 
 a.btn.btn-block.btn-default:hover {
 	color: #FFFFFF;
-	background-color: #A4A4A4;
+	background-color: #17355B;
 }
+
+.btn.btn-sm.btn-blue{
+	margin-bottom: 5px;
+}
+
 .bl{
-	background-color: black;
+	//background-color: black;
+	background-color: #2E4D74;
 	width: 100%;
-	margin-top: 30px;
-	height: 23px;
+	margin-top: 0px;
+	height: 80px;
+	position: absolute;
+	top: 0;
 }
 
 #bltext{
+	position: absolute;
 	margin-left: 90px;
-	line-height: 23px;
+	margin-top: 25px !important;
 	white-space: nowrap;
+	color: #ffffff;
+	font-family: Helvetica;
 }
 
 .btnicon{
 	border: 0;
-	width: 40px;
-	float: left;
-	margin-right: 15px;
-	overflow: hidden;
-}
-.btnicon2{
-	width: 30px !important;
-}
-
-a:link .btnicon {
-			filter: brightness(1);
-			-webkit-filter: brightness(1)
-			-moz-filter: brightness(1);
-			-ms-filter: brightness(1);
-			-o-filter: brightness(1);
-} 
-a:visited .btnicon {
-			filter: brightness(4);
-			-webkit-filter: brightness(4);
-			-moz-filter: brightness(4);
-			-o-filter: brightness(4);
-			-ms-filter: brightness(4);
-} 
-a:hover .btnicon {
-			filter: brightness(4);
-			-webkit-filter: brightness(4);
-			-moz-filter: brightness(4)
-			-o-filter: brightness(4)
-			-ms-filter: brightness(4);
+	width: 70%;
+	//float: left;
+	//margin-right: 15px;
+	//overflow: hidden;
 }
 
 .btn-yellow { 
@@ -124,21 +121,21 @@ a:hover .btnicon {
 
 .btn-blue  {
 	color: #FFFFFF; 
-	background-color:#5882FA;
-	border-color:#5882FA;
+	background-color:#2E4D74;
+	border-color:#2E4D74;
 	border-radius:10px;
 }
 
 .btn-blue:active{
 	color: #FFFFFF; 
-	background-color:#5882FA;
-	border-color:#5882FA;
+	background-color:#17355B;
+	border-color:#17355B;
 }
 
 .btn-blue:hover{
 	color: #FFFFFF; 
-	background-color:#5882FA;
-	border-color:#5882FA;
+	background-color:#17355B;
+	border-color:#17355B;
 }
 
 .form-group{
@@ -163,7 +160,8 @@ a:hover .btnicon {
 }
 
 .jumbotron{
-	box-shadow: 10px 10px 15px #cccccc;
+	//box-shadow: 10px 10px 15px #cccccc;
+	background-color: #F2F2F2;
 }
 
 .lalo{
@@ -178,18 +176,58 @@ a:hover .btnicon {
 	text-align: right;
 }
 .inhalt{
-font-size:1em !important;
-}
-.namen{
 font-size:0.8em !important;
 }
-
-
+.namen{
+font-size:0.6em !important;
+}
+p { 
+line-height: 150%; 
+}
+h6{
+	font-size: 14px;
+}
+tbody{
+font-size: 1.0em;
+}
+h4{
+	font-size: 9px;
+}
 #nachricht{
     resize: none;
 }
 
+.btntable{
+	display: table;
+	font-size: 14px;
+	font-family: Verdana;
+}
 
+.cell{
+	width: 50% !important;
+	vertical-align: top;
+	text-align: center;
+}
+
+.verd{
+	font-family: Verdana;
+}
+
+.subtitle{
+	font-size: 14px;
+}
+
+.dropzone{
+	display: table-cell;
+	width: 90%;
+	height: 150px;
+	font-size: 0;
+	line-height: 0;
+}
+
+.bold{
+	font-weight: bold !important;
+}
 
 @media all 
 and (min-device-width : 5px)
@@ -217,18 +255,6 @@ and (max-device-width : 1000px)
 	box-shadow: 0px 0px 0px #888888;
 }
 
-h3{
-	font-size: 18px;
-}
-
-h4{
-	font-size: 14px;
-}
-
-.goleft{
-	text-align: left !important;
-}
-
 .pos{
 	text-align: center;
 }
@@ -237,4 +263,22 @@ a.btn.btn-block.btn-default{
 	min-height: 60px;
 }
 
+.btnicon{
+	width: 90%;
+}
+
+.cell {
+        float: left !important;
+        width: 50% !important;
+    }
+
+}
+
+
+@media all and (max-width: 1000px)  {
+    .cell {
+        float: left !important;
+        width: 50% !important;
+    }
+	
 }

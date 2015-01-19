@@ -16,46 +16,54 @@
 	}
 </script>
 <center>
-	<div class="container jumbotron" >
+	<div class="container jumbotron">
 		<div class="row clearfix">
 			<div class="col-md-3 column"></div>
 			<div class="col-md-6 column">
-				<h3>
+				<h3 style="font-family: Verdana">
 					Willkommen! Um welche Art von Anregung handelt es sich?
 				</h3>
 			</div>
 			<div class="col-md-3 column"></div>
-		</div>
+		</div><br></br>
 		<div class="row clearfix">
-			<div class="col-md-4 column"></div>
-			<div class="col-md-4 column"><br></br>
-				<a href="?inc=persdata" class="btn btn-block btn-default imgbtn" type="button" onclick="briefkasten();">
-					<img class="btnicon" src="img/think.png">
-					<span>Briefkasten Bürgermeister </br>(für allgemeine Anregungen, ausgefallene Ideen, Lob und Kritik)</span>
+			<div class="col-md-2 column"></div>
+			<div class="col-md-8 column btntable">
+				<table style="word-break:normal;">
+				<tr><td class="cell"><br/>
+				<a href="?inc=persdata" class="btn btn-default imgbtn" type="button" onclick="strasse();">
+					<img class="btnicon" src="img/Strassenschaeden.svg"/>
 				</a>
-				<a href="?inc=persdata" class="btn btn-block btn-default imgbtn" type="button" onclick="strasse();">
-					<img class="btnicon" src="img/Straße.png">
-					<span>Meldung von Straßenschäden</span>
+				<div>Straßenschäden</div>
+				</td><td class="cell"><br/>
+				<a href="?inc=persdata" class="btn btn-default imgbtn" type="button" onclick="spielplatz();">
+					<img class="btnicon" src="img/Spielplaetze.svg"/>
 				</a>
-				<a href="?inc=rwe" class="btn btn-block btn-default imgbtn" type="button">
-					<img class="btnicon" src="img/light.png">
-					<span>Störungsmeldung Straßenbeleuchtung</span>
+				<div>Schäden auf Spielplätzen</div>
+				</td></tr><tr><td class="cell"><br/>
+				
+				<a href="?inc=persdata" class="btn btn-default imgbtn" type="button" onclick="parken();">
+					<img class="btnicon" src="img/Parkuhren.svg"/>
 				</a>
-				<a href="?inc=persdata" class="btn btn-default btn-block imgbtn" type="button" onclick="spielplatz();">
-					<img class="btnicon" src="img/play.png">
-					<span>Meldung von Schäden auf Spielplätzen</span>
+				<div>Schäden an Parkautomaten und -uhren</div>
+				</td><td class="cell"><br/><a href="?inc=rwe" class="btn btn-default imgbtn" type="button" style="white-space:normal">
+					<img class="btnicon" src="img/Strassenbeleuchtung2.svg"/>
 				</a>
-				<a href="?inc=persdata" class="btn btn-block btn-default imgbtn" type="button" onclick="parken();">
-					<img class="btnicon" src="img/park.png">
-					<span>Meldung von Schäden an Parkautomaten und Parkuhren</span>
+				<div>Störung Straßenbeleuchtung</div>
+				</td></tr><tr><td class="cell"><br/>
+				
+				<a href="?inc=persdata" class="btn btn-default imgbtn" type="button" onclick="schilder();">
+					<img class="btnicon" src="img/Strassenschilder.svg"/>
 				</a>
-				<a href="?inc=persdata" class="btn btn-block btn-default imgbtn" type="button" onclick="schilder();">
-					<img class="btnicon" src="img/sign.png">
-					<span>Meldung von Schäden an Verkehrsschildern</span>
+				<div>Schäden an Verkehrsschildern</div>
+				</td><td class="cell"><br/>
+				<a href="?inc=persdata" class="btn btn-default imgbtn" type="button" onclick="briefkasten();">
+					<img class="btnicon" src="img/Sonstiges.svg"/>
 				</a>
-			</br>
+				<div>Briefkasten Bürgermeister (Sonstiges)</div>
+				</td></tr></table>
+			</div>
+			<div class="col-md-2 column"></div>
 		</div>
-		<div class="col-md-4 column"></div>
-	</div>
 </div>
 </center>
