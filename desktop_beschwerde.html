@@ -1,15 +1,5 @@
+<script type="text/javascript" src="js/desktop_complaint_functions.js"></script>
 <div>
-	<script type="text/javascript">
-		function sichern() {
-			localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
-			//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
-			localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
-			localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
-			localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
-			document.getElementById("my-awesome-dropzone").submit();
-			location.href = "index.php?inc=kontrolle";
-		}
-	</script>
 	<div class="container jumbotron">
 		<div class="row clearfix">
 			<div class="ueberschrift">
@@ -31,16 +21,11 @@
 					</div>
 					<p id="lati" class="lalo" name="lati" hidden></p>
 					<p id="longi" class="lalo" name="longi" hidden></p>
-					<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" onclick="leeren();init();gpsCheck();" type="button">Aktuellen Standort verwenden (GPS)</a> oder
-					<a class="btn btn-sm btn-primary btn-lg btn-neu" onclick="setDorsten();" type="button">"Dorsten" als Ort verwenden</a>
-					<script>
-						function hilfeAnzeigen() {
-							alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
-						}
-					</script>
+					<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" id="useGps" type="button">Aktuellen Standort verwenden (GPS)</a> oder
+					<a class="btn btn-sm btn-primary btn-lg btn-neu" id="setDorsten" type="button">"Dorsten" als Ort verwenden</a>
 					<label id="gpsfail" hidden>
 						<span> Ihr Standort konnte leider nicht bestimmt werden.
-							<a onclick="hilfeAnzeigen()" type="button">?</a>
+							<a id="gpsfailHelp" type="button">?</a>
 						</span>
 					</label>
 					<br><br>
@@ -51,28 +36,8 @@
 						<p>
 							<input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128">
 						</p>
-						<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" onclick="coordsByAddress();">
+						<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" id="showAddrOnMap">
 					</div>
-					<script type="text/javascript">
-						function aktivieren() {
-							var weiter = $("#weiter");
-							weiter.removeAttr("disabled");
-							$("#rueckmeldung").attr("hidden", true);
-						}
-
-						function deaktivieren(reason) {
-							var weiter = $("#weiter");
-							weiter.attr("disabled", true);
-							var rueckmeldung = $("#rueckmeldung");
-							rueckmeldung.removeAttr("hidden");
-							if (reason == "change") {
-								rueckmeldung.html("Bitte geben Sie einen Schadensort an.");
-							}
-							if (reason == "nichtDorsten") {
-								rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
-							}
-						}
-					</script>
 					<div align="right">
 						<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
 					</div>
@@ -83,7 +48,6 @@
 				<p>
 					<div id="basicMap" class="mapcontainer"></div>
 				</p>
-				<script type="text/javascript" src="js/desktop_complaint_functions.js"></script>
 			</div>
 		</div>
 		<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
@@ -128,5 +92,27 @@
 		mapping();
 		deaktivieren('change');
 		localStorage.setItem('foto','');
+
+		$('#nachricht').on('keydown keyup', function() {
+			textCounter($('#nachricht'), $('#zeichen'), 1024);
+		});
+
+		$('#useGps').click(function() {
+			leeren();
+			init();
+			gpsCheck();
+		});
+
+		$('#setDorsten').click(function() {
+			setDorsten();
+		});
+
+		$('#showAddrOnMap').click(function() {
+			coordsByAddress();
+		});
+
+		$('#gpsfailHelp').click(function() {
+			hilfeAnzeigen();
+		});
 	});
 </script>

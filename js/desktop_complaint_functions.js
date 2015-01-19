@@ -1,24 +1,55 @@
+function sichern() {
+	localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
+	//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
+	localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
+	localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
+	localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
+	$("#my-awesome-dropzone").submit();
+	location.href = "index.php?inc=kontrolle";
+}
+
 function textCounter(field, countfield, maxlimit) {
 	countfield.html("Ihre Nachricht (Noch " + (maxlimit - field.val().length) + " Zeichen)");
 }
 
-$('#nachricht').on('keydown keyup', function() {
-	textCounter($('#nachricht'), $('#zeichen'), 1024);
-});
+function hilfeAnzeigen() {
+	alert("GPS-Akivierung unter Andriod:\nEinstellungen - Standort - Ein \n\nGPS-Akivierung unter iOS:\nEinstellungen - Datenschutz - Ortungsdienst - Ein\n\nGPS-Akivierung unter Windows:\nEinstellungen - Ortung - Ein\n\nGPS-Akivierung unter Amazon:\nEinstellungen - Standortbasierte Dienste - Standortbasierte Dienste aktivieren - Ein\n\nGPS-Akivierung in Google Chrome für Desktop:\nRechts oben auf die drei Striche - Einstellungen - Erweiterte Einstellungen anzeigen - \nInhaltseinstellungen - Standort - Abrufen Ihrers physikalischen Standortes für alle Webseiten zulassen");
+}
+
+var latDorsten = 51.668889;
+var lonDorsten = 6.967222;
 
 var lati = $('#lati');
 var longi = $('#longi');
 var markers = new OpenLayers.Layer.Markers("Markers");
 
+function aktivieren() {
+	$("#weiter").removeAttr("disabled");
+	$("#rueckmeldung").attr("hidden", true);
+}
+
+function deaktivieren(reason) {
+	$("#weiter").attr("disabled", true);
+	var rueckmeldung = $("#rueckmeldung");
+	rueckmeldung.removeAttr("hidden");
+
+	if (reason == "change") {
+		rueckmeldung.html("Bitte geben Sie einen Schadensort an.");
+	}
+	if (reason == "nichtDorsten") {
+		rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
+	}
+}
+
 // Instantiate map and show it within the defined container
 function mapping() {
 	map = new OpenLayers.Map("basicMap");
 	map.addLayer(new OpenLayers.Layer.OSM());
-	var lonLat = new OpenLayers.LonLat(6.967222, 51.668889)
+	var lonLat = new OpenLayers.LonLat(lonDorsten, latDorsten)
 	.transform(
 		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
 		map.getProjectionObject() //to Spherical Mercator Projection
-	);
+		);
 	map.setCenter(lonLat, 13);
 	var click = new OpenLayers.Control.Click();
 	map.addControl(click);
@@ -50,8 +81,8 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 			new OpenLayers.Projection("EPSG:900913"),
 			new OpenLayers.Projection("EPSG:4326")
 			);
-		lati.innerHTML = lonlat.lat;
-		longi.innerHTML = lonlat.lon;
+		lati.html(lonlat.lat);
+		longi.html(lonlat.lon);
 		addressByCoords(lonlat.lat, lonlat.lon);
 		lonLat = new OpenLayers.LonLat(lonlat.lon, lonlat.lat)
 		.transform(
@@ -75,8 +106,8 @@ function init() {
 	var mapnik = new OpenLayers.Layer.OSM();
 	map.addLayer(mapnik);
 	navigator.geolocation.getCurrentPosition(function (position) {
-		lati.innerHTML = position.coords.latitude;
-		longi.innerHTML = position.coords.longitude;
+		lati.html(position.coords.latitude);
+		longi.html(position.coords.longitude);
 		addressByCoords(position.coords.latitude, position.coords.longitude);
 		lonLat = new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude)
 		.transform(
@@ -95,15 +126,15 @@ function init() {
 }
 
 function coordsByAddress() {
-	var address = document.getElementById('schadensort').value;
-	if (address=="Dorsten (allgemein)"){
+	var address = $('#schadensort').val();
+	if (address == "Dorsten (allgemein)") {
 		alert("ok");
 	} else{
 		var geocoder = new google.maps.Geocoder();
 		geocoder.geocode({'address': address}, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				lati.innerHTML = results[0].geometry.location.lat();
-				longi.innerHTML = results[0].geometry.location.lng();
+				lati.html(results[0].geometry.location.lat());
+				longi.html(results[0].geometry.location.lng());
 				addressByCoords(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 				lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(), results[0].geometry.location.lat())
 				.transform(
@@ -150,20 +181,17 @@ function addressByCoords(eins, zwei) {
 }
 
 function setDorsten(){
-	lati.innerHTML = 51.66996827834537;
-	longi.innerHTML = 6.969115639564525;
-	lonLat = new OpenLayers.LonLat(longi, lati)
+	var latDorstenCenter = 51.66996827834537;
+	var lonDorstenCenter = 6.969115639564525;
+	lati.html(latDorstenCenter);
+	longi.html(lonDorstenCenter);
+	var lonLat = new OpenLayers.LonLat(lonDorstenCenter, latDorstenCenter)
 	.transform(
 		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
 		map.getProjectionObject() //to Spherical Mercator Projection
 		);
-	map.setCenter(lonLat, 11);
-	if (markers) {
-		markers.destroy();
-		markers = new OpenLayers.Layer.Markers("Markers");
-	}
-	markers.addMarker(new OpenLayers.Marker(lonLat));
-	map.addLayer(markers);
-	document.getElementById("schadensort").value="Dorsten (allgemein)";
+	map.setCenter(lonLat, 16);
+	if (markers) markers.destroy();
+	$("#schadensort").val("Dorsten (allgemein)");
 	aktivieren();
 }
