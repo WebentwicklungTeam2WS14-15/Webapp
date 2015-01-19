@@ -78,7 +78,7 @@
 				<div align="right">
 					<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
 				</div>
-				<p><input type="submit" id="weiter" class="btn btn-blue" disabled name="submit" style="float:right" value="Weiter"></p><br></br></br>
+				<p><input type="submit" id="weiter" class="btn btn-blue" name="submit" style="float:right" value="Weiter"></p><br></br></br>
 			</form>
 		</div>
 		<div class="col-md-6 column mapdiv"></br>
@@ -296,7 +296,11 @@ function setDorsten(){
 	// on document ready
 	$(function() {
 		mapping();
-		deaktivieren('change');
+		if (document.getElementById("schadensort").value==""){
+			deaktivieren("change");
+		} else {
+			aktivieren();
+		}
 		localStorage.setItem('foto','');
 	});
 </script>
