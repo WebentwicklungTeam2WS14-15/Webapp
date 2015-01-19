@@ -129,18 +129,22 @@ function addressByCoords(eins, zwei) {
 	var latlng = new google.maps.LatLng(eins, zwei);
 	geocoder.geocode({'latLng': latlng}, function (results, status) {
 		if (results[0]) {
-			var address = document.getElementById('schadensort');
 			addressResult = results[0].formatted_address;
-			if (addressResult.indexOf(" Dorsten, Deutschland") == -1) {
+			if (addressResult.indexOf(" Dorsten, Deutschland") == -1 && addressResult.indexOf(" Dorsten, Germany") == -1) {
 				deaktivieren("nichtDorsten");
 			} else {
 				aktivieren();
 			}
-			if (addressResult.indexOf(", Deutschland") == -1) {
-			} else {
+
+			if (addressResult.indexOf(', Germany') != -1) {
+				addressResult = addressResult.replace(', Germany', '');
+			}
+
+			if (addressResult.indexOf(', Deutschland') != -1) {
 				addressResult = addressResult.replace(', Deutschland', '');
 			}
-			address.value = addressResult;
+
+			$('#schadensort').val(addressResult);
 		}
 	});
 }
