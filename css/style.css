@@ -43,8 +43,8 @@ text-align:left;
 }
 
 .imgbtn{
-	min-height: 60px;
-	width: 80%;
+	height: 250px;
+    width: 250px;
 }
 
 .btn{
@@ -94,10 +94,10 @@ a.btn.btn-block.btn-default:hover {
 
 .btnicon{
 	border: 0;
-	width: 70%;
-	//float: left;
-	//margin-right: 15px;
-	//overflow: hidden;
+	width: 100%;
+	/*float: left;*/
+	/*margin-right: 15px;*/
+	/*overflow: hidden;*/
 }
 
 .btn-yellow { 
@@ -158,10 +158,12 @@ a.btn.btn-block.btn-default:hover {
 .startinfo{
 	width: 55%;
 }
-
+.container.jumbotron{
+    background-color: #ffffff;
+}
 .jumbotron{
-	//box-shadow: 10px 10px 15px #cccccc;
-	background-color: #F2F2F2;
+	/*box-shadow: 10px 10px 15px #cccccc;*/
+	background-color: #ffffff;
 }
 
 .lalo{
