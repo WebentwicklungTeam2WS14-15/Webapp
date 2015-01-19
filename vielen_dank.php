@@ -4,7 +4,7 @@ include("inc/config.php");
 $data = prepareUserData();
 //Add new issue
 $issueID = addIssue($data);
-var_dump($issueID);
+//var_dump($issueID);
 //Check for attachments, add all found attachments
 if($_POST['attachmentCount'] > 0) {
 	for($i = 1; $i < $_POST['attachmentCount']+1; $i++) {
