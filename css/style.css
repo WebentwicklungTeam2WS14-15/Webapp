@@ -50,8 +50,8 @@ text-align:left;
 }
 
 .imgbtn{
-	height: 250px;
-    width: 250px;
+	height: 50%;
+    width: 50%;
     border-radius: 0px;
 }
 .imgbtn:hover{
@@ -62,7 +62,7 @@ text-align:left;
 
 .btn{
 	white-space: normal;
-    width: 250px;
+    width: 65%;
     font-size: 12pt;
 }
 
@@ -322,9 +322,9 @@ div.ueberschrift{
 div.meldeart{
     font-family: Verdana;
     font-size: 12pt;
-    width: 250px;
+    width: 90%;
     line-height: 14pt;
-    margin: 15px;
+    margin: 20px;
 }
 label.hinweis{
     font-size: 10pt;
