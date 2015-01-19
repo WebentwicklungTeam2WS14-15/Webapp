@@ -120,9 +120,14 @@
 												<input id="attachment1" name="attachment1" hidden>
 												<input id="anonym" name="anonym" hidden>
 												<script type="text/javascript">
+													for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
+														if(fotoElement>0){
+															document.write("<input name='attachment"+fotoElement+"' value='data:image"+fotos[fotoElement]+"' hidden>");
+															document.write('<input name="attachmentCount" value="'+fotos.length+" hidden>');
+														}
+													}
 													document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
 												</script>
-												<input name="attachmentCount" value="0" hidden>
 											</tbody>
 										</table><br><br>
 										<input class="btn btn-blue pos" type="submit" value="Weiter (Anregung jetzt absenden)">
