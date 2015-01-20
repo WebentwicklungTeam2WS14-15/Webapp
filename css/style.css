@@ -50,19 +50,19 @@ text-align:left;
 }
 
 .imgbtn{
-	height: 50%;
-    width: 50%;
+	height: 250px;
+    width: 250px;
     border-radius: 0px;
 }
 .imgbtn:hover{
     border-radius: 0px;
     border-color: #444444;
-    background-color: rgba(254, 203, 4, 0.2);
+    background-color: #E2E1E1;
 }
 
 .btn{
 	white-space: normal;
-    width: 65%;
+    width: 250px;
     font-size: 12pt;
 }
 
@@ -93,7 +93,7 @@ a.btn.btn-block.btn-default:hover {
 }
 
 .bl{
-    width: 100%;
+    width: 70%;
     height: 20%;
     position: absolute;
     top: 0;
@@ -322,9 +322,9 @@ div.ueberschrift{
 div.meldeart{
     font-family: Verdana;
     font-size: 12pt;
-    width: 90%;
+    width: 250px;
     line-height: 14pt;
-    margin: 20px;
+    margin: 15px;
 }
 label.hinweis{
     font-size: 10pt;
