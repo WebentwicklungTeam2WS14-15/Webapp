@@ -19,25 +19,35 @@
 						<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben" cols="35" rows="4"
 						maxlength="1024"></textarea><br>
 					</div>
-					<p id="lati" name="lati" hidden></p>
-					<p id="longi" name="longi" hidden></p>
+					<p id="hidden_latitude" hidden></p>
+					<p id="hidden_longitude" hidden></p>
 					<div>Ortsauswahl:</div><a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" id="useGps" type="button">Aktuellen Standort verwenden (GPS)</a>
 					<a class="btn btn-sm btn-primary btn-lg btn-neu" id="setDorsten" type="button">"Dorsten" als Ort verwenden</a>
 					<label id="gpsfail" hidden>
-						<span> Ihr Standort konnte leider nicht bestimmt werden.
+						<span>
+							Ihr Standort konnte leider nicht bestimmt werden.
 							<a id="gpsfailHelp" type="button">?</a>
 						</span>
 					</label>
-					<br><br>
-					<label class="ueberschrift">Oder manuell eingeben:</label>
-					<br>
+					<div class="buffer"></div>
+					<label class="ueberschrift">Oder Adresse manuell eingeben:</label>
 					<div class="form-group">
-						<label id="zeichen">Adresse des Schadenortes* (auch durch Karte auswählbar)</label>
-						<p>
-							<input class="form-control" id="schadensort" name="schadensort" type="name" onkeydown='deaktivieren("change")' value="" maxlength="128">
-						</p>
-						<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" id="showAddrOnMap">
+						<label for="schaden_strasse">Straße</label>
+						<input class="form-control" id="schaden_strasse" name="schadensort" type="text" placeholder="Straße">
 					</div>
+					<div class="form-group">
+						<label for="schaden_hausnr">Hausnummer</label>
+						<input class="form-control" id="schaden_hausnr" name="schadensort" type="text" placeholder="Hausnummer">
+					</div>
+					<div class="form-group">
+						<label for="schaden_plz">Postleitzahl</label>
+						<input class="form-control" id="schaden_plz" name="schadensort" type="text" placeholder="Postleitzahl" maxlength="5">
+					</div>
+					<div class="form-group">
+						<label for="schaden_ort">Ort</label>
+						<input class="form-control" id="schaden_ort" name="schadensort" type="text" placeholder="Ort">
+					</div>
+					<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" id="showAddrOnMap">
 					<div align="right">
 						<label id="rueckmeldung">Bitte geben Sie einen Schadensort an</label>
 					</div>
@@ -53,18 +63,18 @@
 		<br>
 		<div class="row clearfix">
 			<div class="col-md-6 column">
-		<div>Foto hochladen:</div>
-		<div class="tabelle">
-			<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
-				<div class="dropzone-previews"></div>
-				<div class="fallback"> <!--   this is the fallback if JS isn't working -->
-					<input name="file" type="file">
+				<div>Foto hochladen:</div>
+				<div class="tabelle">
+					<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
+						<div class="dropzone-previews"></div>
+						<div class="fallback"> <!--   this is the fallback if JS isn't working -->
+							<input name="file" type="file">
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
 			</div>
 			<div class="col-md-6 column"></div>
-			</div>
+		</div>
 
 		<script>
 			// myDropzone is the configuration for the element that has an id attribute
@@ -100,6 +110,7 @@
 	$(function() {
 		mapping();
 		deaktivieren('change');
+		leeren();
 		localStorage.setItem('foto','');
 
 		$('#nachricht').on('keydown keyup', function() {

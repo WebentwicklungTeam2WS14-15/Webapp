@@ -1,9 +1,12 @@
 function sichern() {
-	localStorage.setItem("nachricht", document.forms.form.elements.nachricht.value);
+	localStorage.setItem("nachricht", $('#nachricht').val());
 	//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
-	localStorage.setItem("schadensort", document.forms.form.elements.schadensort.value);
-	localStorage.setItem("latitude", document.getElementById("lati").innerHTML);
-	localStorage.setItem("longitude", document.getElementById("longi").innerHTML);
+	localStorage.setItem("schaden_strasse", $('#schaden_strasse').val());
+	localStorage.setItem("schaden_hausnr", $('#schaden_hausnr').val());
+	localStorage.setItem("schaden_plz", $('#schaden_plz').val());
+	localStorage.setItem("schaden_ort", $('#schaden_ort').val());
+	localStorage.setItem("latitude", $("#hidden_latitude").html());
+	localStorage.setItem("longitude", $("#hidden_longitude").html());
 	$("#my-awesome-dropzone").submit();
 	location.href = "index.php?inc=kontrolle";
 }
@@ -19,8 +22,6 @@ function hilfeAnzeigen() {
 var latDorsten = 51.668889;
 var lonDorsten = 6.967222;
 
-var lati = $('#lati');
-var longi = $('#longi');
 var markers = new OpenLayers.Layer.Markers("Markers");
 
 function aktivieren() {
@@ -29,16 +30,14 @@ function aktivieren() {
 }
 
 function deaktivieren(reason) {
-	$("#weiter").attr("disabled", true);
 	var rueckmeldung = $("#rueckmeldung");
+
+	if (reason == "nichtDorsten") { rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten."); }
+	if (reason == "change") { rueckmeldung.html("Bitte geben Sie einen Schadensort an."); }
+
 	rueckmeldung.removeAttr("hidden");
 
-	if (reason == "change") {
-		rueckmeldung.html("Bitte geben Sie einen Schadensort an.");
-	}
-	if (reason == "nichtDorsten") {
-		rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
-	}
+	$("#weiter").attr("disabled", true);
 }
 
 // Instantiate map and show it within the defined container
@@ -81,8 +80,8 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 			new OpenLayers.Projection("EPSG:900913"),
 			new OpenLayers.Projection("EPSG:4326")
 			);
-		lati.html(lonlat.lat);
-		longi.html(lonlat.lon);
+		$('#hidden_latitude').html(lonlat.lat);
+		$('#hidden_longitude').html(lonlat.lon);
 		addressByCoords(lonlat.lat, lonlat.lon);
 		lonLat = new OpenLayers.LonLat(lonlat.lon, lonlat.lat)
 		.transform(
@@ -98,7 +97,7 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 	}
 });
 
-function leeren() { $("#schadensort").val(""); }
+function leeren() { $('input[name=schadensort]').val(""); }
 
 function gpsCheck() { if ($("#schadensort").val() == "") $("#gpsfail").removeAttr("hidden"); }
 
@@ -106,8 +105,8 @@ function init() {
 	var mapnik = new OpenLayers.Layer.OSM();
 	map.addLayer(mapnik);
 	navigator.geolocation.getCurrentPosition(function (position) {
-		lati.html(position.coords.latitude);
-		longi.html(position.coords.longitude);
+		$('#hidden_latitude').html(position.coords.latitude);
+		$('#hidden_longitude').html(position.coords.longitude);
 		addressByCoords(position.coords.latitude, position.coords.longitude);
 		lonLat = new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude)
 		.transform(
@@ -126,16 +125,23 @@ function init() {
 }
 
 function coordsByAddress() {
-	var address = $('#schadensort').val();
-	if (address == "Dorsten (allgemein)") {
+	var addr_street = $('#schaden_strasse').val();
+	var addr_housenr = $('#schaden_hausnr').val();
+	var addr_postalcd = $('#schaden_plz').val();
+	var addr_city = $('#schaden_ort').val();
+
+	var combined_address = addr_street + " " + addr_housenr + " " + addr_postalcd + " " + addr_city;
+
+	if (addr_city == "Dorsten (allgemein)") {
 		alert("ok");
-	} else{
+	} else if ($.trim(combined_address) == "") {
+		alert('Es wurde keine Adresse angegeben.');
+	} else {
 		var geocoder = new google.maps.Geocoder();
-		geocoder.geocode({'address': address}, function (results, status) {
+		geocoder.geocode({'address': combined_address}, function (results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				lati.html(results[0].geometry.location.lat());
-				longi.html(results[0].geometry.location.lng());
-				addressByCoords(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+				$('#hidden_latitude').html(results[0].geometry.location.lat());
+				$('#hidden_longitude').html(results[0].geometry.location.lng());
 				lonLat = new OpenLayers.LonLat(results[0].geometry.location.lng(), results[0].geometry.location.lat())
 				.transform(
 					new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
@@ -155,27 +161,29 @@ function coordsByAddress() {
 	}
 }
 
-function addressByCoords(eins, zwei) {
+function addressByCoords(latitude, longitude) {
+	$('#hidden_latitude').html(latitude);
+	$('#hidden_longitude').html(longitude);
 	var geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(eins, zwei);
+	var latlng = new google.maps.LatLng(latitude, longitude);
 	geocoder.geocode({'latLng': latlng}, function (results, status) {
 		if (results[0]) {
-			addressResult = results[0].formatted_address;
-			if (addressResult.indexOf(" Dorsten, Deutschland") == -1 && addressResult.indexOf(" Dorsten, Germany") == -1) {
-				deaktivieren("nichtDorsten");
-			} else {
-				aktivieren();
-			}
+			var result_locality;
 
-			if (addressResult.indexOf(', Germany') != -1) {
-				addressResult = addressResult.replace(', Germany', '');
-			}
+			// Get address components fields from results and set the input boxes to the corresponding values
+			// fields: https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingAddressTypes
+			$.each(results[0].address_components, function(index, value) {
+				if (value.types[0] == "street_number") { $('#schaden_hausnr').val(value.long_name); };
+				if (value.types[0] == "route") { $('#schaden_strasse').val(value.long_name); };
+				if (value.types[0] == "postal_code") { $('#schaden_plz').val(value.long_name); };
+				if (value.types[0] == "locality") {
+					$('#schaden_ort').val(value.long_name);
+					result_locality = value.long_name;
+				};
+			});
 
-			if (addressResult.indexOf(', Deutschland') != -1) {
-				addressResult = addressResult.replace(', Deutschland', '');
-			}
-
-			$('#schadensort').val(addressResult);
+			if (result_locality != "Dorsten") deaktivieren("nichtDorsten");
+			else aktivieren();
 		}
 	});
 }
@@ -183,8 +191,8 @@ function addressByCoords(eins, zwei) {
 function setDorsten(){
 	var latDorstenCenter = 51.66996827834537;
 	var lonDorstenCenter = 6.969115639564525;
-	lati.html(latDorstenCenter);
-	longi.html(lonDorstenCenter);
+	$('#hidden_latitude').html(latDorstenCenter);
+	$('#hidden_longitude').html(lonDorstenCenter);
 	var lonLat = new OpenLayers.LonLat(lonDorstenCenter, latDorstenCenter)
 	.transform(
 		new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
@@ -192,6 +200,9 @@ function setDorsten(){
 		);
 	map.setCenter(lonLat, 16);
 	if (markers) markers.destroy();
-	$("#schadensort").val("Dorsten (allgemein)");
+
+	// empty all location fields before overwriting the locality
+	leeren();
+	$("#schaden_ort").val("Dorsten (allgemein)");
 	aktivieren();
 }
