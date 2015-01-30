@@ -30,7 +30,7 @@
 				<span id="bltext">Aktive Bürger Beteiligungs App</span>
 			</h5>
 		</div>
-	</header><br/>
+	</header><br>
 
 	<?php
 	$include_subsite = $_GET['inc'];

@@ -75,7 +75,7 @@ function addIssue($data) {
 	$args['issueData']['description'] = $summary;
 	$args['issueData']['summary'] = $lastName . ": " . substr($summary,0,63);
 	$args['issueData']['custom_fields']=array(
-		array('field' => array('id'=>'3'),'value'=>$reportedPlace),	
+		array('field' => array('id'=>'3'),'value'=>$reportedPlace),
 		array('field' => array('id'=>'2'),'value'=>$geo),
 		array('field' => array('id'=>'4'),'value'=>$firstName),
 		array('field' => array('id'=>'10'),'value'=>$lastName),
@@ -151,5 +151,5 @@ function addAttachment($issueID,$filecontent,$type,$count) {
 		<div class="col-md-12 column text-center">
 			<a href="index.php" class="btn btn-primary btn-lg btn-neu" type="button">Zurück zur Startseite</a>
 		</div>
-	</div></br>
+	</div><br>
 </div>

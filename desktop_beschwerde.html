@@ -2,13 +2,13 @@
 <div>
 	<div class="container jumbotron">
 		<div class="row clearfix">
-			<div class="ueberschrift">
-				<h3>
+			<div id="form">
+				<div class="ueberschrift">
 					Bitte geben Sie den Schadensort an.
-				</h3>
-				<h4>
+				</div>
+				<label class="hinweis">
 					*Pflichtfelder
-				</h4>
+				</label>
 			</div>
 		</div>
 		<div class="row clearfix">
@@ -19,9 +19,9 @@
 						<textarea id="nachricht" name="nachricht" placeholder="Ihre Nachricht/ Beschwerde/ Anregung/ Idee eingeben" cols="35" rows="4"
 						maxlength="1024"></textarea><br>
 					</div>
-					<p id="lati" class="lalo" name="lati" hidden></p>
-					<p id="longi" class="lalo" name="longi" hidden></p>
-					<a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" id="useGps" type="button">Aktuellen Standort verwenden (GPS)</a> oder
+					<p id="lati" name="lati" hidden></p>
+					<p id="longi" name="longi" hidden></p>
+					<div>Ortsauswahl:</div><a href="#" class="btn btn-sm btn-primary btn-lg btn-neu" id="useGps" type="button">Aktuellen Standort verwenden (GPS)</a>
 					<a class="btn btn-sm btn-primary btn-lg btn-neu" id="setDorsten" type="button">"Dorsten" als Ort verwenden</a>
 					<label id="gpsfail" hidden>
 						<span> Ihr Standort konnte leider nicht bestimmt werden.
@@ -39,7 +39,7 @@
 						<input type="button" class="btn btn-sm btn-primary btn-lg btn-neu" value="Adresse auf Karte anzeigen" id="showAddrOnMap">
 					</div>
 					<div align="right">
-						<label id="rueckmeldung" style="color: red">Bitte geben Sie einen Schadensort an</label>
+						<label id="rueckmeldung">Bitte geben Sie einen Schadensort an</label>
 					</div>
 					<p><input type="submit" id="weiter" class="btn btn-primary btn-lg" disabled name="submit" style="float:right" value="Weiter"></p><br><br><br>
 				</form>
@@ -50,12 +50,21 @@
 				</p>
 			</div>
 		</div>
-		<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
-			<div class="dropzone-previews"></div>
-			<div class="fallback"> <!--   this is the fallback if JS isn't working -->
-				<input name="file" type="file">
+		<br>
+		<div class="row clearfix">
+			<div class="col-md-6 column">
+		<div>Foto hochladen:</div>
+		<div class="tabelle">
+			<form id="my-awesome-dropzone" action="upload.php" class="dropzone hochladen">
+				<div class="dropzone-previews"></div>
+				<div class="fallback"> <!--   this is the fallback if JS isn't working -->
+					<input name="file" type="file">
+				</div>
+			</form>
+		</div>
 			</div>
-		</form>
+			<div class="col-md-6 column"></div>
+			</div>
 
 		<script>
 			// myDropzone is the configuration for the element that has an id attribute
