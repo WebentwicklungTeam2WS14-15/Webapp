@@ -183,9 +183,9 @@ a.btn.btn-block.btn-default:hover {
 
 .pos{ text-align: right; }
 
-.inhalt { font-size:0.8em !important; }
+.inhalt { font-size: 1em !important; }
 
-.namen{ font-size:0.6em !important; }
+.namen{ font-size: 1em !important; }
 
 p { line-height: 150%; }
 
