@@ -234,10 +234,8 @@ h3 { font-size: 18pt !important; }
 div.meldeart {
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 12pt;
-	text-align: center;
 	line-height: 14pt;
 	margin-top: 10px;
-	width: 80%;
 }
 
 label.hinweis { font-size: 10pt; }
@@ -253,9 +251,9 @@ label.hinweis { font-size: 10pt; }
 	font-size: 12pt;
 }
 
-.buffer {
-	margin: 1% 0;
-}
+.buffer { margin: 1% 0; }
+
+.centered { margin: 0 auto; text-align: center; }
 
 @media all and (min-device-width : 5px) and (max-device-width : 1000px) {
 	.mapcontainer {
