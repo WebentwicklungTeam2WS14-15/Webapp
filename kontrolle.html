@@ -12,123 +12,209 @@
 		localStorage.setItem("nachricht", document.getElementById("nachricht").innerHTML);
 	}
 
+	function showMandatoryFieldWarning (field) {
+		field.attr("placeholder", "Bitte ausfüllen");
+		field.closest("div.form-group").addClass("has-error");
+	}
+
 	function pflichtfelder() {
-		var i = 0;
-		var weiter = true;
-		if (document.getElementById("nachname").value == "") {
-			document.getElementById("nachname").placeholder = "Bitte ausfüllen!";
-			weiter = false;
-		} else {
-			i++;
-		}
-		if (document.getElementById("vorname").value == "") {
-			document.getElementById("vorname").placeholder = "Bitte ausfüllen!";
-			weiter = false;
-		} else {
-			i++;
-		}
-		if (document.getElementById("email").value == "") {
-			document.getElementById("email").placeholder = "Bitte ausfüllen!";
-			weiter = false;
-		} else {
-			i++;
-		}
-		if (i == 3) {
-			sichern();
-			return true;
-		} else {
-			return false;
-		}
+		var mandatoryInputsCompleted = true;
+
+		var mandatoryInputFields = [];
+		mandatoryInputFields.push($("#inputSurname"));
+		mandatoryInputFields.push($("#inputForename"));
+		mandatoryInputFields.push($("#inputEmail"));
+
+		$.each(mandatoryInputFields, function (index, inputField) {
+			if(inputField.val() == "") {
+				showMandatoryFieldWarning(inputField);
+				mandatoryInputsCompleted = false;
+			}
+		});
+
+		sichern();
+
+		return mandatoryInputsCompleted;
 	}
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
 		<div class="col-md-2 column"></div>
 		<div class="col-md-8 column">
-		<div class="ueberschrift">
+			<div class="ueberschrift">
 				Kontrollformular:
-		</div>
-		<h4>
-			Bitte überprüfen Sie Ihre angegebenen Daten!
-		</h4>
+			</div>
+			<h4>
+				Bitte überprüfen Sie Ihre angegebenen Daten!
+			</h4>
 		</div>
 		<div class="col-md-2 column"></div>
 	</div>
 	<div class="row clearfix">
-		<div class="col-md-2 column"></div>
-		<div class="col-md-8 column">
-		<form role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();"><br><br>
-				<table width="100%" style="border-collapse: separate; border-spacing: 0 0.5em;" id="zeichen">
-					<tbody>
-						<tr>
-							<td>
-								<label class='bold'>Art des Anliegens:</label></td><td>
-								<label id="art"></label></td></tr>
-								<input id="arthidden" name="art" hidden>
-								<script type="text/javascript">
-									document.getElementById("art").innerHTML = localStorage.getItem("art");
-									document.getElementById("arthidden").setAttribute("value", localStorage.getItem("art"));
-								</script>
-								<script type="text/javascript">
-									document.write("<tr><td><label class='bold'>Name:*</label></td><td><input id='nachname' name='nachname' type='text' maxlength='25'></td></tr>");
-									document.getElementById("nachname").setAttribute("value", localStorage.getItem("nachname"));
-									document.write("<tr><td><label class='bold'>Vorname:*</label></td><td><input id='vorname' name='vorname' type='text' maxlength='25'></td></tr>");
-									document.getElementById("vorname").setAttribute("value", localStorage.getItem("vorname"));
-									document.write("<tr><td><label class='bold'>E-Mail:*</label></td><td><input id='email' name='email' type='email' maxlength='25'></td></tr>");
-									document.getElementById("email").setAttribute("value", localStorage.getItem("email"));
-									document.write("<tr><td><label class='bold'>Straße:</label></td><td><input id='strasse' name='strasse' type='text' maxlength='25'></td></tr>");
-									document.getElementById("strasse").setAttribute("value", localStorage.getItem("strasse"));
-									document.write("<tr><td><label class='bold'>Hausnummer:</label></td><td><input id='hausnummer' name='hausnummer' type='text' maxlength='25'></td></tr>");
-									document.getElementById("hausnummer").setAttribute("value", localStorage.getItem("hausnummer"));
-									document.write("<tr><td><label class='bold'>Postleitzahl:</label></td><td><input id='postleitzahl' name='postleitzahl' type='text' maxlength='25'></td></tr>");
-									document.getElementById("postleitzahl").setAttribute("value", localStorage.getItem("postleitzahl"));
-									document.write("<tr><td><label class='bold'>Ort:</label></td><td><input id='ort' name='ort' type='text' maxlength='25'></td></tr>");
-									document.getElementById("ort").setAttribute("value", localStorage.getItem("ort"));
-									document.write("<tr><td><label class='bold'>Telefon:</label></td><td><input id='telefon' name='telefon' type='text' maxlength='25'></td></tr>");
-									document.getElementById("telefon").setAttribute("value", localStorage.getItem("telefon"));
-									document.write("<tr><td><label class='bold'>Mobil:</label></td><td><input id='mobil' name='mobil' type='text' maxlength='35'></td></tr>");
-									document.getElementById("mobil").setAttribute("value", localStorage.getItem("mobil"));
-								</script>
-								<tr><td><label class='bold'>Ihre Nachricht:</label></td>
-									<td><textarea id="nachricht2" name="nachricht" maxlength="128"></textarea>
-										<script type="text/javascript">
-											document.getElementById("nachricht2").innerHTML = localStorage.getItem("nachricht");
-										</script></td></tr>
-										<tr><td><label class='bold'>Schadensort:</label></td>
-											<td><label id="schadensort"></label>
-												<input id="schadensorthidden" name="schadensort" hidden>
-												<script type="text/javascript">
-													document.getElementById("schadensort").innerHTML = localStorage.getItem("schadensort");
-													document.getElementById("schadensorthidden").setAttribute("value", localStorage.getItem("schadensort"));
-												</script></td></tr>
-												<script type="text/javascript">
-													if(localStorage.getItem("schadensort")!="Dorsten (allgemein)"){
-														var koords = localStorage.getItem("latitude") + "," + localStorage.getItem("longitude");
-														document.write("<tr><td></td><td><div><p><img src='http://staticmap.openstreetmap.de/staticmap.php?center=" + koords + "&zoom=15&size=300x200&markers=" + koords + ",ol-marker' width='200' height='150'/></p></div></td></tr>");
-													}
-													var fotos = localStorage.getItem("foto").split("data:image");
-													for (var fotoElement=0; fotoElement<fotos.length; fotoElement++){
-														if(fotoElement>0){
-															document.write("<tr><td><label>Foto["+fotoElement+"]:</label></td><td><div style='height:20; width:20; overflow:hidden'><img src='data:image"+fotos[fotoElement]+"' width='200' height='200'></div></td></tr>");
-														}
-													}
-												</script>
-												<input id="koordinatenhidden" name="koordinaten" hidden>
-												<script type="text/javascript">
-													document.getElementById("koordinatenhidden").setAttribute("value", localStorage.getItem("latitude") + ", " + localStorage.getItem("longitude"));
-												</script>
-												<input id="attachment1" name="attachment1" hidden>
-												<input id="anonym" name="anonym" hidden>
-												<script type="text/javascript">
-													document.getElementById("attachment1").setAttribute("value", localStorage.getItem("attachment1"));
-												</script>
-												<input name="attachmentCount" value="0" hidden>
-											</tbody>
-										</table><br><br>
-										<input class="btn btn-primary btn-lg btn-neu" type="submit"  style="float:right" value="Weiter (Anregung jetzt absenden)">
-									</form>
-								</div>
-								<div class="col-md-2 column">
-								</div>
-							</div><br>
-						</div>
+		<div class="col-md-offset-2 col-md-8 column">
+			<form role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();" class="form-horizontal">
+
+				<div class="form-group">
+					<label for="art" class="col-sm-2 col-md-4 control-label">Art des Anliegens</label>
+					<div class="col-sm-10 col-md-8">
+						<p class="form-control-static" id="art">Art des Anliegens</p>
+						<input id="arthidden" name="art" type="text" hidden>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputSurname" class="col-sm-2 col-md-4 control-label">Nachname*</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="text" class="form-control" id="inputSurname" placeholder="Nachname">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputForename" class="col-sm-2 col-md-4 control-label">Vorname*</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="text" class="form-control" id="inputForename" placeholder="Vorname">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputEmail" class="col-sm-2 col-md-4 control-label">E-Mail*</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="email" class="form-control" id="inputEmail" placeholder="E-Mail">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputStreet" class="col-sm-2 col-md-4 control-label">Straße</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="text" class="form-control" id="inputStreet" placeholder="Straße">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputHouseNr" class="col-sm-2 col-md-4 control-label">Hausnr.</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="text" class="form-control" id="inputHouseNr" placeholder="Hausnummer">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputPostalcode" class="col-sm-2 col-md-4 control-label">PLZ</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="number" class="form-control" id="inputPostalcode" placeholder="Postleitzahl">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputLocality" class="col-sm-2 col-md-4 control-label">Ort</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="text" class="form-control" id="inputLocality" placeholder="Ort">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputPhoneNr" class="col-sm-2 col-md-4 control-label">Telefon</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="tel" class="form-control" id="inputPhoneNr" placeholder="Telefon">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputMobileNr" class="col-sm-2 col-md-4 control-label">Mobil</label>
+					<div class="col-sm-10 col-md-8">
+						<input type="tel" class="form-control" id="inputMobileNr" placeholder="Mobil">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputMessage" class="col-sm-2 col-md-4 control-label">Ihre Nachricht</label>
+					<div class="col-sm-10 col-md-8">
+						<textarea class="form-control" id="inputMessage" rows="3"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="art" class="col-sm-2 col-md-4 control-label">Schadensort</label>
+					<div class="col-sm-10 col-md-8" id="map">
+						<p class="form-control-static" id="schadensort">Schadensort</p>
+						<input id="schadensorthidden" type="text" hidden>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="art" class="col-sm-2 col-md-4 control-label">Fotos</label>
+					<div class="col-sm-10 col-md-8" id="photos">
+					</div>
+				</div>
+
+				<input id="koordinatenhidden" type="text" hidden>
+				<input id="attachment1" name="attachment1" hidden>
+				<input id="anonym" name="anonym" hidden>
+				<input name="attachmentCount" value="0" hidden>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-md-offset-4 col-sm-10 col-md-8">
+						<button type="submit" class="btn btn-primary btn-lg btn-block">Weiter (Anregung jetzt absenden)</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$("#art").html(localStorage.getItem("art"));
+		$("#art").css("margin-bottom", "0");
+		$("#arthidden").val(localStorage.getItem("art"));
+
+		$("#inputSurname").val(localStorage.getItem("nachname"));
+		$("#inputForename").val(localStorage.getItem("vorname"));
+		$("#inputEmail").val(localStorage.getItem("email"));
+		$("#inputStreet").val(localStorage.getItem("strasse"));
+		$("#inputHouseNr").val(localStorage.getItem("hausnummer"));
+		$("#inputPostalcode").val(localStorage.getItem("postleitzahl"));
+		$("#inputLocality").val(localStorage.getItem("ort"));
+		$("#inputPhoneNr").val(localStorage.getItem("telefon"));
+		$("#inputMobileNr").val(localStorage.getItem("mobil"));
+
+		$("#inputMessage").val(localStorage.getItem("nachricht"));
+
+		$("#schadensort").html(localStorage.getItem("schaden_ort"));
+		$("#schadensorthidden").val(localStorage.getItem("schaden_ort"));
+
+		$("#koordinatenhidden").val(localStorage.getItem("latitude") + ", " + localStorage.getItem("longitude"));
+		$("#attachment1").val(localStorage.getItem("attachment1"));
+
+		var attachedPhotos = localStorage.getItem("foto").split("data:image");
+		if (attachedPhotos.length > 1) {
+			for (var photo = 0; photo < attachedPhotos.length; photo++){
+				if(photo > 0){
+					$("#photos").append("<img src='data:image"+attachedPhotos[photo]+"' class='kontrollePhoto'>");
+				}
+			}
+		} else if (attachedPhotos.length = 1) $("#photos").append("<p class='form-control-static' id='foto'>Keine Fotos vorhanden.</p>");
+
+		if (localStorage.getItem("schaden_ort") != "Dorsten (allgemein)") {
+			mapping(localStorage.getItem("latitude"), localStorage.getItem("longitude"));
+		}
+	});
+
+function mapping(latitude, longitude) {
+	$("#map").append("<div id='basicMap' class='kontrolleMapContainer'></div>");
+	$("#map").addClass("kontrolleMapdiv");
+	map = new OpenLayers.Map("basicMap");
+	map.addLayer(new OpenLayers.Layer.OSM());
+	var lonLat = new OpenLayers.LonLat(longitude, latitude)
+	.transform(
+						new OpenLayers.Projection("EPSG:4326"), //transform from WGS 1984
+						map.getProjectionObject() //to Spherical Mercator Projection
+						);
+	map.setCenter(lonLat, 16);
+	var markers = new OpenLayers.Layer.Markers("Markers");
+	markers.addMarker(new OpenLayers.Marker(lonLat));
+	map.addLayer(markers);
+
+	// add #map_attribution so we can change how it looks in CSS w/o overwriting the OpenLayers CSS ID
+	$('#OpenLayers_Control_Attribution_7').attr('id','map_attribution');
+};
+</script>

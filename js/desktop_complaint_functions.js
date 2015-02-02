@@ -166,7 +166,7 @@ function coordsByAddress() {
 	var combined_address = addr_street + " " + addr_housenr + " " + addr_postalcd + " " + addr_city;
 
 	if (addr_city == "Dorsten (allgemein)") {
-		alert("ok");
+		return;
 	} else if ($.trim(combined_address) == "") {
 		alert('Es wurde keine Adresse angegeben.');
 	} else {

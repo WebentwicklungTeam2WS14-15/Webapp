@@ -160,6 +160,21 @@ a.btn.btn-block.btn-default:hover {
 
 .mapdiv { height: 500px; }
 
+.kontrolleMapContainer {
+	position:absolute;
+	left:15px;
+	top:0px;
+	right:15px;
+	bottom:0px;
+}
+
+.kontrolleMapdiv { height: 350px; }
+
+.kontrollePhoto {
+	width: 50%;
+	padding: 5px;
+}
+
 #map_attribution {
 	position: absolute;
 	bottom: 0px;
@@ -187,16 +202,14 @@ a.btn.btn-block.btn-default:hover {
 
 p { line-height: 150%; }
 
-h6 { font-size: 14px; }
-
-tbody { font-size: 1.0em; }
-
+h3 { font-size: 18pt !important; }
 h4 {
 	font-size: 12pt !important;
 	margin-top: 5px !important;
 }
+h6 { font-size: 14px; }
 
-h3 { font-size: 18pt !important; }
+tbody { font-size: 1.0em; }
 
 #nachricht {
 	resize: none;
@@ -206,13 +219,7 @@ h3 { font-size: 18pt !important; }
 	padding: 30px;
 }
 
-#nachricht2 {
-	resize: none;
-	font-size: 10pt;
-	width: 70%;
-	height: 250px;
-	padding: 30px;
-}
+#inputMessage { resize: none; }
 
 .subtitle { font-size: 14px; }
 
@@ -278,7 +285,7 @@ div.meldeart {
 		margin-top: 10px;
 	}
 
-	#nachricht2 { width: 100%; }
+	.kontrollePhoto { width: 100%; }
 }
 
 @media screen and (max-width: 37.5em) {
@@ -321,5 +328,5 @@ div.meldeart {
 
 	.btntable { width: 100%; }
 
-	#nachricht2 { width: 100%; }
+	.kontrollePhoto { width: 100%; }
 }
