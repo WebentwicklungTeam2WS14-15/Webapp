@@ -82,6 +82,10 @@ function mapping() {
 	var click = new OpenLayers.Control.Click();
 	map.addControl(click);
 	click.activate();
+
+	// add #map_attribution so we can change how it looks in CSS w/o overwriting
+	// the OpenLayers CSS ID
+	$('#OpenLayers_Control_Attribution_9').attr('id','map_attribution');
 };
 
 OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {

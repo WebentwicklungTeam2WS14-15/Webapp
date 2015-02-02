@@ -160,6 +160,14 @@ a.btn.btn-block.btn-default:hover {
 
 .mapdiv { height: 500px; }
 
+#map_attribution {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	background: rgba(255, 255, 255, 0.7);
+	padding: 5px;
+}
+
 .startinfo { width: 55%; }
 
 .container.jumbotron {
