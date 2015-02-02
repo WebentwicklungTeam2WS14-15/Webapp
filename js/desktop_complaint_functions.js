@@ -24,6 +24,19 @@ var lonDorsten = 6.967222;
 
 var markers = new OpenLayers.Layer.Markers("Markers");
 
+function isSchadenortInLocalStorage () {
+	var addr_street = $('#schaden_strasse').val();
+	var addr_housenr = $('#schaden_hausnr').val();
+	var addr_postalcd = $('#schaden_plz').val();
+	var addr_city = $('#schaden_ort').val();
+	var combined_address = addr_street + " " + addr_housenr + " " + addr_postalcd + " " + addr_city;
+
+	if ($.trim(combined_address) == "") return false;
+	else coordsByAddress();
+
+	return true;
+}
+
 function aktivieren() {
 	$("#weiter").removeAttr("disabled");
 	$("#rueckmeldung").attr("hidden", true);
@@ -32,17 +45,28 @@ function aktivieren() {
 
 function deaktivieren(reason) {
 	var rueckmeldung = $("#rueckmeldung");
+	var showWarning = false;
 
 	if (reason == "nichtDorsten") {
 		rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
 		$('input[name=schadensort]').parent('div').addClass("has-error");
+		showWarning = true;
 	}
 
-	if (reason == "change") { rueckmeldung.html("Bitte geben Sie einen Schadensort an."); }
+	if (reason == "neuerAufruf") {
+		if (!isSchadenortInLocalStorage()) {
+			rueckmeldung.html("Bitte geben Sie einen Schadensort an.");
+			showWarning = true;
+		}
+	}
 
-	rueckmeldung.removeAttr("hidden");
-
-	$("#weiter").attr("disabled", true);
+	if (showWarning) {
+		rueckmeldung.removeAttr("hidden");
+		$("#weiter").attr("disabled", true);
+	} else {
+		rueckmeldung.attr("hidden", true);
+		$("#weiter").attr("disabled", false);
+	}
 }
 
 // Instantiate map and show it within the defined container
