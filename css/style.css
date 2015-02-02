@@ -1,7 +1,9 @@
-body{
+body {
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	overflow-x: hidden;
 }
+
+header { margin-bottom: 3%; }
 
 #logo {
 	width:20%;
@@ -156,10 +158,7 @@ a.btn.btn-block.btn-default:hover {
 	bottom:5px;
 }
 
-.mapdiv {
-	width: 500px;
-	height: 500px;
-}
+.mapdiv { height: 500px; }
 
 .startinfo { width: 55%; }
 
@@ -229,8 +228,6 @@ div.meldeart {
 	margin-top: 10px;
 }
 
-#form{ padding: 20px; }
-
 #zeichen{ font-size: 12pt; }
 
 .buffer { margin: 1% 0; }
@@ -238,6 +235,8 @@ div.meldeart {
 .centered { margin: 0 auto; text-align: center; }
 
 @media all and (min-device-width : 5px) and (max-device-width : 1000px) {
+	header { margin-bottom: .5%; }
+
 	.mapcontainer {
 		position:absolute;
 		left:5px;
@@ -275,6 +274,8 @@ div.meldeart {
 }
 
 @media screen and (max-width: 37.5em) {
+	header { margin-bottom: .5%; }
+
 	.dropzone .dz-default.dz-message {
 		background-position: 0 -123px;
 		width: 268px;
@@ -285,6 +286,8 @@ div.meldeart {
 }
 
 @media all and (max-width: 1000px) {
+	header { margin-bottom: .5%; }
+
 	.bl { margin-left: 5%; }
 
 	.mapcontainer {
