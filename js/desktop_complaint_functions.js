@@ -27,12 +27,17 @@ var markers = new OpenLayers.Layer.Markers("Markers");
 function aktivieren() {
 	$("#weiter").removeAttr("disabled");
 	$("#rueckmeldung").attr("hidden", true);
+	$('input[name=schadensort]').parent('div').removeClass("has-error");
 }
 
 function deaktivieren(reason) {
 	var rueckmeldung = $("#rueckmeldung");
 
-	if (reason == "nichtDorsten") { rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten."); }
+	if (reason == "nichtDorsten") {
+		rueckmeldung.html("Der angegebene Schadensort ist nicht in Dorsten.");
+		$('input[name=schadensort]').parent('div').addClass("has-error");
+	}
+
 	if (reason == "change") { rueckmeldung.html("Bitte geben Sie einen Schadensort an."); }
 
 	rueckmeldung.removeAttr("hidden");

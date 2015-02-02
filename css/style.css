@@ -54,15 +54,10 @@ body{
 	background-color: #E2E1E1;
 }
 
-.btn {
-	width: 80%;
-	font-size: 12pt;
-	white-space: normal;
-}
-
 .btn-neu {
 	width:200px;
 	margin-bottom: 5px;
+	white-space: normal;
 }
 
 a.btn.btn-block.btn-default button {
@@ -166,22 +161,18 @@ a.btn.btn-block.btn-default:hover {
 	height: 500px;
 }
 
-.startinfo{
-	width: 55%;
-}
-.container.jumbotron{
+.startinfo { width: 55%; }
+
+.container.jumbotron {
 	background-color: #fff;
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.jumbotron{
-	/*box-shadow: 10px 10px 15px #cccccc;*/
-	background-color: #fff;
-}
+.jumbotron { background-color: #fff; }
 
-.goleft{ text-align: center; }
+.goleft { text-align: center; }
 
-.pos{ text-align: right; }
+.pos { text-align: right; }
 
 .inhalt { font-size: 1em !important; }
 
@@ -238,18 +229,9 @@ div.meldeart {
 	margin-top: 10px;
 }
 
-label.hinweis { font-size: 10pt; }
-
-#ueberschrift{ font-size: 18pt; }
-
 #form{ padding: 20px; }
 
 #zeichen{ font-size: 12pt; }
-
-#rueckmeldung{
-	color: #F00;
-	font-size: 12pt;
-}
 
 .buffer { margin: 1% 0; }
 
@@ -272,6 +254,8 @@ label.hinweis { font-size: 10pt; }
 
 	.jumbotron { box-shadow: 0px 0px 0px #888; }
 
+	.jumbotron-lesspadding { padding: 5px 30px; }
+
 	.pos { text-align: center; }
 
 	a.btn.btn-block.btn-default { min-height: 60px; }
@@ -286,8 +270,6 @@ label.hinweis { font-size: 10pt; }
 		text-align: center;
 		margin-top: 10px;
 	}
-
-	.btn { width: 80%; }
 
 	#nachricht2 { width: 100%; }
 }
@@ -327,8 +309,6 @@ label.hinweis { font-size: 10pt; }
 	}
 
 	.btntable { width: 100%; }
-
-	.btn { width: 80%; }
 
 	#nachricht2 { width: 100%; }
 }
