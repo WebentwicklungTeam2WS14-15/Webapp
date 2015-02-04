@@ -1,3 +1,4 @@
+<!-- Autor: Jan-Erik Bähr, Jonas Hallmann-->
 <?php
 include("inc/config.php");
 //Call to get user data from POST-variables and sanitize it

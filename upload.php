@@ -1,3 +1,4 @@
+<!-- Autor: Sebastian Kawa-->
 <?php
 $ds          = DIRECTORY_SEPARATOR;  //1
 

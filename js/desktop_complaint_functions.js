@@ -1,3 +1,4 @@
+//<!-- Autor: Jonas Hallmann-->
 function sichern() {
 	localStorage.setItem("nachricht", $('#nachricht').val());
 	//localStorage.setItem("Foto", document.forms.form.elements.foto.value);
