@@ -1,4 +1,4 @@
-<!-- Autor: Jonas Hallmann-->
+<!-- Autor: Jonas Hallmann, Patrick Geselbracht -->
 <script type="text/javascript">
 	function sichern() {
 		localStorage.setItem("nachname", document.forms.form.elements.nachname.value);
@@ -40,19 +40,9 @@
 </script>
 <div class="container jumbotron">
 	<div class="row clearfix">
-		<div class="col-md-2 column"></div>
-		<div class="col-md-8 column">
-			<div class="ueberschrift">
-				Kontrollformular:
-			</div>
-			<h4>
-				Bitte überprüfen Sie Ihre angegebenen Daten!
-			</h4>
-		</div>
-		<div class="col-md-2 column"></div>
-	</div>
-	<div class="row clearfix">
 		<div class="col-md-offset-2 col-md-8 column">
+			<div class="ueberschrift">Kontrollformular:</div>
+			<h4>Bitte überprüfen Sie Ihre angegebenen Daten!</h4>
 			<form role="form" method="post" action="./index.php?inc=vd" onsubmit="return pflichtfelder();" class="form-horizontal">
 
 				<div class="form-group">

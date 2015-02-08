@@ -1,7 +1,7 @@
+<!-- Autor: Patrick Geselbracht -->
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="author" content="">
 	<meta charset="utf-8">
 	<title>ABBA Dorsten</title>
 	<link rel="shortcut icon" href="http://www.dorsten.de/favicon.ico" type="image/x-icon" />
