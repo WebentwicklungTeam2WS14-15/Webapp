@@ -1,4 +1,4 @@
-
+<!-- Autor: Sebastian Kawa -->
 ;(function(){
 
 /**
